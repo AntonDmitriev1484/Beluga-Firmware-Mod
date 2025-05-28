@@ -1,0 +1,19 @@
+{
+    "nrf-connect.applications": [
+        "${workspaceFolder}\\Beluga"
+    ],
+    "cmake.sourceDirectory": "C:/Users/soula/OneDrive/Desktop/Programming/Decawave/Beluga-2.0/Beluga",
+    "files.associations": {
+        "forward_list": "c",
+        "list": "c",
+        "xhash": "c",
+        "xiosbase": "c",
+        "xmemory": "c",
+        "xtree": "c",
+        "*.tcc": "c",
+        "unordered_map": "c",
+        "deca_types.h": "c",
+        "deca_regs.h": "c",
+        "deca_device_api.h": "c"
+    }
+}
