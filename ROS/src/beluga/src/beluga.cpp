@@ -200,14 +200,14 @@ void Beluga::publish_ranges(
         // Here, convert from BelugaNeighbor internal type initialized from serial frames
         // to the ROS fields in BelugaRange.msg
         
-        range.maxnoise = it.maxNoise; // Modified
-        range.firstpathamp1 = it.firstPathAmp1;
-        range.firstpathamp2 = it.firstPathAmp2;
-        range.firstpathamp3 = it.firstPathAmp3;
-        range.stdnoise = it.stdNoise;
-        range.maxgrowthcir = it.maxGrowthCIR;
-        range.rxpreamcount = it.rxPreamCount;
-        range.firstpath = it.firstPath;
+        range.maxnoise = it.maxNoise(); // Modified
+        range.firstpathamp1 = it.firstPathAmp1();
+        range.firstpathamp2 = it.firstPathAmp2();
+        range.firstpathamp3 = it.firstPathAmp3();
+        range.stdnoise = it.stdNoise();
+        range.maxgrowthcir = it.maxGrowthCIR();
+        range.rxpreamcount = it.rxPreamCount();
+        range.firstpath = it.firstPath();
 
         message.ranges.push_back(range);
     }
