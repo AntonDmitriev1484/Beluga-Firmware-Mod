@@ -40,7 +40,19 @@ struct json_data_contract<BelugaSerial::BelugaFrame::NeighborUpdate> {
     using type = json_member_list<
         json_number<"ID", uint16_t>, json_number<"RSSI", int8_t>,
         json_number<"RANGE", double>, json_number<"TIMESTAMP", int64_t>,
-        json_number<"EXCHANGE", uint32_t>>;
+        json_number<"EXCHANGE", uint32_t>, 
+        json_number<"maxNoise", uint16_t>,
+        json_number<"firstPathAmp1", uint16_t>,
+        json_number<"firstPathAmp2", uint16_t>,
+        json_number<"firstPathAmp3", uint16_t>,
+        json_number<"stdNoise", uint16_t>,
+        json_number<"maxGrowthCIR", uint16_t>,
+        json_number<"rxPreamCount", uint16_t>,
+        json_number<"firstPath", uint16_t>,
+
+
+        
+        >;
 };
 
 template <> struct json_data_contract<BelugaSerial::RangeEvent> {
