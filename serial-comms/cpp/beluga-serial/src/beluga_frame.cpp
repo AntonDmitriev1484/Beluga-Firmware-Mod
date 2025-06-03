@@ -48,11 +48,7 @@ struct json_data_contract<BelugaSerial::BelugaFrame::NeighborUpdate> {
         json_number<"stdNoise", uint16_t>,
         json_number<"maxGrowthCIR", uint16_t>,
         json_number<"rxPreamCount", uint16_t>,
-        json_number<"firstPath", uint16_t>,
-
-
-        
-        >;
+        json_number<"firstPath", uint16_t>>;
 };
 
 template <> struct json_data_contract<BelugaSerial::RangeEvent> {
