@@ -17,6 +17,8 @@ BelugaNeighbor::BelugaNeighbor(const BelugaFrame::NeighborUpdate &neighbor) {
     update(neighbor);
 }
 
+
+// Modified to include diagnostic info.
 uint16_t BelugaNeighbor::id() const noexcept { return _id; }
 
 double BelugaNeighbor::range() const noexcept { return _range; }
@@ -29,6 +31,22 @@ uint32_t BelugaNeighbor::exchange() const noexcept { return _exchange; }
 
 bool BelugaNeighbor::updated() const noexcept { return _updated; }
 
+uint16_t BelugaNeighbor::maxNoise() const noexcept { return _maxNoise; }
+
+uint16_t BelugaNeighbor::firstPathAmp1() const noexcept { return _firstPathAmp1; }
+
+uint16_t BelugaNeighbor::firstPathAmp2() const noexcept { return _firstPathAmp2; }
+
+uint16_t BelugaNeighbor::firstPathAmp3() const noexcept { return _firstPathAmp3; }
+
+uint16_t BelugaNeighbor::stdNoise() const noexcept { return _stdNoise; }
+
+uint16_t BelugaNeighbor::maxGrowthCIR() const noexcept { return _maxGrowthCIR; }
+
+uint16_t BelugaNeighbor::rxPreamCount() const noexcept { return _rxPreamCount; }
+
+uint16_t BelugaNeighbor::firstPath() const noexcept { return _firstPath; }
+
 void BelugaNeighbor::updated(bool update) { _updated = update; }
 
 void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
@@ -36,8 +54,17 @@ void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
     _rssi = neighbor.RSSI;
     _time = neighbor.TIMESTAMP;
     _exchange = neighbor.EXCHANGE;
+    _maxNoise = neighbor.maxNoise;
+    _firstPathAmp1 = neighbor.firstPathAmp1;
+    _firstPathAmp2 = neighbor.firstPathAmp2;
+    _firstPathAmp3 = neighbor.firstPathAmp3;
+    _stdNoise = neighbor.stdNoise;
+    _maxGrowthCIR = neighbor.maxGrowthCIR;
+    _rxPreamCount = neighbor.rxPreamCount;
+    _firstPath = neighbor.firstPath;
     _updated = true;
 }
+
 
 void BelugaNeighborList::update(
     const std::vector<BelugaFrame::NeighborUpdate> &updates) {

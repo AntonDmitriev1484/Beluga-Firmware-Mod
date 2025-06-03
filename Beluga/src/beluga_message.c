@@ -88,6 +88,10 @@ LOG_MODULE_REGISTER(beluga_message_logger, CONFIG_BELUGA_MESSAGE_LOG_LEVEL);
  * use integers that are less than 32 bits.
  */
 struct node_json_struct {
+    // TODO: This gets initialized by COPY_NODE. 
+    // All data from a neighbor node datastructure (that you've already modified to store diag info)
+    // should get moved to here, where it will then get sent as a frame.
+
     int32_t UUID; ///< Neighbor node ID
     int32_t RSSI; ///< RSSI of the node
 #if defined(CONFIG_UWB_LOGIC_CLK)
@@ -96,6 +100,16 @@ struct node_json_struct {
     int64_t TIMESTAMP;  ///< Timestamp of last successful range measurement
     char str_RANGE[32]; ///< String representation of the range
     struct json_obj_token RANGE; ///< The JSON object token for the range
+    // Why is range represented as a string? Maybe because it can't send floats?
+    
+    int32_t maxNoise; /** Added diagnostic information */
+    int32_t firstPathAmp1;
+    int32_t firstPathAmp2;
+    int32_t firstPathAmp3;
+    int32_t stdNoise;
+    int32_t maxGrowthCIR;
+    int32_t rxPreamCount;
+    int32_t firstPath; // TODO: Worried this will make the frame too large
 };
 
 /**
@@ -127,7 +141,18 @@ struct node_json_struct {
         (json_node).RSSI = (int32_t)(node).RSSI;                               \
         (json_node).TIMESTAMP = (node).time_stamp;                             \
         COPY_FLOAT(json_node, RANGE, (node).range);                            \
-        (json_node).EXCHANGE = (int32_t)(node).exchange_id;                    \
+        (json_node).EXCHANGE = (int32_t)(node).exchange_id;                   \
+
+        (json_node).maxNoise       = (int32_t)(node).maxNoise;       \
+        (json_node).firstPathAmp1  = (int32_t)(node).firstPathAmp1;   \
+        (json_node).firstPathAmp2  = (int32_t)(node).firstPathAmp2;   \
+        (json_node).firstPathAmp3  = (int32_t)(node).firstPathAmp3;   \
+        (json_node).stdNoise       = (int32_t)(node).stdNoise;        \
+        (json_node).maxGrowthCIR   = (int32_t)(node).maxGrowthCIR;    \
+        (json_node).rxPreamCount   = (int32_t)(node).rxPreamCount;    \
+        (json_node).firstPath      = (int32_t)(node).firstPath;       \
+
+
     } while (0)
 
 /**

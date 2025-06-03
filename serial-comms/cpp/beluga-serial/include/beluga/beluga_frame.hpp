@@ -95,6 +95,15 @@ class BelugaFrame {
         int64_t TIMESTAMP; ///< Timestamp of the neighbor ranging update
         uint32_t EXCHANGE; ///< The exchange ID of the last ranging exchange
                            ///< with the neighbor
+
+        uint16_t maxNoise; /** Added diagnostic information */
+        uint16_t firstPathAmp1;
+        uint16_t firstPathAmp2;
+        uint16_t firstPathAmp3;
+        uint16_t stdNoise;
+        uint16_t maxGrowthCIR;
+        uint16_t rxPreamCount;
+        uint16_t firstPath;                   
     };
 
     /// Structure for decoded frame data

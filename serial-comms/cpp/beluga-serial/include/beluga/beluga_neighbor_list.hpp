@@ -109,6 +109,58 @@ class BelugaNeighbor {
      */
     [[nodiscard]] uint32_t exchange() const noexcept;
 
+
+    //ADDED
+        /**
+     * Maximum noise level
+     * @return The maximum noise level
+     */
+    [[nodiscard]] uint16_t maxNoise() const noexcept;
+
+    /**
+     * First path amplitude 1
+     * @return The first path amplitude 1
+     */
+    [[nodiscard]] uint16_t firstPathAmp1() const noexcept;
+
+    /**
+     * First path amplitude 2
+     * @return The first path amplitude 2
+     */
+    [[nodiscard]] uint16_t firstPathAmp2() const noexcept;
+
+    /**
+     * First path amplitude 3
+     * @return The first path amplitude 3
+     */
+    [[nodiscard]] uint16_t firstPathAmp3() const noexcept;
+
+    /**
+     * Standard noise level
+     * @return The standard noise level
+     */
+    [[nodiscard]] uint16_t stdNoise() const noexcept;
+
+    /**
+     * Maximum growth CIR
+     * @return The maximum growth CIR
+     */
+    [[nodiscard]] uint16_t maxGrowthCIR() const noexcept;
+
+    /**
+     * RX preamble count
+     * @return The RX preamble count
+     */
+    [[nodiscard]] uint16_t rxPreamCount() const noexcept;
+
+    /**
+     * First path index
+     * @return The first path index
+     */
+    [[nodiscard]] uint16_t firstPath() const noexcept;
+
+
+
     /**
      * Indicates if the neighbor has been updated since the last read
      * @return `true` if the neighbor has been updated, `false` otherwise
@@ -129,6 +181,15 @@ class BelugaNeighbor {
     int64_t _time = 0;
     uint32_t _exchange = 0;
     bool _updated = false;
+
+    uint16_t _maxNoise; /** Added diagnostic information */
+        uint16_t _firstPathAmp1;
+        uint16_t _firstPathAmp2;
+        uint16_t _firstPathAmp3;
+        uint16_t _stdNoise;
+        uint16_t _maxGrowthCIR;
+        uint16_t _rxPreamCount;
+        uint16_t _firstPath;   
 };
 
 /// Class representing a list of Beluga neighbors
