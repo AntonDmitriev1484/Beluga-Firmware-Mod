@@ -290,8 +290,8 @@ void BelugaSerial::_read_serial() {
                 std::abort();
             }
         } catch (const std::exception &exc) {
-            _log("An uncaught exception occurred in reading thread. %s",
-                 exc.what());
+            _log("An uncaught exception occurred in reading thread. %s at (%s: %d)",
+                 exc.what(), __FILE__, __LINE__);
             std::abort();
         }
     }
