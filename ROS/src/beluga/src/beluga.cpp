@@ -22,7 +22,10 @@
         oss << "[";                                                            \
         for (const auto &range_ : (msg_).ranges) {                             \
             oss << "{" << range_.id << "," << range_.range << ","              \
-                << range_.exchange << "," << range_.timestamp.sec << "},";     \
+                << range_.exchange << "," << range_.timestamp.sec << "," << range_.maxnoise << "," \
+                << range_.firstpathamp1 << "," << range_.firstpathamp2 << "," << range_.firstpathamp3 << "," \
+                << range_.stdnoise << "," << range_.maxgrowthcir << "," << range_.rxpreamcount << "," \
+                << range_.firstpath << "},";     \
         }                                                                      \
         oss << "]";                                                            \
         RCLCPP_INFO(this->get_logger(), "%s", oss.str().c_str());              \
