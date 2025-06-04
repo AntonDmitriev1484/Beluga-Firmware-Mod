@@ -107,10 +107,12 @@ void BelugaSerial::BelugaFrame::parse_frame(
             this->parsed_data.payload = _payload;
             break;
         case NEIGHBOR_UPDATE:
+            _log("prase_frame, NEIGHBOR_UPDATE");
             this->parsed_data.payload =
                 daw::json::from_json_array<NeighborUpdate>(_payload);
             break;
         case RANGING_EVENT:
+            _log("prase_frame, RANGING_EVENT");
             this->parsed_data.payload =
                 daw::json::from_json<BelugaSerial::RangeEvent>(_payload);
             break;
