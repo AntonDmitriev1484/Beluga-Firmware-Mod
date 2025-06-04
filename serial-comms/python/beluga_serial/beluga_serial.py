@@ -310,7 +310,7 @@ class BelugaSerial:
                     self._log(str(e))
                     os.abort()
             except Exception as e:
-                self._log(f"An uncaught exception occurred in reading thread: {e}")
+                self._log(f"An uncaught exception occurred in reading thread: {e.with_traceback}")
                 os.abort()
 
     # noinspection PyTypeChecker
