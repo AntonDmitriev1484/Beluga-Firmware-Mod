@@ -142,7 +142,6 @@ struct node_json_struct {
         (json_node).TIMESTAMP = (node).time_stamp;                             \
         COPY_FLOAT(json_node, RANGE, (node).range);                            \
         (json_node).EXCHANGE = (int32_t)(node).exchange_id;                   \
-
         (json_node).maxNoise       = (int32_t)(node).maxNoise;       \
         (json_node).firstPathAmp1  = (int32_t)(node).firstPathAmp1;   \
         (json_node).firstPathAmp2  = (int32_t)(node).firstPathAmp2;   \
@@ -151,8 +150,6 @@ struct node_json_struct {
         (json_node).maxGrowthCIR   = (int32_t)(node).maxGrowthCIR;    \
         (json_node).rxPreamCount   = (int32_t)(node).rxPreamCount;    \
         (json_node).firstPath      = (int32_t)(node).firstPath;       \
-
-
     } while (0)
 
 /**
@@ -164,9 +161,20 @@ struct neighbor_list_json_struct {
     size_t neighbors_len;
 };
 
-/**
- * Mapping JSON types to attributes of node_json_struct
- */
+// /**
+// a */
+// static const struct json_obj_descr neighbor_json[] = {
+//     JSON_OBJ_DESCR_PRIM_NAMED(struct node_json_struct, "ID", UUID,
+//                               JSON_TOK_NUMBER),
+//     JSON_OBJ_DESCR_PRIM(struct node_json_struct, RSSI, JSON_TOK_NUMBER),
+//     JSON_OBJ_DESCR_PRIM(struct node_json_struct, TIMESTAMP, JSON_TOK_INT64),
+//     JSON_OBJ_DESCR_PRIM(struct node_json_struct, RANGE, JSON_TOK_FLOAT),
+// #if defined(CONFIG_UWB_LOGIC_CLK)
+//     JSON_OBJ_DESCR_PRIM(struct node_json_struct, EXCHANGE, JSON_TOK_NUMBER),
+// #endif // defined(CONFIG_UWB_LOGIC_CLK)
+
+// };
+
 static const struct json_obj_descr neighbor_json[] = {
     JSON_OBJ_DESCR_PRIM_NAMED(struct node_json_struct, "ID", UUID,
                               JSON_TOK_NUMBER),
@@ -176,7 +184,16 @@ static const struct json_obj_descr neighbor_json[] = {
 #if defined(CONFIG_UWB_LOGIC_CLK)
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, EXCHANGE, JSON_TOK_NUMBER),
 #endif // defined(CONFIG_UWB_LOGIC_CLK)
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, maxNoise, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPathAmp1, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPathAmp2, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPathAmp3, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, stdNoise, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, maxGrowthCIR, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, rxPreamCount, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPath, JSON_TOK_NUMBER),
 };
+
 
 /**
  * Mapping JSON types to attributes of neighbor_list_json_struct
