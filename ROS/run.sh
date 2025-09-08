@@ -3,4 +3,4 @@ ros2 run beluga beluga \
 	--param ranges_name:=uwb_ranges \
 	--param exchange_name:=uwb_exchanges \
 	--param port:=/dev/ttyACM0 \
-	--param config:=/home/admi3ev/Beluga-2.0/ROS/config.json
+	--param config:=/home/admi3ev/Beluga-Firmware-Mod/ROS/config.json

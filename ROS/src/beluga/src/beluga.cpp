@@ -345,7 +345,7 @@ rclcpp::Time Beluga::_beluga_to_ros_time(int64_t t) {
 
 void Beluga::_init_time_sync() {
     const size_t init_time_sync_runs = 11;
-    RCLCPP_INFO(this->get_logger(), "Syncing time");
+    RCLCPP_INFO(this->get_logger(), "Syncing time !");
     _ns_per_timestamp_unit = 0.0;
     _last_mapping["ros"] = rclcpp::Time();
     _last_mapping["beluga"] = 0;
@@ -354,6 +354,7 @@ void Beluga::_init_time_sync() {
     for (size_t i = 0; i < init_time_sync_runs; i++) {
         this->get_clock()->sleep_until(this->get_clock()->now() +
                                        rclcpp::Duration(500ms));
+        RCLCPP_INFO(this->get_logger(), "init_time_sync calls time_sync");
         _time_sync();
     }
     RCLCPP_INFO(this->get_logger(), "Time is synced");
@@ -361,6 +362,7 @@ void Beluga::_init_time_sync() {
 
 void Beluga::_resync_time_cb() {
     this->sync_timer->cancel();
+    RCLCPP_INFO(this->get_logger(), "resync_time_sync calls init_time_sync");
     _init_time_sync();
     this->sync_timer->reset();
 }

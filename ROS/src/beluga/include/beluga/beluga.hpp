@@ -116,7 +116,7 @@ class Beluga : public rclcpp::Node {
         _setup();
 
         sync_timer = this->create_wall_timer(
-            300s, std::bind(&Beluga::__time_sync, this));
+            15s, std::bind(&Beluga::__time_sync, this));
 
 #if defined(TIMED_NEIGHBOR_PUBLISHER)
         int64_t neighbor_period =
