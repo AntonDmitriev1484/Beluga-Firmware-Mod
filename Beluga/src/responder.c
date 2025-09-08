@@ -192,15 +192,31 @@ static int wait_poll_message(uint16_t *src_id, uint32_t *logic_clk) {
  * @return 0 upon success
  * @return -EBADMSG if unable to send response message
  */
+
+static uint8 hello_world_msg_example[RESP_MSG_LEN] = {
+    0x41, 0x88, 
+    0, 
+    0xCA, 0xDE, 
+    'V', 'E', 
+    'W', 'A', 
+    0x50,
+    0,    0,  0, 0,  // 'hell'
+    0,    0,   0, 0, // 'oworl'
+    0,   0};
+
 static int ds_respond(uint64_t *poll_rx_ts) {
     uint32 resp_tx_time;
     int ret;
 
     *poll_rx_ts = get_rx_timestamp_u64();
 
+    // compute TX timestamp from the delay from when the initial poll frame was RX
     resp_tx_time =
         (*poll_rx_ts + (POLL_RX_TO_RESP_TX_DLY_UUS * UUS_TO_DWT_TIME)) >> 8;
-    dwt_setdelayedtrxtime(resp_tx_time);
+
+    dwt_setdelayedtrxtime(resp_tx_time); // modify this.
+    // note: So you write the timestamp directly to the register
+    // rather than embedding it in tx_resp_msg
 
     dwt_writetxdata(sizeof(tx_resp_msg), tx_resp_msg, 0);
     dwt_writetxfctrl(sizeof(tx_resp_msg), 0, 1);
@@ -398,6 +414,8 @@ static int ss_respond(void) {
 
     resp_tx_ts = (((uint64)(resp_tx_time & 0xFFFFFFFEUL)) << 8) + TX_ANT_DLY;
 
+    // note: you do write poll_rx_ts and resp_tx_ts directly to resp msg
+    // when you SS range?
     msg_set_ts(&tx_resp_msg[RESP_MSG_POLL_RX_TS_IDX], poll_rx_ts);
     msg_set_ts(&tx_resp_msg[RESP_MSG_RESP_TX_TS_IDX], resp_tx_ts);
 

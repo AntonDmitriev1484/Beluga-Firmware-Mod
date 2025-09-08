@@ -252,7 +252,31 @@ static void set_exchange_id(void) {
  * @return -EBADMSG if transmission failed
  */
 
-//Note: A simple example of message writing code
+static uint8 poll_msg_example[POLL_MSG_LEN] = {
+    0x41, 0x88, // Frame control (shouldn't second be 0xCC?)
+    0,  // Sequence number
+    0xCA, 0xDE, // PAN ID
+    'W', 'A',  // Destination address
+    'V',  'E', // Source address
+    0x61, //Function code
+    // No payload? -> True because this is a modified poll message
+    0,    0 };
+
+static uint8 rx_resp_msg_example[RESP_MSG_LEN] = {
+    0x41, 0x88, 
+    0, 
+    0xCA, 0xDE, 
+    'V', 'E', 
+    'W', 'A', 
+    0x50,
+    0,    0,  0, 0,  // Allocate a payload of 8 bytes, first 4 bytes are Poll Message RX Timestamp
+    0,    0,   0, 0, // last 4 bytes are Response Message TX timestamp
+    0,   0};
+
+// note: this response message is used in responder.c in ds_respond.
+// dwt_setdelayedtrxtime is what actually embeds the timestamp in the message, before it gets transmitted.
+
+//Note: A simple example of forming a message and sending it
 static int send_poll(void) {
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
     dwt_writetxdata(sizeof(tx_poll_msg), tx_poll_msg, 0);
