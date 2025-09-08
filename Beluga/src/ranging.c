@@ -156,6 +156,9 @@ LOG_MODULE_REGISTER(ranging_logger, CONFIG_RANGING_MODULE_LOG_LEVEL);
 /**
  * The number of milliseconds between initiator runs
  */
+//note: This is whats used to determine the ALOHA time delay. 100ms.
+// does this get overwritten by some other parameter based off of config file?
+// it can be modified by set_rate
 static int32_t initiator_freq = 100;
 
 /**
@@ -704,6 +707,7 @@ static void initiate_ranging(void) {
     bool search_broken = false;
     double range;
     uint32_t exchange;
+    // note: also want to configure polling refresh period
     int32_t sleep_for = (time_left < CONFIG_POLLING_REFRESH_PERIOD)
                             ? time_left
                             : CONFIG_POLLING_REFRESH_PERIOD;
@@ -717,6 +721,7 @@ static void initiate_ranging(void) {
     time_left = initiator_freq;
 
     if (drop) {
+        // note: this is whats determining the ALOHA scheduling likely
         uint16_t delay = get_rand_num_exp_collision(initiator_freq);
         k_msleep(delay);
         drop = false;
@@ -743,6 +748,7 @@ static void initiate_ranging(void) {
         int err;
 
         if (twr_mode) {
+            //note: This is the function we want to enacpsulate but now with our TDMA
             err = ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,
                               &exchange);
             LOG_INF("Double sided ranging returned %d", err);
@@ -829,6 +835,7 @@ void update_poll_count(void) {
  * @param p2 Additional context (unused)
  * @param p3 Additional context (unused)
  */
+// note: for listening to beacons I might have to add another task like this.
 NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
     ARG_UNUSED(p1);
     ARG_UNUSED(p2);

@@ -251,6 +251,8 @@ static void set_exchange_id(void) {
  * @return 0 upon success
  * @return -EBADMSG if transmission failed
  */
+
+//Note: A simple example of message writing code
 static int send_poll(void) {
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
     dwt_writetxdata(sizeof(tx_poll_msg), tx_poll_msg, 0);
@@ -413,6 +415,7 @@ static int rx_report(double *distance, dwt_rxdiag_t* diag) {
  * assumed that the logic_clock output is not desired and the run will still be
  * initiated.
  */
+//note: This method is the entrypoint to giving me a sense of how messages are sent
 int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock) {
     int err;
 
