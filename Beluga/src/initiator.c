@@ -333,6 +333,10 @@ static int ds_rx_response(void) {
     return 0;
 }
 
+static int send_beacon(void) {
+
+}
+
 /**
  * @brief Sends the final message to the node being ranged to.
  *
@@ -354,6 +358,20 @@ static int send_final(void) {
 
     ts_replyA_end = (((uint64)(resp_tx_time & 0xFFFFFFFEUL)) << 8) + TX_ANT_DLY;
 
+    //note: These values are listed and passed as 64 bit
+    // but it says that they are actually 32 bit in the final message in beluga documentation?
+    // These all get cast back to 32 bit in responder.c so I think its just a data storage thing
+
+
+    // maybe some bit shifting is done to ensure they are actually just 32 bit.
+    // msg_set_ts(&tx_final_msg[RESP_MSG_POLL_RX_TS_IDX], poll_tx_ts);
+    // msg_set_ts(&tx_final_msg[RESP_MSG_RESP_TX_TS_IDX], resp_rx_ts);
+    // msg_set_ts(&tx_final_msg[FINAL_MSG_FINAL_TX_TS_IDX], ts_replyA_end);
+
+
+    poll_tx_ts = 10;
+    resp_rx_ts = 20;
+    ts_replyA_end = 30;
     msg_set_ts(&tx_final_msg[RESP_MSG_POLL_RX_TS_IDX], poll_tx_ts);
     msg_set_ts(&tx_final_msg[RESP_MSG_RESP_TX_TS_IDX], resp_rx_ts);
     msg_set_ts(&tx_final_msg[FINAL_MSG_FINAL_TX_TS_IDX], ts_replyA_end);
