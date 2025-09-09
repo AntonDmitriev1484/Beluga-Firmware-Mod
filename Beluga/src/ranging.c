@@ -646,10 +646,10 @@ int set_rate(uint32_t rate) {
  * initializes the DW1000 with default values
  */
 void init_uwb(void) {
-    LOG_INF("starting... in init_uwb");
+    LOG_ERR("starting... in init_uwb");
 
     if (!IS_ENABLED(CONFIG_ENABLE_BELUGA_UWB)) {
-        LOG_INF("UWB disabled");
+        LOG_ERR("UWB disabled");
         return;
     }
     setup_DW1000RSTnIRQ(0);

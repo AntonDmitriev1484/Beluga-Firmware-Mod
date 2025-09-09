@@ -289,11 +289,12 @@ static int wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
     msg_get_ts(&rx_buffer[RESP_MSG_RESP_TX_TS_IDX], &resp_rx_ts);
     msg_get_ts(&rx_buffer[FINAL_MSG_FINAL_TX_TS_IDX], &final_tx_ts);
 
+    // uint32 is unsigned long on decawave
     poll_rx_ts_32 = (uint32)(*poll_rx_ts);
     resp_tx_ts_32 = (uint32)resp_tx_ts;
     final_rx_ts_32 = (uint32)final_rx_ts;
 
-    LOG_INF("%d , %d, %d", poll_rx_ts_32, resp_tx_ts_32, final_rx_ts_32);
+    LOG_ERR("Hello message %lu , %lu, %lu", poll_tx_ts, resp_rx_ts, final_tx_ts);
 
     roundB = (double)(final_rx_ts_32 - resp_tx_ts_32);
     replyB = (double)(resp_tx_ts_32 - poll_rx_ts_32);

@@ -333,9 +333,9 @@ static int ds_rx_response(void) {
     return 0;
 }
 
-static int send_beacon(void) {
+// static int send_beacon(void) {
 
-}
+// }
 
 /**
  * @brief Sends the final message to the node being ranged to.
@@ -350,7 +350,7 @@ static int send_final(void) {
     int ret;
 
     poll_tx_ts = get_tx_timestamp_u64();
-    resp_rx_ts = get_rx_timestamp_u64();
+    resp_rx_ts = get_rx_timestamp_u64(); // Assumed that all timestamps are 40 bits long, but get returned in 64 bit integer.
 
     resp_tx_time =
         (resp_rx_ts + (POLL_RX_TO_RESP_TX_DLY_UUS * UUS_TO_DWT_TIME)) >> 8;
@@ -372,6 +372,9 @@ static int send_final(void) {
     poll_tx_ts = 10;
     resp_rx_ts = 20;
     ts_replyA_end = 30;
+    // LOG_ERR("Sending Hello %llu, %llu, %llu", poll_tx_ts, resp_rx_ts, ts_replyA_end);
+
+    //note: msg_set_ts actually expects a short?
     msg_set_ts(&tx_final_msg[RESP_MSG_POLL_RX_TS_IDX], poll_tx_ts);
     msg_set_ts(&tx_final_msg[RESP_MSG_RESP_TX_TS_IDX], resp_rx_ts);
     msg_set_ts(&tx_final_msg[FINAL_MSG_FINAL_TX_TS_IDX], ts_replyA_end);
