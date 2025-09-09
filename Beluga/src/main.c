@@ -474,7 +474,7 @@ int main(void) {
     const struct comms *comms = comms_backend_uart_get_ptr();
     RESET_CAUSE();
 
-    LOG_INF("IN MAIN!!!!");
+    LOG_ERR("IN MAIN!!!!");
 
     memset(seen_list, 0, sizeof(seen_list));
 
@@ -530,6 +530,11 @@ int main(void) {
 
     kill_task_watchdog(&task_watchdog);
     LOG_INF("Killed task watchdog. Now running application");
+
+    int32_t pan_id = retrieveSetting(BELUGA_PAN_ID);
+    pan_id = 2;
+    LOG_ERR("pan_id %d", pan_id);
+    init_tdma(pan_id);
 
     init_responder_thread();
     init_print_list_task();

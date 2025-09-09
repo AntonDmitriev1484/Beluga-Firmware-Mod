@@ -255,6 +255,9 @@ void set_tx_power(uint32_t tx_power);
  */
 void init_uwb(void);
 
+// Sends first beacon message to initialize the TDMA network
+void init_tdma(int pan_id);
+
 /**
  * @brief Creates the ranging thread and initiates its data
  */
