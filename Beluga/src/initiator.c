@@ -369,9 +369,9 @@ static int send_final(void) {
     // msg_set_ts(&tx_final_msg[FINAL_MSG_FINAL_TX_TS_IDX], ts_replyA_end);
 
 
-    poll_tx_ts = 10;
-    resp_rx_ts = 20;
-    ts_replyA_end = 30;
+    // poll_tx_ts = 10;
+    // resp_rx_ts = 20;
+    // ts_replyA_end = 30;
     // LOG_ERR("Sending Hello %llu, %llu, %llu", poll_tx_ts, resp_rx_ts, ts_replyA_end);
 
     //note: msg_set_ts actually expects a short?
@@ -464,6 +464,10 @@ static int rx_report(double *distance, dwt_rxdiag_t* diag) {
 int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock) {
     int err;
 
+    // Note: This is where we need to add our timer
+
+    uint64_t start_ms = k_uptime_get();
+
     if (distance == NULL) {
         return -EINVAL;
     }
@@ -488,6 +492,11 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
     }
 
     update_exchange(logic_clock);
+
+    uint64_t end_ms = k_uptime_get();
+    uint64_t elapsed_ms = end_ms-start_ms;
+    LOG_ERR("Initator elapsed time %llu ms", elapsed_ms);
+
 
     return 0;
 }

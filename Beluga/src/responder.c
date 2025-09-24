@@ -294,7 +294,7 @@ static int wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
     resp_tx_ts_32 = (uint32)resp_tx_ts;
     final_rx_ts_32 = (uint32)final_rx_ts;
 
-    LOG_ERR("Hello message %lu , %lu, %lu", poll_tx_ts, resp_rx_ts, final_tx_ts);
+    // LOG_ERR("Hello message %lu , %lu, %lu", poll_tx_ts, resp_rx_ts, final_tx_ts);
 
     roundB = (double)(final_rx_ts_32 - resp_tx_ts_32);
     replyB = (double)(resp_tx_ts_32 - poll_rx_ts_32);
