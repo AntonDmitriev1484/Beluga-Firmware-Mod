@@ -474,8 +474,6 @@ int main(void) {
     const struct comms *comms = comms_backend_uart_get_ptr();
     RESET_CAUSE();
 
-    LOG_ERR("IN MAIN!!!!");
-
     memset(seen_list, 0, sizeof(seen_list));
 
     INIT_CLOCKS();

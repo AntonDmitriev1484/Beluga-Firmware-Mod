@@ -156,10 +156,12 @@ LOG_MODULE_REGISTER(ranging_logger, CONFIG_RANGING_MODULE_LOG_LEVEL);
 /**
  * The number of milliseconds between initiator runs
  */
-//note: This is whats used to determine the ALOHA time delay. 100ms.
-// does this get overwritten by some other parameter based off of config file?
-// it can be modified by set_rate
+// antnote: This is whats used to determine the ALOHA time delay. 100ms.
+// it can be modified by set_rate if the user passes poll_rate as a parameter
 static int32_t initiator_freq = 100;
+
+//antnote: you will have to define your sleep timer for beaconing up here also.
+
 
 /**
  * Flag indicating whether to use two-way ranging or single-sided ranging
@@ -820,6 +822,8 @@ static void resp_reconfig() {
 /**
  * @brief Find a node in the neighbors list and range to that node
  */
+// antnote: this is what gets constantly called by the ranging_task_function
+// this function sleeps the thread it's running on based on MAC layer logic.
 static void initiate_ranging(void) {
     // Time left to sleep in ms
     static int32_t time_left = CONFIG_POLLING_REFRESH_PERIOD;
@@ -959,7 +963,7 @@ void update_poll_count(void) {
  * @param p2 Additional context (unused)
  * @param p3 Additional context (unused)
  */
-// note: for listening to beacons I might have to add another task like this.
+// antnote: for listening to beacons I might have to add another task like this.
 NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
     ARG_UNUSED(p1);
     ARG_UNUSED(p2);
@@ -974,10 +978,13 @@ NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
     while (true) {
         watchdog_red_rocket(&watchdogAttr);
 
-        if (initiator_freq > 0) {
+        //initator_freq defined in the header, so it is global
+        if (initiator_freq > 0) { // Gets set with set_rate(), to the poll_rate argument
+            // Assuming ranging is turned on, we always try to range.
             initiate_ranging();
         } else {
-            k_sleep(K_SECONDS(1));
+            k_sleep(K_SECONDS(1)); 
+            // Only sleep permanently if initiator_freq <= 0, if we have a 0 ranging freq, don't range
         }
 
         update_poll_count();
@@ -993,6 +1000,7 @@ NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
  * @param p2 Additional context (unused)
  * @param p3 Additional context (unused)
  */
+//antnote: need separate task functions for sending / responding to beacons.
 NO_RETURN static void responder_task_function(void *p1, void *p2, void *p3) {
     ARG_UNUSED(p1);
     ARG_UNUSED(p2);
