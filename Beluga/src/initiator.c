@@ -478,6 +478,7 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
     if ((err = send_poll()) < 0) {
         return err;
     }
+    LOG_ERR("initiator sent poll");
 
     if ((err = ds_rx_response()) < 0) {
         return err;

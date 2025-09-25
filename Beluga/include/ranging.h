@@ -268,4 +268,6 @@ void init_ranging_thread(void);
  */
 void init_responder_thread(void);
 
+void init_beacon_thread(void);
+
 #endif // BELUGA_RANGING_H

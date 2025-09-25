@@ -364,6 +364,7 @@ int ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     if ((err = wait_poll_message(&src_id, &_logic_clk)) < 0) {
         return err;
     }
+    LOG_ERR("Responder received poll");
 
     set_dest_id(src_id, tx_resp_msg);
     SET_EXCHANGE_ID(tx_resp_msg + LOGIC_CLK_OFFSET, _logic_clk);

@@ -116,6 +116,7 @@ void init_print_list_task(void) {
                                          K_THREAD_STACK_SIZEOF(list_stack),
                                          list_task_function, NULL, NULL, NULL,
                                          CONFIG_BELUGA_LIST_PRIO, 0, K_NO_WAIT);
+    k_thread_name_set(print_list_task_id, "Task list printer");
     LOG_INF("Started neighbors list");
 }
 #else

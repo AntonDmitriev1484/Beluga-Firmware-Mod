@@ -705,14 +705,6 @@ static int wait_beacon(void) {
     UWB_WAIT(
         (status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
         (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_ERR)) {
-        // if (k_sem_count_get(&k_sus_resp) == 0) { // Checks a zephyr semaphore to see if the responder is allowed to keep running
-        //     // But I copied this out of responder.c so I don't think this semaphore is properly initialized yet.
-
-        //     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_RX_ERR);
-        //     dwt_rxreset();
-        //     LOG_ERR("Responder got suspended");
-        //     return -EBUSY;
-        // }
     }    
     LOG_ERR("Done waiting");
     if (!(status_reg & SYS_STATUS_RXFCG)) {
@@ -739,12 +731,12 @@ static int wait_beacon(void) {
 
     // Honestly dont even need to write the functions, I can just do the bit shifting here myself.
 
-    // msg_get_ts(&rx_buffer[0], leader_ts);
-    // msg_get_ts(&rx_buffer[8], delta_t);
-    // msg_get_ts(&rx_buffer[10], N_users);
+    msg_get_ts(&rx_buffer[0], leader_ts);
+    msg_get_ts(&rx_buffer[8], delta_t);
+    msg_get_ts(&rx_buffer[10], N_users);
 
 
-    // LOG_ERR("Beacon message received: Timestamp %llu , Delta T %u, N Users %u", leader_ts, delta_t, N_users);
+    LOG_ERR("Beacon message received: Timestamp %llu , Delta T %u, N Users %u", leader_ts, delta_t, N_users);
 
     return 0;
 }
@@ -754,9 +746,9 @@ void init_tdma(int pan_id) {
 
     // note: TODO
     if (pan_id == 1 ){
-        while ( true ) {
+        k_msleep(2); // Not actually waking up
+        LOG_ERR("Woke up from short nap");
         send_beacon();
-        }
     }
     else {
         wait_beacon();
@@ -817,6 +809,10 @@ static void init_reconfig() {
 static void resp_reconfig() {
     dwt_setrxaftertxdelay(UWB_RESP_RX_DELAY);
     dwt_setrxtimeout(UWB_RESP_RX_TIMEOUT);
+}
+
+static void broadcast_beacon(void) {
+    send_beacon();
 }
 
 /**
@@ -991,6 +987,8 @@ NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
     }
 }
 
+
+
 /**
  * @brief Responds to UWB polling requests
  *
@@ -1039,6 +1037,63 @@ NO_RETURN static void responder_task_function(void *p1, void *p2, void *p3) {
             msg.payload.event = &event;
             comms_write_msg(comms, &msg);
         }
+    }
+}
+// void tdma_timeout_cb(struct k_timer *timer_id) {
+//     LOG_ERR("Beacon timer done! Sleepy thread zzzzzz");
+
+//     // Tell initator and responder tasks to resume
+//     k_sem_give(&k_sus_init);
+//     k_sem_give(&k_sus_resp);    
+//     k_msleep(85);  // force suspend if it overruns
+// }
+// Should not block in ktimer callbacks, this will cause kernel panic
+#define BEACON_INTERVAL_MS 85
+#define BEACON_ACTIVE_MS   15
+
+NO_RETURN void beaconTask(void *p1, void *p2, void *p3) {
+    ARG_UNUSED(p1);
+    ARG_UNUSED(p2);
+    ARG_UNUSED(p3);
+
+    const int64_t interval = BEACON_INTERVAL_MS;
+    const int64_t active_time = BEACON_ACTIVE_MS;
+    int64_t next_wakeup = k_uptime_get();
+
+    while (true) { // Incremental execution rather than forced sleeping
+        // Wait until the next scheduled beacon cycle
+        int64_t now = k_uptime_get();
+        if (now < next_wakeup) {
+            k_msleep(next_wakeup - now); // sleep non-blocking
+        }
+
+        // Record start time
+        LOG_ERR("WOKE BEACON");
+        int64_t start_ms = k_uptime_get();
+
+        // Suspend responder/initiator tasks temporarily
+        k_sem_take(&k_sus_resp, K_NO_WAIT);
+        k_sem_take(&k_sus_init, K_NO_WAIT);
+
+        // Run beacon logic for a fixed duration
+        int fake_pan_id = 1;
+        init_tdma(fake_pan_id);  // Or fake_pan_id
+
+        // Calculate how much time is left in the active window
+        int64_t elapsed = k_uptime_get() - start_ms;
+        if (elapsed < active_time) {
+            k_msleep(active_time - elapsed);  // Sleep remainder of 15ms active window
+        }
+
+        LOG_ERR("Done nap");
+        // Resume other tasks
+        k_sem_give(&k_sus_init); // Not being returned?
+        k_sem_give(&k_sus_resp);
+        LOG_ERR("return semaphores");
+
+        // Schedule next beacon
+        next_wakeup += interval;
+        LOG_ERR("SLEPT BEACON");
     }
 }
 
@@ -1109,5 +1164,35 @@ void init_responder_thread(void) {
  * @brief Creates the responder thread and initiates its data
  */
 void init_responder_thread(void) { LOG_INF("Responder disabled"); }
+#endif // defined(CONFIG_ENABLE_BELUGA_THREADS) &&
+       // defined(CONFIG_ENABLE_RESPONDER)
+
+
+#if defined(CONFIG_ENABLE_BELUGA_THREADS) && defined(CONFIG_ENABLE_RESPONDER)
+/**
+ * Responder task's stack allocation
+ */
+K_THREAD_STACK_DEFINE(beacon_stack, 1320);
+static struct k_thread beacon_data;
+static k_tid_t beacon_task_id;
+
+/**
+ * @brief Creates the responder thread and initiates its data
+ */
+// This should be real time and preempt all
+#define BEACON_TASK_PRIO 4
+void init_beacon_thread(void) {
+    beacon_task_id = k_thread_create(
+        &beacon_data, beacon_stack,
+        K_THREAD_STACK_SIZEOF(beacon_stack), beaconTask, NULL,
+        NULL, NULL, BEACON_TASK_PRIO , 0, K_NO_WAIT);
+    k_thread_name_set(beacon_task_id, "Beacon task");
+    LOG_INF("Started beacon task");
+}
+#else
+/**
+ * @brief Creates the responder thread and initiates its data
+ */
+void init_beacon_thread(void) { LOG_INF("Responder disabled"); }
 #endif // defined(CONFIG_ENABLE_BELUGA_THREADS) &&
        // defined(CONFIG_ENABLE_RESPONDER)
