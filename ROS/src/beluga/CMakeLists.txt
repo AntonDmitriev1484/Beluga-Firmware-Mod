@@ -3,12 +3,16 @@ project(beluga)
 
 set(CMAKE_CXX_STANDARD 20)
 
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
 # Debugging
+
+# Added for debugging why the debugger wont work
 # add_compile_options(-g -O0)
+# add_compile_options(-g3 -ggdb -fno-omit-frame-pointer -fno-inline -fno-optimize-sibling-calls)
 add_definitions(
         # -DLOG_PUBS      # Log all messages being published
         # -DLOG_RANGES    # Log range reports

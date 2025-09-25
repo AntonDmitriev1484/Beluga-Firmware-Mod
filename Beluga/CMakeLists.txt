@@ -13,6 +13,11 @@ set(SERIAL_SRC
         src/serial/comms.c
         src/serial/comms_uart.c)
 file(GLOB DECAWAVE_SRC "DecaDriver/src/*.c")
+# Added for debugging why the debugger wont work
+# add_compile_options(-g -O0)
+
+
+add_compile_options(-g -ggdb -fno-omit-frame-pointer -fno-inline -fno-optimize-sibling-calls)
 
 include_directories(include DecaDriver/include)
 
