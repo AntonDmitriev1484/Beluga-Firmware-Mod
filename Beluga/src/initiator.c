@@ -295,6 +295,12 @@ static void set_exchange_id(void) {
     SET_EXCHANGE_ID(rx_resp_msg + LOGIC_CLK_OFFSET, exchange_id);
     SET_EXCHANGE_ID(tx_final_msg + LOGIC_CLK_OFFSET, exchange_id);
     SET_EXCHANGE_ID(rx_report_msg + LOGIC_CLK_OFFSET, exchange_id);
+    
+    // Cascaded ranging messages
+    SET_EXCHANGE_ID(cc_tx_poll_msg + LOGIC_CLK_OFFSET, exchange_id);
+    SET_EXCHANGE_ID(cc_rx_resp_msg + LOGIC_CLK_OFFSET, exchange_id);
+    SET_EXCHANGE_ID(cc_tx_final_msg_n3 + LOGIC_CLK_OFFSET, exchange_id);
+    SET_EXCHANGE_ID(cc_rx_report_msg + LOGIC_CLK_OFFSET, exchange_id);
 }
 
 /**
@@ -495,7 +501,6 @@ static int rx_report(double *distance, dwt_rxdiag_t* diag) {
  * assumed that the logic_clock output is not desired and the run will still be
  * initiated.
  */
-//note: This method is the entrypoint to giving me a sense of how messages are sent
 int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock) {
     int err;
 
@@ -559,6 +564,8 @@ static int cc_send_poll(void) {
     UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
+    LOG_ERR("Poll sent");
+
     return 0;
 }
 
@@ -599,7 +606,9 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
         resp_rx_ts_arr[responder_id] = get_rx_timestamp_u64();
 
         n_responses++;
+        LOG_ERR("Response received from ID %u", responder_id);
     }
+    return 0;
 }
 
 int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock) {
@@ -618,7 +627,7 @@ int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *
     
     set_exchange_id();
 
-    set_dest_id(0, tx_poll_msg);
+    set_dest_id(0, cc_tx_poll_msg);
     if ((err = cc_send_poll()) < 0) {
         return err;
     }
@@ -629,7 +638,7 @@ int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *
     }
 
     for (int i = 0; i < NUM_USERS-1; i++) {
-        LOG_ERR("resp_rx_ts_arr][%d] = %llu", i, resp_rx_ts_arr[i]);
+        LOG_ERR("resp_rx_ts_arr[%d] = %llu", i, resp_rx_ts_arr[i]);
     }
     // TODO: Print out here
 

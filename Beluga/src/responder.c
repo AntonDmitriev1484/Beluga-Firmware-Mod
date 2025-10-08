@@ -513,13 +513,16 @@ static int cc_wait_poll_message(uint16_t *src_id, uint32_t *logic_clk) {
         return -EBADMSG;
     }
 
+    LOG_ERR("Poll received from ID %u", *src_id);
+
     return 0;
 }
 
-static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t this_id) {
+static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t this_id) {
     uint32 resp_tx_time, node_delay_uus;
     int ret;
 
+    // Initiator id should already be baked into the message
 
     *poll_rx_ts = get_rx_timestamp_u64();
     node_delay_uus = this_id * (int)(NUM_USERS / 1000); // delay in microseconds based on node ID
@@ -543,6 +546,8 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t this_id) {
     UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
+    LOG_ERR("Response sent from %u to ID %u at delay %u micros", this_id, initiator_id, node_delay_uus);
+
     return 0;
 }
 
@@ -565,10 +570,10 @@ int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
         return err;
     }
 
-    set_dest_id(initiator_id, tx_resp_msg);
+    set_dest_id(initiator_id, cc_tx_resp_msg);
     SET_EXCHANGE_ID(tx_resp_msg + LOGIC_CLK_OFFSET, _logic_clk);
 
-    if ((err = cc_ds_respond(&poll_rx_ts, this_id)) < 0) {
+    if ((err = cc_ds_respond(&poll_rx_ts, initiator_id, this_id)) < 0) {
         return err;
     }
 

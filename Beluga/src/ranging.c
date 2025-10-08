@@ -752,9 +752,12 @@ static void initiate_ranging(void) {
 
         if (twr_mode) {
             //note: This is the function we want to enacpsulate but now with our TDMA
-            err = ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,
+            // err = ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,
+            //                   &exchange);
+            // LOG_INF("Double sided ranging returned %d", err);
+            err = cc_ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,
                               &exchange);
-            LOG_INF("Double sided ranging returned %d", err);
+            LOG_INF("CC Double sided ranging returned %d", err);
         } else {
             err = ss_init_run(seen_list[current_neighbor].UUID, &range,
                               &exchange);
@@ -895,7 +898,8 @@ NO_RETURN static void responder_task_function(void *p1, void *p2, void *p3) {
 
         if (suspend_start != 0) {
             if (twr_mode) {
-                ret = ds_resp_run(&id, &exchange);
+                // ret = ds_resp_run(&id, &exchange);
+                ret = cc_ds_resp_run(&id, &exchange);
             } else {
                 ret = ss_resp_run(&id, &exchange);
             }
