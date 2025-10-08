@@ -73,7 +73,15 @@ static uint8 cc_rx_poll_msg[POLL_MSG_LEN] = {
     0,   // sequence number
     0xCA, 0xDE, // PAN ID
     0, 0, //dest addr (broadcast)
-    'V',  'E', //source addr
+    0, 0, //source addr, not set here for proper comparison in cc_wait_poll_message
+    0x61, // function code
+    0,    0}; //CRC
+static uint8 cc_rx_poll_cmp[POLL_MSG_LEN] = {
+    0x41, 0x88, //frame control
+    0,   // sequence number
+    0xCA, 0xDE, // PAN ID
+    0, 0, //dest addr (broadcast)
+    0, 0, //source addr, not set here for proper comparison in cc_wait_poll_message
     0x61, // function code
     0,    0}; //CRC
 
@@ -87,12 +95,26 @@ static uint8 cc_tx_resp_msg[RESP_MSG_LEN] = {
     0,    0,    0, 0,    0,    0,   0,   0,   // empty payload
     0,   0}; //CRC
 
-static uint8 cc_rx_final_msg_n3[FINAL_MSG_LEN] = { // Hard coded for 3 users
+#define CC_FINAL_MSG_LEN (DW_FRAME_OVERHEAD + TIMESTAMP_OVERHEAD + (NUM_USERS * TIMESTAMP_OVERHEAD) + TIMESTAMP_OVERHEAD)
+static uint8 cc_rx_final_msg_n3[CC_FINAL_MSG_LEN] = { // Hard coded for 3 users
     0x41, 0x88, // frame control
     0,  // sequence number
     0xCA, 0xDE, // PAN ID
     0, 0, //dest addr (broadcast)
     'V', 'E', //source addr
+    0x69, // function code
+    0, 0, 0, 0, //poll_tx_ts
+    0, 0, 0, 0,  // resp_rx_ts: 1
+    0, 0, 0, 0, // resp_rx_ts: 2
+    0, 0, 0, 0, // resp_tx_ts: 3
+    0,   0,   0,   0,    // final_tx_ts
+    0, 0}; //CRC
+static uint8 cc_rx_final_cmp_n3[CC_FINAL_MSG_LEN] = { // Hard coded for 3 users
+    0x41, 0x88, // frame control
+    0,  // sequence number
+    0xCA, 0xDE, // PAN ID
+    0, 0, //dest addr (broadcast)
+    0, 0, //source addr
     0x69, // function code
     0, 0, 0, 0, //poll_tx_ts
     0, 0, 0, 0,  // resp_rx_ts: 1
@@ -154,6 +176,12 @@ int set_responder_id(uint16_t id) {
     set_dest_id(id, rx_final_msg);
     set_src_id(id, tx_report_msg);
 
+    // Baking ID into cascaded ranging messages
+    set_src_id(id, cc_rx_poll_msg);
+    set_dest_id(id, cc_tx_resp_msg);
+    set_src_id(id, cc_rx_final_msg_n3);
+    set_dest_id(id, cc_tx_report_msg);
+
     return 0;
 }
 
@@ -171,6 +199,12 @@ int set_responder_pan_id(uint16_t id) {
     set_pan_id(id, tx_resp_msg);
     set_pan_id(id, rx_final_msg);
     set_pan_id(id, tx_report_msg);
+
+    // Baking PAN ID into cascaded ranging messages
+    set_src_id(id, cc_rx_poll_msg);
+    set_dest_id(id, cc_tx_resp_msg);
+    set_src_id(id, cc_rx_final_msg_n3);
+    set_dest_id(id, cc_tx_report_msg);
 
     return 0;
 }
@@ -229,6 +263,7 @@ static int wait_poll_message(uint16_t *src_id, uint32_t *logic_clk) {
     return 0;
 }
 
+
 /**
  * @brief Sends a response to the initiator assuming double-sided TWR is being
  * used.
@@ -238,17 +273,6 @@ static int wait_poll_message(uint16_t *src_id, uint32_t *logic_clk) {
  * @return 0 upon success
  * @return -EBADMSG if unable to send response message
  */
-
-static uint8 hello_world_msg_example[RESP_MSG_LEN] = {
-    0x41, 0x88, 
-    0, 
-    0xCA, 0xDE, 
-    'V', 'E', 
-    'W', 'A', 
-    0x50,
-    0,    0,  0, 0,  // 'hell'
-    0,    0,   0, 0, // 'oworl'
-    0,   0};
 
 static int ds_respond(uint64_t *poll_rx_ts) {
     uint32 resp_tx_time;
@@ -260,9 +284,7 @@ static int ds_respond(uint64_t *poll_rx_ts) {
     resp_tx_time =
         (*poll_rx_ts + (POLL_RX_TO_RESP_TX_DLY_UUS * UUS_TO_DWT_TIME)) >> 8;
 
-    dwt_setdelayedtrxtime(resp_tx_time); // modify this.
-    // note: So you write the timestamp directly to the register
-    // rather than embedding it in tx_resp_msg
+    dwt_setdelayedtrxtime(resp_tx_time); 
 
     dwt_writetxdata(sizeof(tx_resp_msg), tx_resp_msg, 0);
     dwt_writetxfctrl(sizeof(tx_resp_msg), 0, 1);
@@ -443,6 +465,138 @@ int ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     return 0;
 }
 
+// Cascaded ranging functions
+
+
+static int cc_wait_poll_message(uint16_t *src_id, uint32_t *logic_clk) {
+    uint32 status_reg, frame_len;
+
+    dwt_rxenable(DWT_START_RX_IMMEDIATE);
+
+    UWB_WAIT(
+        (status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
+        (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)) {
+
+        if (k_sem_count_get(&k_sus_resp) == 0) {
+            dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_RX_ERR);
+            dwt_rxreset();
+            LOG_INF("Responder suspended");
+            return -EBUSY;
+        }
+    }
+
+    if (!(status_reg & SYS_STATUS_RXFCG)) {
+        dwt_write32bitreg(SYS_STATUS_ID,
+                          SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
+        dwt_rxreset();
+        return -EBADMSG;
+    }
+
+    dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
+
+    frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFL_MASK_1023;
+    if (frame_len <= RX_BUFFER_LEN) {
+        dwt_readrxdata(rx_buffer, frame_len, 0);
+    }
+
+    rx_buffer[SEQ_CNT_OFFSET] = 0;
+    *src_id = get_src_id(rx_buffer);
+
+    // Compare received message to template, ignoring source and dest ids
+    rx_buffer[SRC_OFFSET] = 0; //mask src to 0 in RX message
+    rx_buffer[SRC_OFFSET + 1] = 0;
+    rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
+    rx_buffer[DEST_OFFSET + 1] = 0;
+    GET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, *logic_clk);
+    SET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, 0);
+    if (!(memcmp(rx_buffer, cc_rx_poll_cmp, DW_BASE_LEN) == 0)) {
+        return -EBADMSG;
+    }
+
+    return 0;
+}
+
+static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t this_id) {
+    uint32 resp_tx_time, node_delay_uus;
+    int ret;
+
+
+    *poll_rx_ts = get_rx_timestamp_u64();
+    node_delay_uus = this_id * (int)(NUM_USERS / 1000); // delay in microseconds based on node ID
+
+    // compute TX timestamp from the delay from when the initial poll frame was RX
+    resp_tx_time =
+        (*poll_rx_ts + (POLL_RX_TO_RESP_TX_DLY_UUS + node_delay_uus) * UUS_TO_DWT_TIME) >> 8;
+
+    dwt_setdelayedtrxtime(resp_tx_time); 
+
+    dwt_writetxdata(sizeof(tx_resp_msg), tx_resp_msg, 0);
+    dwt_writetxfctrl(sizeof(tx_resp_msg), 0, 1);
+
+    ret = dwt_starttx(DWT_START_TX_DELAYED | DWT_RESPONSE_EXPECTED);
+
+    if (ret != DWT_SUCCESS) {
+        dwt_rxreset();
+        return -EBADMSG;
+    }
+
+    UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
+    dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
+
+    return 0;
+}
+
+int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
+    int err;
+    uint16_t initiator_id = 0;
+    uint64 tof_dtu;
+    uint64_t poll_rx_ts;
+    uint32_t _logic_clk = 0;
+    uint16_t this_id;
+
+
+    this_id = cc_tx_resp_msg[SRC_OFFSET];
+
+    if (k_sem_count_get(&k_sus_resp) == 0) {
+        return -EBUSY;
+    }
+
+    if ((err = cc_wait_poll_message(&initiator_id, &_logic_clk)) < 0) {
+        return err;
+    }
+
+    set_dest_id(initiator_id, tx_resp_msg);
+    SET_EXCHANGE_ID(tx_resp_msg + LOGIC_CLK_OFFSET, _logic_clk);
+
+    if ((err = cc_ds_respond(&poll_rx_ts, this_id)) < 0) {
+        return err;
+    }
+
+    ////////
+    set_src_id(initiator_id, rx_final_msg);
+    SET_EXCHANGE_ID(rx_final_msg + LOGIC_CLK_OFFSET, _logic_clk);
+
+    if ((err = wait_final(&tof_dtu, &poll_rx_ts)) < 0) {
+        return err;
+    }
+
+    set_dest_id(initiator_id, tx_report_msg);
+    SET_EXCHANGE_ID(tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);
+
+    if ((err = send_report(tof_dtu)) < 0) {
+        return err;
+    }
+
+    if (logic_clk != NULL) {
+        *logic_clk = _logic_clk;
+    }
+
+    if (id != NULL) {
+        *id = initiator_id;
+    }
+
+    return 0;
+}
 /**
  * @brief Sends a response to the initiator assuming single-sided TWR is being
  * used.

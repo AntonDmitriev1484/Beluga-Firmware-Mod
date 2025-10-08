@@ -639,127 +639,6 @@ int set_rate(uint32_t rate) {
     return 0;
 }
 
-#define BCN_MSG_SYNC_TS_IDX DW_BASE_PAYLOAD_OFFSET
-#define BCN_MSG_SYNC_TS_OVERHEAD 8 // 8 bytes for 64bit uint
-#define BCN_MSG_DELTA_T_IDX (DW_BASE_PAYLOAD_OFFSET + BCN_MSG_SYNC_TS_OVERHEAD)
-#define BCN_MSG_DELTA_T_OVERHEAD 2 // 2 bytes for 16bit uint
-#define BCN_MSG_N_USER_IDX (DW_BASE_PAYLOAD_OFFSET + BCN_MSG_SYNC_TS_OVERHEAD + BCN_MSG_DELTA_T_OVERHEAD)
-#define BCN_MSG_N_USER_OVERHEAD 2
-#define BCN_MSG_LEN                                                          \
-    (DW_FRAME_OVERHEAD + BCN_MSG_SYNC_TS_OVERHEAD + BCN_MSG_DELTA_T_OVERHEAD +             \
-     BCN_MSG_N_USER_OVERHEAD)
-
-
-static uint8 beacon_msg[BCN_MSG_LEN] = {
-    0x41, 0x88, 
-    0,
-    0xCA, 0xDE, 
-    'W', 'A', 
-    'V', 'E',
-    0x70,
-    0, 0, 0,    0,    0, 0,    0,    0,   0,   0,   0,   0, // 12 byte payload
-    0, 0
-};
-
-static int send_beacon(void) {
-
-    uint16 N_users = 2;
-    uint16 delta_t = 10; // 10ms
-    uint64 leader_ts = k_ticks_to_ns_floor64(k_uptime_ticks()); // Get current kernel time as ns from ticks
-
-    msg_set_ts(&beacon_msg[0], leader_ts);
-    msg_set_ts(&beacon_msg[8], delta_t);
-    msg_set_ts(&beacon_msg[10], N_users);
-
-
-    dwt_writetxdata(sizeof(beacon_msg), beacon_msg, 0);
-    dwt_writetxfctrl(sizeof(beacon_msg), 0, 1); 
-    // We're going to pass this as a ranging frame for simplicity's sake
-
-    int ret = dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);
-
-    if (ret != DWT_SUCCESS) {
-        dwt_rxreset();
-        return -ETIMEDOUT;
-    }
-
-    LOG_ERR("Sent Beacon");
-
-    UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
-    dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
-
-    return 0;
-}
-
-static int wait_beacon(void) {
-
-    uint32 status_reg, frame_len;
-
-    //note: Not fully sure what all this does but it seems to be used in every wait function.
-    dwt_rxenable(DWT_START_RX_IMMEDIATE);
-
-    LOG_ERR("Waiting on beacon");
-
-    UWB_WAIT(
-        (status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
-        (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_ERR)) {
-        // if (k_sem_count_get(&k_sus_resp) == 0) { // Checks a zephyr semaphore to see if the responder is allowed to keep running
-        //     // But I copied this out of responder.c so I don't think this semaphore is properly initialized yet.
-
-        //     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_RX_ERR);
-        //     dwt_rxreset();
-        //     LOG_ERR("Responder got suspended");
-        //     return -EBUSY;
-        // }
-    }    
-    LOG_ERR("Done waiting");
-    if (!(status_reg & SYS_STATUS_RXFCG)) {
-        dwt_write32bitreg(SYS_STATUS_ID,
-                          SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
-        dwt_rxreset();
-        return -EBADMSG;
-    }
-    dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
-
-
-    frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFL_MASK_1023;
-    
-    static uint8 rx_buffer[BCN_MSG_LEN]; // Normally this is defined in responder.c
-    if (frame_len <= RX_BUFFER_LEN) {
-        dwt_readrxdata(rx_buffer, frame_len, 0);
-    }
-
-    uint16_t N_users, delta_t;
-    uint64_t leader_ts; // Get current kernel time as ns from ticks
-
-    // TODO: CHange these to be msg_get_X where X is the datatype you want to read
-    // msg get_ts only reads 32bit integers.
-
-    // Honestly dont even need to write the functions, I can just do the bit shifting here myself.
-
-    // msg_get_ts(&rx_buffer[0], leader_ts);
-    // msg_get_ts(&rx_buffer[8], delta_t);
-    // msg_get_ts(&rx_buffer[10], N_users);
-
-
-    // LOG_ERR("Beacon message received: Timestamp %llu , Delta T %u, N Users %u", leader_ts, delta_t, N_users);
-
-    return 0;
-}
-
-void init_tdma(int pan_id) {
-    LOG_ERR("Init TDMA from %d", pan_id);
-
-    // note: TODO
-    if (pan_id == 1 ){
-        while ( true ) {
-        send_beacon();
-        }
-    }
-    else {
-        wait_beacon();
-    }
-}
 
 /**
  * @brief Initialize the DW1000 for ranging.
@@ -959,7 +838,6 @@ void update_poll_count(void) {
  * @param p2 Additional context (unused)
  * @param p3 Additional context (unused)
  */
-// note: for listening to beacons I might have to add another task like this.
 NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
     ARG_UNUSED(p1);
     ARG_UNUSED(p2);
