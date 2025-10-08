@@ -65,6 +65,52 @@ static uint8 rx_final_msg[FINAL_MSG_LEN] = {
 static uint8 tx_report_msg[REPORT_MSG_LEN] = {
     0x41, 0x88, 0, 0xCA, 0xDE, 'V', 'E', 'W', 'A', 0xE3, 0, 0, 0, 0, 0, 0};
 
+// Cascaded ranging message implementation
+#define NUM_USERS 3
+
+static uint8 cc_rx_poll_msg[POLL_MSG_LEN] = {
+    0x41, 0x88, //frame control
+    0,   // sequence number
+    0xCA, 0xDE, // PAN ID
+    0, 0, //dest addr (broadcast)
+    'V',  'E', //source addr
+    0x61, // function code
+    0,    0}; //CRC
+
+static uint8 cc_tx_resp_msg[RESP_MSG_LEN] = {
+    0x41, 0x88, // frame control
+     0,   // sequence number
+     0xCA, 0xDE, // PAN ID
+      'V', 'E', //dest addr -> will be initiator id
+       'W', 'A', //source addr -> will be responder id
+        0x50, // function code
+    0,    0,    0, 0,    0,    0,   0,   0,   // empty payload
+    0,   0}; //CRC
+
+static uint8 cc_rx_final_msg_n3[FINAL_MSG_LEN] = { // Hard coded for 3 users
+    0x41, 0x88, // frame control
+    0,  // sequence number
+    0xCA, 0xDE, // PAN ID
+    0, 0, //dest addr (broadcast)
+    'V', 'E', //source addr
+    0x69, // function code
+    0, 0, 0, 0, //poll_tx_ts
+    0, 0, 0, 0,  // resp_rx_ts: 1
+    0, 0, 0, 0, // resp_rx_ts: 2
+    0, 0, 0, 0, // resp_tx_ts: 3
+    0,   0,   0,   0,    // final_tx_ts
+    0, 0}; //CRC
+
+static uint8 cc_tx_report_msg[REPORT_MSG_LEN] = {
+    0x41, 0x88, // frame control
+      0, // sequence number
+      0xCA, 0xDE, // PAN ID
+       'V', 'E', //dest addr -> will be initiator id
+        'W', 'A', //source addr -> will be responder id
+         0xE3, // function code
+          0, 0, 0, 0, // ToF
+           0, 0}; //CRC
+
 /**
  * @}
  */

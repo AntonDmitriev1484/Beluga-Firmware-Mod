@@ -72,6 +72,53 @@ static uint8 tx_final_msg[FINAL_MSG_LEN] = {
 static uint8 rx_report_msg[REPORT_MSG_LEN] = {
     0x41, 0x88, 0, 0xCA, 0xDE, 'V', 'E', 'W', 'A', 0xE3, 0, 0, 0, 0, 0, 0};
 
+
+// Cascaded ranging message implementation
+#define NUM_USERS 3
+
+static uint8 cc_tx_poll_msg[POLL_MSG_LEN] = {
+    0x41, 0x88, //frame control
+    0,   // sequence number
+    0xCA, 0xDE, // PAN ID
+    0, 0, //dest addr (broadcast)
+    'V',  'E', //source addr
+    0x61, // function code
+    0,    0}; //CRC
+
+static uint8 cc_rx_resp_msg[RESP_MSG_LEN] = {
+    0x41, 0x88, // frame control
+     0,   // sequence number
+     0xCA, 0xDE, // PAN ID
+      'V', 'E', //dest addr -> will be initiator id
+       'W', 'A', //source addr -> will be responder id
+        0x50, // function code
+    0,    0,    0, 0,    0,    0,   0,   0,   // empty payload
+    0,   0}; //CRC
+
+static uint8 cc_tx_final_msg_n3[FINAL_MSG_LEN] = { // Hard coded for 3 users
+    0x41, 0x88, // frame control
+    0,  // sequence number
+    0xCA, 0xDE, // PAN ID
+    0, 0, //dest addr (broadcast)
+    'V', 'E', //source addr
+    0x69, // function code
+    0, 0, 0, 0, //poll_tx_ts
+    0, 0, 0, 0,  // resp_rx_ts: 1
+    0, 0, 0, 0, // resp_rx_ts: 2
+    0, 0, 0, 0, // resp_tx_ts: 3
+    0,   0,   0,   0,    // final_tx_ts
+    0, 0}; //CRC
+
+static uint8 cc_rx_report_msg[REPORT_MSG_LEN] = {
+    0x41, 0x88, // frame control
+      0, // sequence number
+      0xCA, 0xDE, // PAN ID
+       'V', 'E', //dest addr -> will be initiator id
+        'W', 'A', //source addr -> will be responder id
+         0xE3, // function code
+          0, 0, 0, 0, // ToF
+           0, 0}; //CRC
+
 /**
  * @}
  */
@@ -199,9 +246,9 @@ void set_hertz_to_ppm_multiplier(uint8_t channel) {
  * @note This sets the source address for the messages being received.
  */
 static void set_destination(uint16_t id) {
-    set_dest_id(id, tx_poll_msg);
+    set_dest_id(0, tx_poll_msg);
     set_src_id(id, rx_resp_msg);
-    set_dest_id(id, tx_final_msg);
+    set_dest_id(0, tx_final_msg);
     set_src_id(id, rx_report_msg);
 }
 
@@ -256,7 +303,7 @@ static uint8 poll_msg_example[POLL_MSG_LEN] = {
     0x41, 0x88, // Frame control (shouldn't second be 0xCC?)
     0,  // Sequence number
     0xCA, 0xDE, // PAN ID
-    'W', 'A',  // Destination address
+    'W', 'A',  // Destination address - is this actually used in responder?
     'V',  'E', // Source address
     0x61, //Function code
     // No payload? -> True because this is a modified poll message
@@ -306,6 +353,7 @@ static int send_poll(void) {
 static int ds_rx_response(void) {
     uint32 status_reg, frame_len;
 
+    // We need to wait for N such responses
     UWB_WAIT((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
              (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR));
 
@@ -326,9 +374,10 @@ static int ds_rx_response(void) {
 
     rx_buffer[SEQ_CNT_OFFSET] = 0;
 
-    if (!(memcmp(rx_buffer, rx_resp_msg, DW_BASE_LEN) == 0)) {
-        return -EBADMSG;
-    }
+    // Need to perform this memcmp per response
+    // if (!(memcmp(rx_buffer, rx_resp_msg, DW_BASE_LEN) == 0)) {
+    //     return -EBADMSG;
+    // }
 
     return 0;
 }
@@ -358,23 +407,6 @@ static int send_final(void) {
 
     ts_replyA_end = (((uint64)(resp_tx_time & 0xFFFFFFFEUL)) << 8) + TX_ANT_DLY;
 
-    //note: These values are listed and passed as 64 bit
-    // but it says that they are actually 32 bit in the final message in beluga documentation?
-    // These all get cast back to 32 bit in responder.c so I think its just a data storage thing
-
-
-    // maybe some bit shifting is done to ensure they are actually just 32 bit.
-    // msg_set_ts(&tx_final_msg[RESP_MSG_POLL_RX_TS_IDX], poll_tx_ts);
-    // msg_set_ts(&tx_final_msg[RESP_MSG_RESP_TX_TS_IDX], resp_rx_ts);
-    // msg_set_ts(&tx_final_msg[FINAL_MSG_FINAL_TX_TS_IDX], ts_replyA_end);
-
-
-    // poll_tx_ts = 10;
-    // resp_rx_ts = 20;
-    // ts_replyA_end = 30;
-    // LOG_ERR("Sending Hello %llu, %llu, %llu", poll_tx_ts, resp_rx_ts, ts_replyA_end);
-
-    //note: msg_set_ts actually expects a short?
     msg_set_ts(&tx_final_msg[RESP_MSG_POLL_RX_TS_IDX], poll_tx_ts);
     msg_set_ts(&tx_final_msg[RESP_MSG_RESP_TX_TS_IDX], resp_rx_ts);
     msg_set_ts(&tx_final_msg[FINAL_MSG_FINAL_TX_TS_IDX], ts_replyA_end);
@@ -472,17 +504,22 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
         return -EINVAL;
     }
 
-    set_destination(id);
+    id = 0;
+    
     set_exchange_id();
 
+    set_dest_id(0, tx_poll_msg);
     if ((err = send_poll()) < 0) {
         return err;
     }
 
+    // Now need to change the logic in ds_rx_response
+    // to handle multiple nodes
     if ((err = ds_rx_response()) < 0) {
         return err;
     }
 
+    set_dest_id(0, tx_final_msg);
     if ((err = send_final()) < 0) {
         return err;
     }
