@@ -104,7 +104,9 @@ static uint8 cc_rx_resp_cmp[RESP_MSG_LEN] = {
     0,    0,    0, 0,    0,    0,   0,   0,   // empty payload
     0,   0}; //CRC
 
-static uint8 cc_tx_final_msg_n3[FINAL_MSG_LEN] = { // Hard coded for 3 users
+
+#define CC_FINAL_MSG_LEN (DW_FRAME_OVERHEAD + TIMESTAMP_OVERHEAD + (NUM_USERS * TIMESTAMP_OVERHEAD) + TIMESTAMP_OVERHEAD)
+static uint8 cc_tx_final_msg_n3[CC_FINAL_MSG_LEN] = { // Hard coded for 3 users
     0x41, 0x88, // frame control
     0,  // sequence number
     0xCA, 0xDE, // PAN ID
@@ -143,7 +145,8 @@ static uint8 cc_rx_report_cmp[REPORT_MSG_LEN] = {
 /**
  * The maximum length of the receive buffer
  */
-#define RX_BUF_LEN MAX(RESP_MSG_LEN, REPORT_MSG_LEN)
+// #define RX_BUF_LEN MAX(RESP_MSG_LEN, REPORT_MSG_LEN)
+#define RX_BUF_LEN MAX(CC_FINAL_MSG_LEN, REPORT_MSG_LEN)
 
 /**
  * The buffer where received data is stored
@@ -295,7 +298,7 @@ static void set_exchange_id(void) {
     SET_EXCHANGE_ID(rx_resp_msg + LOGIC_CLK_OFFSET, exchange_id);
     SET_EXCHANGE_ID(tx_final_msg + LOGIC_CLK_OFFSET, exchange_id);
     SET_EXCHANGE_ID(rx_report_msg + LOGIC_CLK_OFFSET, exchange_id);
-    
+
     // Cascaded ranging messages
     SET_EXCHANGE_ID(cc_tx_poll_msg + LOGIC_CLK_OFFSET, exchange_id);
     SET_EXCHANGE_ID(cc_rx_resp_msg + LOGIC_CLK_OFFSET, exchange_id);
@@ -576,15 +579,27 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
     // We need to wait for N such responses
 
     while (n_responses < NUM_USERS-1) {
+        LOG_ERR("Awaiting response");
         UWB_WAIT((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
                  (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR));
+        LOG_ERR("UWB_WAIT complete");
+        // TODO : Need to comment this back in eventually
+        // if (!(status_reg & SYS_STATUS_RXFCG)) {
+        //     dwt_write32bitreg(SYS_STATUS_ID,
+        //                       SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
+        //     LOG_ERR("Error in response");
 
-        if (!(status_reg & SYS_STATUS_RXFCG)) {
-            dwt_write32bitreg(SYS_STATUS_ID,
-                              SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
-            dwt_rxreset();
-            return -EBADMSG;
-        }
+        //     frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
+        //     dwt_readrxdata(rx_buffer, frame_len, 0);
+        //     LOG_ERR("Dumping received cc_rx_resp_msg:");
+        //     for (int i = 0; i < sizeof(cc_rx_resp_msg); i++) {
+        //         LOG_ERR("%02X ", ((uint8_t*)rx_buffer)[i]);
+        //     }
+
+        //     dwt_rxreset();
+        //     return -EBADMSG;
+        // }
+        LOG_ERR("Proper response received");
 
         dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
 
@@ -596,14 +611,22 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
 
         rx_buffer[SEQ_CNT_OFFSET] = 0;
 
-        // Need to perform this memcmp per response
-        if (!(memcmp(rx_buffer, rx_resp_msg, DW_BASE_LEN) == 0)) {
-            return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade
-        }
-
+        // Make sure to fetch source id from rx_buffer before clearing for compare
         responder_id = get_src_id(rx_buffer);
         // Save the timestamp of this response
         resp_rx_ts_arr[responder_id] = get_rx_timestamp_u64();
+
+        // Compare received message to template, ignoring source and dest ids
+        rx_buffer[SRC_OFFSET] = 0; //mask src to 0 in RX message
+        rx_buffer[SRC_OFFSET + 1] = 0;
+        rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
+        rx_buffer[DEST_OFFSET + 1] = 0;
+        // GET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, *logic_clk);
+        // SET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, 0);
+
+        if (!(memcmp(rx_buffer, cc_rx_resp_cmp, DW_BASE_LEN) == 0)) {
+            return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade
+        }
 
         n_responses++;
         LOG_ERR("Response received from ID %u", responder_id);

@@ -320,6 +320,10 @@ static inline void msg_set_ts(uint8 *ts_field, const uint64_t ts) {
     }
 }
 
+// Declare this_id as an extern variable for global access
+extern uint16_t this_id;
+
+
 #if defined(CONFIG_UWB_LOGIC_CLK)
 /**
  * Set the exchange ID byte field with the given ID
