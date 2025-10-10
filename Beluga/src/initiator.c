@@ -578,28 +578,25 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
     int n_responses = 0;
     // We need to wait for N such responses
 
-    while (n_responses < NUM_USERS-1) {
-        LOG_ERR("Awaiting response");
+    // TODO Change this
+    while (n_responses < NUM_USERS-2) {
         UWB_WAIT((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
                  (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR));
-        LOG_ERR("UWB_WAIT complete");
         // TODO : Need to comment this back in eventually
-        // if (!(status_reg & SYS_STATUS_RXFCG)) {
-        //     dwt_write32bitreg(SYS_STATUS_ID,
-        //                       SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
-        //     LOG_ERR("Error in response");
+        if (!(status_reg & SYS_STATUS_RXFCG)) {
+            dwt_write32bitreg(SYS_STATUS_ID,
+                              SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
+            LOG_ERR("Error in response");
 
-        //     frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
-        //     dwt_readrxdata(rx_buffer, frame_len, 0);
-        //     LOG_ERR("Dumping received cc_rx_resp_msg:");
-        //     for (int i = 0; i < sizeof(cc_rx_resp_msg); i++) {
-        //         LOG_ERR("%02X ", ((uint8_t*)rx_buffer)[i]);
-        //     }
-
-        //     dwt_rxreset();
-        //     return -EBADMSG;
-        // }
-        LOG_ERR("Proper response received");
+            frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
+            dwt_readrxdata(rx_buffer, frame_len, 0);
+            // LOG_ERR("Dumping received cc_rx_resp_msg:");
+            // for (int i = 0; i < sizeof(cc_rx_resp_msg); i++) {
+            //     LOG_ERR("%02X ", ((uint8_t*)rx_buffer)[i]);
+            // }
+            dwt_rxreset();
+            return -EBADMSG;
+        }
 
         dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
 
@@ -621,8 +618,6 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
         rx_buffer[SRC_OFFSET + 1] = 0;
         rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
         rx_buffer[DEST_OFFSET + 1] = 0;
-        // GET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, *logic_clk);
-        // SET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, 0);
 
         if (!(memcmp(rx_buffer, cc_rx_resp_cmp, DW_BASE_LEN) == 0)) {
             return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade

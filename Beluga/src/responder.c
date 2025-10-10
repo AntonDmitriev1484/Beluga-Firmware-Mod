@@ -98,7 +98,8 @@ static uint8 cc_tx_resp_msg[RESP_MSG_LEN] = {
       'V', 'E', //dest addr -> will be initiator id
        'W', 'A', //source addr -> will be responder id
         0x50, // function code
-    0,    0,    0, 0,    0,    0,   0,   0,   // empty payload
+    0xAA,    0xAA,    0xAA, 0xAA,    
+    0xAA,    0xAA,   0xAA,   0xAA,   // empty payload
     0,   0}; //CRC
 
 #define CC_FINAL_MSG_LEN (DW_FRAME_OVERHEAD + TIMESTAMP_OVERHEAD + (NUM_USERS * TIMESTAMP_OVERHEAD) + TIMESTAMP_OVERHEAD)
@@ -166,6 +167,7 @@ static uint8 rx_buffer[RX_BUF_LEN];
 #define POLL_RX_TO_RESP_TX_DLY_UUS CONFIG_POLL_RX_TO_RESP_TX_DLY
 #endif
 
+uint16_t this_id = 0;
 /**
  * @brief Sets the source IDs for the messages that the responder sends and the
  * destination ID for the messages the responder receives
@@ -175,7 +177,6 @@ static uint8 rx_buffer[RX_BUF_LEN];
  * @return 0 upon success
  * @return -EBUSY if UWB is active
  */
-uint16_t this_id = 0;
 int set_responder_id(uint16_t id) {
     CHECK_UWB_ACTIVE();
 
@@ -513,16 +514,14 @@ static int cc_wait_poll_message(uint16_t *src_id, uint32_t *logic_clk) {
     // Compare received message to template, ignoring source and dest ids
     rx_buffer[SRC_OFFSET] = 0; //mask src to 0 in RX message
     rx_buffer[SRC_OFFSET + 1] = 0;
-    rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
-    rx_buffer[DEST_OFFSET + 1] = 0;
+    // rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
+    // rx_buffer[DEST_OFFSET + 1] = 0;
     GET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, *logic_clk);
     SET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, 0);
     if (!(memcmp(rx_buffer, cc_rx_poll_cmp, DW_BASE_LEN) == 0)) {
+        LOG_ERR("MEMCMP failed in  cc_wait_poll_message");
         return -EBADMSG;
     }
-
-    LOG_ERR("Poll received from ID %u", *src_id);
-
     return 0;
 }
 
@@ -536,26 +535,20 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
     node_delay_uus = this_id * (int)(NUM_USERS / 1000.0); // delay in microseconds based on node ID
 
     uint32 delay = (POLL_RX_TO_RESP_TX_DLY_UUS + node_delay_uus);
+    // uint32 delay = 0;
     // compute TX timestamp from the delay from when the initial poll frame was RX
     resp_tx_time =
-        (*poll_rx_ts + delay * UUS_TO_DWT_TIME) >> 8;
+        (*poll_rx_ts + (delay * UUS_TO_DWT_TIME)) >> 8;
 
-    LOG_ERR("Preparing response to %u at node %u in %d micros", initiator_id, this_id, delay);
     dwt_setdelayedtrxtime(resp_tx_time); 
 
-       // Before sending, log the message buffer
-    LOG_ERR("Dumping cc_tx_resp_msg:");
-    for (int i = 0; i < sizeof(cc_tx_resp_msg); i++) {
-        LOG_ERR("%02X ", ((uint8_t*)cc_tx_resp_msg)[i]);
-    }
-
     dwt_writetxdata(sizeof(cc_tx_resp_msg), cc_tx_resp_msg, 0);
-    dwt_writetxfctrl(sizeof(cc_tx_resp_msg), 0, 1); // I think this is what sets the CRC
-    // Something here is goofing up the CRC
-
+    dwt_writetxfctrl(sizeof(cc_tx_resp_msg), 0, 1); 
 
     ret = dwt_starttx(DWT_START_TX_DELAYED | DWT_RESPONSE_EXPECTED);
 
+    // SO its failing on the start of the transmission
+    // throwing an error, which explains why the receiver gets nonsense
     if (ret != DWT_SUCCESS) {
         dwt_rxreset();
         return -EBADMSG;
@@ -564,9 +557,7 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
     UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
-    LOG_ERR("Response sent from %u to ID %u at delay %u micros", this_id, initiator_id, node_delay_uus);
- 
-
+    LOG_ERR("Response sent from %u to ID %u", this_id, initiator_id);
 
     return 0;
 }
@@ -582,16 +573,29 @@ int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
         return -EBUSY;
     }
 
+    // if ((err = wait_poll_message(&initiator_id, &_logic_clk)) < 0) {
+    //     return err;
+    // }
     if ((err = cc_wait_poll_message(&initiator_id, &_logic_clk)) < 0) {
         return err;
     }
+    // ID reception is correct
 
     set_dest_id(initiator_id, cc_tx_resp_msg);
-    // SET_EXCHANGE_ID(tx_resp_msg + LOGIC_CLK_OFFSET, _logic_clk);
+    SET_EXCHANGE_ID(cc_tx_resp_msg + LOGIC_CLK_OFFSET, _logic_clk);
 
     if ((err = cc_ds_respond(&poll_rx_ts, initiator_id, this_id)) < 0) {
+        LOG_ERR("Error in cc_ds_respond");
         return err;
     }
+
+    // set_dest_id(initiator_id, tx_resp_msg);
+    // SET_EXCHANGE_ID(tx_resp_msg + LOGIC_CLK_OFFSET, _logic_clk);
+
+    // if ((err = ds_respond(&poll_rx_ts)) < 0) {
+    //     LOG_ERR("Error in ds_respond");
+    //     return err;
+    // }
 
     ////////
     set_src_id(initiator_id, rx_final_msg);

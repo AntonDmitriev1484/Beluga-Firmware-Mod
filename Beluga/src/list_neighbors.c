@@ -82,7 +82,7 @@ NO_RETURN static void list_task_function(void *p1, void *p2, void *p3) {
 
         msg.payload.stream = stream_mode;
 
-        comms_write_msg(comms, &msg);
+        // comms_write_msg(comms, &msg);
         if (stream_mode) {
             ARRAY_FOR_EACH(seen_list, i) { seen_list[i].update_flag = false; }
         }
