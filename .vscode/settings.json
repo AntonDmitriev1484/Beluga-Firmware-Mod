@@ -3,6 +3,13 @@
         "${workspaceFolder}/Beluga"
     ],
     "files.associations": {
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "ratio": "c",
+        "system_error": "c",
+        "array": "c",
+        "functional": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c"
     }
 }

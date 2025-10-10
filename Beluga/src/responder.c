@@ -514,8 +514,8 @@ static int cc_wait_poll_message(uint16_t *src_id, uint32_t *logic_clk) {
     // Compare received message to template, ignoring source and dest ids
     rx_buffer[SRC_OFFSET] = 0; //mask src to 0 in RX message
     rx_buffer[SRC_OFFSET + 1] = 0;
-    // rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
-    // rx_buffer[DEST_OFFSET + 1] = 0;
+    rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
+    rx_buffer[DEST_OFFSET + 1] = 0;
     GET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, *logic_clk);
     SET_EXCHANGE_ID(rx_buffer + LOGIC_CLK_OFFSET, 0);
     if (!(memcmp(rx_buffer, cc_rx_poll_cmp, DW_BASE_LEN) == 0)) {
@@ -525,20 +525,26 @@ static int cc_wait_poll_message(uint16_t *src_id, uint32_t *logic_clk) {
     return 0;
 }
 
+#define CC_DELAY_WINDOW_UUS 1000
+
 static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t this_id) {
-    uint32 resp_tx_time, node_delay_uus;
+    uint32 resp_tx_time, cc_delay_uus;
     int ret;
 
     // Initiator id should already be baked into the message
 
+    uint32 slot;
+    if (this_id < initiator_id) {
+        slot = this_id - 1; // IDs start at 1, so node with ID 1 is in slot 0
+    } else {
+        slot = this_id - 2; // Skip over initiator's slot
+    }
     *poll_rx_ts = get_rx_timestamp_u64();
-    node_delay_uus = this_id * (int)(NUM_USERS / 1000.0); // delay in microseconds based on node ID
-
-    uint32 delay = (POLL_RX_TO_RESP_TX_DLY_UUS + node_delay_uus);
-    // uint32 delay = 0;
+    cc_delay_uus = slot * (int)(CC_DELAY_WINDOW_UUS / (NUM_USERS - 1)); // delay in microseconds based on node ID
+    uint32 total_delay_uus = (POLL_RX_TO_RESP_TX_DLY_UUS + cc_delay_uus);
     // compute TX timestamp from the delay from when the initial poll frame was RX
     resp_tx_time =
-        (*poll_rx_ts + (delay * UUS_TO_DWT_TIME)) >> 8;
+        (*poll_rx_ts + (total_delay_uus * UUS_TO_DWT_TIME)) >> 8;
 
     dwt_setdelayedtrxtime(resp_tx_time); 
 
@@ -557,7 +563,88 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
     UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
-    LOG_ERR("Response sent from %u to ID %u", this_id, initiator_id);
+    return 0;
+}
+
+#define CC_POLL_TX_TS_IDX           RESP_MSG_POLL_RX_TS_IDX
+#define CC_RESP_RX_TS_BASE_IDX      RESP_MSG_RESP_TX_TS_IDX
+#define CC_FINAL_TX_TS_IDX          CC_RESP_RX_TS_BASE_IDX + (NUM_USERS)*TIMESTAMP_OVERHEAD
+
+static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
+
+    uint32 status_reg, frame_len, poll_rx_ts_32, resp_tx_ts_32, final_rx_ts_32;
+    uint32_t resp_rx_ts, poll_tx_ts, final_tx_ts;
+    uint64_t final_rx_ts, resp_tx_ts;
+    double roundA, replyA, roundB, replyB;
+
+    UWB_WAIT(
+        (status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
+        (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)) {
+        if (k_sem_count_get(&k_sus_resp) == 0) {
+            dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_RX_ERR);
+            dwt_rxreset();
+            // LOG_INF("Responder got suspended");
+            // LOG_ERR("Responder got suspended in cc_wait_final");
+            return -EBUSY;
+        }
+    }
+
+    if (!(status_reg & SYS_STATUS_RXFCG)) {
+        dwt_write32bitreg(SYS_STATUS_ID,
+                          SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
+        dwt_rxreset();
+        LOG_ERR("Bad RX in cc_wait_final");
+        return -EBADMSG;
+    }
+
+    dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
+
+    frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFL_MASK_1023;
+    if (frame_len <= RX_BUFFER_LEN) {
+        dwt_readrxdata(rx_buffer, frame_len, 0);
+    }
+
+    rx_buffer[SEQ_CNT_OFFSET] = 0;
+    rx_buffer[SRC_OFFSET] = 0; //mask src to 0 in RX message
+    rx_buffer[SRC_OFFSET + 1] = 0;
+    rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
+    rx_buffer[DEST_OFFSET + 1] = 0;
+
+    // Also I thin DW_BASE_LEN has 4 extra bytes, that would cause it to read into the payload?
+    if (!(memcmp(rx_buffer, cc_rx_final_cmp_n3, DW_BASE_LEN) == 0)) {
+        LOG_ERR("MEMCMP failed in  cc_wait_final");
+        return -EBADMSG;
+    }
+
+    final_rx_ts = get_rx_timestamp_u64();
+    resp_tx_ts = get_tx_timestamp_u64();
+
+    msg_get_ts(&rx_buffer[CC_POLL_TX_TS_IDX], &poll_tx_ts);
+    msg_get_ts(&rx_buffer[CC_RESP_RX_TS_BASE_IDX + (TIMESTAMP_OVERHEAD * this_id-1)], &resp_rx_ts); 
+    // Index into the rx_ts array, to get the initiator's rx timestamp for the response sent by our node.
+    msg_get_ts(&rx_buffer[CC_FINAL_TX_TS_IDX], &final_tx_ts);
+
+    // uint32 is unsigned long on decawave
+    poll_rx_ts_32 = (uint32)(*poll_rx_ts);
+    resp_tx_ts_32 = (uint32)resp_tx_ts;
+    final_rx_ts_32 = (uint32)final_rx_ts;
+
+    // LOG_ERR("Hello message %lu , %lu, %lu", poll_tx_ts, resp_rx_ts, final_tx_ts);
+
+    roundB = (double)(final_rx_ts_32 - resp_tx_ts_32);
+    replyB = (double)(resp_tx_ts_32 - poll_rx_ts_32);
+    roundA = (double)(resp_rx_ts - poll_tx_ts);
+    replyA = (double)(final_tx_ts - resp_rx_ts);
+
+    if ((roundA * roundB - replyA * replyB) <= 0) {
+        LOG_INF("Bad TOF response");
+        return -EINVAL;
+    }
+
+    // NOTE: Although we compute ToF here, we do not use it to update our own distance estimate to the received node.
+    // Why not? This could double the rate at which ranges are updated?
+    *tof_dtu = (uint64)((roundA * roundB - replyA * replyB) /
+                        (roundA + roundB + replyA + replyB));
 
     return 0;
 }
@@ -573,9 +660,6 @@ int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
         return -EBUSY;
     }
 
-    // if ((err = wait_poll_message(&initiator_id, &_logic_clk)) < 0) {
-    //     return err;
-    // }
     if ((err = cc_wait_poll_message(&initiator_id, &_logic_clk)) < 0) {
         return err;
     }
@@ -589,28 +673,26 @@ int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
         return err;
     }
 
-    // set_dest_id(initiator_id, tx_resp_msg);
-    // SET_EXCHANGE_ID(tx_resp_msg + LOGIC_CLK_OFFSET, _logic_clk);
-
-    // if ((err = ds_respond(&poll_rx_ts)) < 0) {
-    //     LOG_ERR("Error in ds_respond");
-    //     return err;
-    // }
-
     ////////
     set_src_id(initiator_id, rx_final_msg);
     SET_EXCHANGE_ID(rx_final_msg + LOGIC_CLK_OFFSET, _logic_clk);
 
-    if ((err = wait_final(&tof_dtu, &poll_rx_ts)) < 0) {
+    if ((err = cc_wait_final(&tof_dtu, &poll_rx_ts)) < 0) {
+        // LOG_ERR("Error in cc_wait_final");
         return err;
     }
 
-    set_dest_id(initiator_id, tx_report_msg);
-    SET_EXCHANGE_ID(tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);
+    // double range =((double)tof_dtu * SPEED_OF_LIGHT / 1e9);
+    // char float_str[32]; // Buffer to hold the string representation
+    // snprintk(float_str, sizeof(float_str), "%.2f", range); // Format to 2 decimal places
+    // LOG_ERR("Distance to node %d = %s m", initiator_id, float_str); // Cant print floats apparently
 
-    if ((err = send_report(tof_dtu)) < 0) {
-        return err;
-    }
+    // set_dest_id(initiator_id, tx_report_msg);
+    // SET_EXCHANGE_ID(tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);
+
+    // if ((err = send_report(tof_dtu)) < 0) {
+    //     return err;
+    // }
 
     if (logic_clk != NULL) {
         *logic_clk = _logic_clk;

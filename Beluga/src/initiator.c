@@ -567,8 +567,6 @@ static int cc_send_poll(void) {
     UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
-    LOG_ERR("Poll sent");
-
     return 0;
 }
 
@@ -579,10 +577,9 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
     // We need to wait for N such responses
 
     // TODO Change this
-    while (n_responses < NUM_USERS-2) {
+    while (n_responses < NUM_USERS-1-1) {
         UWB_WAIT((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
                  (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR));
-        // TODO : Need to comment this back in eventually
         if (!(status_reg & SYS_STATUS_RXFCG)) {
             dwt_write32bitreg(SYS_STATUS_ID,
                               SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
@@ -590,10 +587,6 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
 
             frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
             dwt_readrxdata(rx_buffer, frame_len, 0);
-            // LOG_ERR("Dumping received cc_rx_resp_msg:");
-            // for (int i = 0; i < sizeof(cc_rx_resp_msg); i++) {
-            //     LOG_ERR("%02X ", ((uint8_t*)rx_buffer)[i]);
-            // }
             dwt_rxreset();
             return -EBADMSG;
         }
@@ -618,14 +611,55 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
         rx_buffer[SRC_OFFSET + 1] = 0;
         rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
         rx_buffer[DEST_OFFSET + 1] = 0;
-
         if (!(memcmp(rx_buffer, cc_rx_resp_cmp, DW_BASE_LEN) == 0)) {
             return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade
         }
 
         n_responses++;
-        LOG_ERR("Response received from ID %u", responder_id);
     }
+    return 0;
+}
+
+#define CC_POLL_TX_TS_IDX           RESP_MSG_POLL_RX_TS_IDX
+#define CC_RESP_RX_TS_BASE_IDX      RESP_MSG_RESP_TX_TS_IDX
+#define CC_FINAL_TX_TS_IDX          CC_RESP_RX_TS_BASE_IDX + (NUM_USERS)*TIMESTAMP_OVERHEAD
+
+static int cc_send_final(uint64_t* resp_rx_ts_arr) {
+    uint64 poll_tx_ts, last_response_rx_ts;
+    uint64 ts_replyA_end;
+    uint32 resp_tx_time;
+    int ret;
+
+    poll_tx_ts = get_tx_timestamp_u64();
+    last_response_rx_ts = get_rx_timestamp_u64(); //Timestamp of last received poll response, we compute our transmit time based off of this.
+    // Should be D + array window
+    // This should be the same as the last entry in resp_rx_ts_arr, but we use the direct read here.
+
+    resp_tx_time =
+        (last_response_rx_ts + (POLL_RX_TO_RESP_TX_DLY_UUS * UUS_TO_DWT_TIME)) >> 8;
+    dwt_setdelayedtrxtime(resp_tx_time);
+
+    ts_replyA_end = (((uint64)(resp_tx_time & 0xFFFFFFFEUL)) << 8) + TX_ANT_DLY;
+
+    msg_set_ts(&cc_tx_final_msg_n3[CC_POLL_TX_TS_IDX], poll_tx_ts);
+    msg_set_ts(&cc_tx_final_msg_n3[CC_RESP_RX_TS_BASE_IDX], resp_rx_ts_arr);
+    msg_set_ts(&cc_tx_final_msg_n3[CC_FINAL_TX_TS_IDX], ts_replyA_end);
+
+    dwt_writetxdata(sizeof(cc_tx_final_msg_n3), cc_tx_final_msg_n3, 0);
+    dwt_writetxfctrl(sizeof(cc_tx_final_msg_n3), 0, 1);
+
+    ret = dwt_starttx(DWT_START_TX_DELAYED | DWT_RESPONSE_EXPECTED);
+
+    if (ret != DWT_SUCCESS) {
+        dwt_rxreset();
+        LOG_ERR("Failed to send final");
+        return -ETIMEDOUT;
+    }
+
+    UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
+    dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
+
+    LOG_ERR("Sent final");
     return 0;
 }
 
@@ -644,31 +678,29 @@ int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *
     id = 0;
     
     set_exchange_id();
-
     set_dest_id(0, cc_tx_poll_msg);
     if ((err = cc_send_poll()) < 0) {
         return err;
     }
 
     // cc_ds_rx_response records every response timestamp it gets in this array.
-    if ((err = cc_ds_rx_response(&resp_rx_ts_arr)) < 0) {
+    if ((err = cc_ds_rx_response(resp_rx_ts_arr)) < 0) {
         return err;
     }
 
-    for (int i = 0; i < NUM_USERS-1; i++) {
-        LOG_ERR("resp_rx_ts_arr[%d] = %llu", i, resp_rx_ts_arr[i]);
-    }
-    // TODO: Print out here
+    // for (int i = 0; i < NUM_USERS-1; i++) {
+    //     LOG_ERR("resp_rx_ts_arr[%d] = %llu", i, resp_rx_ts_arr[i]);
+    // }
 
-    /////////
-    set_dest_id(0, tx_final_msg);
-    if ((err = send_final()) < 0) {
+    set_dest_id(0, cc_tx_final_msg_n3);
+    if ((err = cc_send_final(resp_rx_ts_arr)) < 0) {
+        LOG_ERR("Error in cc_send_final");
         return err;
     }
 
-    if ((err = rx_report(distance, diag)) < 0) {
-        return err;
-    }
+    // if ((err = rx_report(distance, diag)) < 0) {
+    //     return err;
+    // }
 
     update_exchange(logic_clock);
 
