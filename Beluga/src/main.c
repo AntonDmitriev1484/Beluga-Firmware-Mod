@@ -27,6 +27,7 @@
 #include <utils.h>
 #include <voltage_regulator.h>
 #include <watchdog.h>
+#include <cir_buffer.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
@@ -34,6 +35,8 @@
  * Logger for main
  */
 LOG_MODULE_REGISTER(beluga_main, CONFIG_BELUGA_MAIN_LOG_LEVEL);
+
+cir_ring_buffer_t cir_buffer = {0};
 
 /**
  * Prints the settings header if not in frame mode

@@ -35,6 +35,7 @@
 #include <stdio.h>
 #include <utils.h>
 #include <watchdog.h>
+#include <cir_buffer.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
@@ -895,6 +896,23 @@ NO_RETURN static void responder_task_function(void *p1, void *p2, void *p3) {
         }
 
         if (ret == 0) {
+            // A packet was successfully received, so process its CIR data.
+            // We use a while loop to drain the buffer in case the ISR processed
+            // more than one packet while this thread was blocked.
+            while (cir_buffer.head != cir_buffer.tail) {
+                // You now have access to the CIR data at the tail index.
+                printf("--- Processing CIR Data (128 samples) ---\n");
+                
+                // Optional: Print the actual samples
+                // for (int i = 0; i < CIR_SAMPLES_TO_READ; i++) {
+                //     printf("%d,%d,%d\n", i,
+                //            cir_buffer.data[cir_buffer.tail][i].real,
+                //            cir_buffer.data[cir_buffer.tail][i].imag);
+                // }
+
+                // Advance the tail to release the spot in the buffer.
+                cir_buffer.tail = (cir_buffer.tail + 1) % CIR_BUFFER_SIZE;
+            }
             struct ranging_event event = {
                 .exchange_id = exchange, .id = id, .timestamp = k_uptime_get()};
             msg.payload.event = &event;

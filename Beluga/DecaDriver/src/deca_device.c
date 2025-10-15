@@ -18,6 +18,7 @@
 #include "deca_param_types.h"
 #include "deca_regs.h"
 #include "deca_types.h"
+#include "cir_buffer.h"
 
 #if defined(CONFIG_ENABLE_BELUGA_UWB)
 
@@ -2408,6 +2409,17 @@ void dwt_isr(void) {
         dwt_write32bitreg(
             SYS_STATUS_ID,
             SYS_STATUS_ALL_RX_GOOD); // Clear all receive status bits
+        
+        uint8_t next_head = (cir_buffer.head + 1) % CIR_BUFFER_SIZE;
+
+        // Check if the buffer is full. If not, add the new data.
+        if (next_head != cir_buffer.tail) {
+            // Read a smaller slice of the CIR data to save RAM
+            dwt_readaccdata(cir_buffer.data[cir_buffer.head], CIR_SAMPLES_TO_READ * sizeof(dwt_complex_t), 0);
+
+            // Advance the head pointer. This makes the new data available.
+            cir_buffer.head = next_head;
+        }
 
         pdw1000local->cbData.rx_flags = 0;
 
