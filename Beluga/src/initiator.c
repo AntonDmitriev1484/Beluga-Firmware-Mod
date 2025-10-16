@@ -553,6 +553,7 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
 // Cascaded ranging methods
 
 static int cc_send_poll(void) {
+    LOG_ERR("Sending poll");
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
     dwt_writetxdata(sizeof(cc_tx_poll_msg), cc_tx_poll_msg, 0);
     dwt_writetxfctrl(sizeof(cc_tx_poll_msg), 0, 1);
@@ -614,6 +615,8 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
         if (!(memcmp(rx_buffer, cc_rx_resp_cmp, DW_BASE_LEN) == 0)) {
             return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade
         }
+
+        LOG_ERR("Received response from ID %u", responder_id);
 
         n_responses++;
     }
@@ -685,6 +688,7 @@ int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *
 
     // cc_ds_rx_response records every response timestamp it gets in this array.
     if ((err = cc_ds_rx_response(resp_rx_ts_arr)) < 0) {
+        LOG_ERR("Error in cc_ds_rx_response");
         return err;
     }
 
