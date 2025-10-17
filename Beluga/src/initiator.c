@@ -304,6 +304,10 @@ static void set_exchange_id(void) {
     SET_EXCHANGE_ID(cc_rx_resp_msg + LOGIC_CLK_OFFSET, exchange_id);
     SET_EXCHANGE_ID(cc_tx_final_msg_n3 + LOGIC_CLK_OFFSET, exchange_id);
     SET_EXCHANGE_ID(cc_rx_report_msg + LOGIC_CLK_OFFSET, exchange_id);
+
+    SET_EXCHANGE_ID(cc_rx_resp_cmp + LOGIC_CLK_OFFSET, exchange_id);
+    SET_EXCHANGE_ID(cc_rx_report_cmp + LOGIC_CLK_OFFSET, exchange_id);
+
 }
 
 /**
@@ -553,7 +557,6 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
 // Cascaded ranging methods
 
 static int cc_send_poll(void) {
-    LOG_ERR("Sending poll");
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
     dwt_writetxdata(sizeof(cc_tx_poll_msg), cc_tx_poll_msg, 0);
     dwt_writetxfctrl(sizeof(cc_tx_poll_msg), 0, 1);
@@ -585,7 +588,6 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
             dwt_write32bitreg(SYS_STATUS_ID,
                               SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
             LOG_ERR("Error in response");
-
             frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
             dwt_readrxdata(rx_buffer, frame_len, 0);
             dwt_rxreset();
@@ -605,7 +607,7 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
         // Make sure to fetch source id from rx_buffer before clearing for compare
         responder_id = get_src_id(rx_buffer);
         // Save the timestamp of this response
-        resp_rx_ts_arr[responder_id] = get_rx_timestamp_u64();
+        resp_rx_ts_arr[responder_id-1] = get_rx_timestamp_u64();
 
         // Compare received message to template, ignoring source and dest ids
         rx_buffer[SRC_OFFSET] = 0; //mask src to 0 in RX message
@@ -613,10 +615,12 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
         rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
         rx_buffer[DEST_OFFSET + 1] = 0;
         if (!(memcmp(rx_buffer, cc_rx_resp_cmp, DW_BASE_LEN) == 0)) {
+                LOG_ERR("Memcmp failed on %u bytes. Dumping rx buffer:", DW_BASE_LEN);
+                for (int i = 0; i < sizeof(cc_rx_resp_cmp); i++) {
+                    LOG_ERR("%02X | %02X", ((uint8_t*)rx_buffer)[i], ((uint8_t*)cc_rx_resp_cmp)[i]);
+                }
             return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade
         }
-
-        LOG_ERR("Received response from ID %u", responder_id);
 
         n_responses++;
     }
@@ -669,6 +673,7 @@ static int cc_send_final(uint64_t* resp_rx_ts_arr) {
 int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock) {
     int err;
     uint64_t resp_rx_ts_arr[NUM_USERS];
+    resp_rx_ts_arr[this_id-1] = 0; // 0 our own slot in the array
 
     // Note: This is where we need to add our timer
 
@@ -678,8 +683,6 @@ int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *
         return -EINVAL;
     }
 
-    id = 0;
-    
     set_exchange_id();
     set_dest_id(0, cc_tx_poll_msg);
     if ((err = cc_send_poll()) < 0) {
@@ -692,9 +695,9 @@ int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *
         return err;
     }
 
-    // for (int i = 0; i < NUM_USERS-1; i++) {
-    //     LOG_ERR("resp_rx_ts_arr[%d] = %llu", i, resp_rx_ts_arr[i]);
-    // }
+    for (int i = 0; i < NUM_USERS-1; i++) {
+        LOG_ERR("resp_rx_ts_arr[%d] = %llu", i, resp_rx_ts_arr[i]);
+    }
 
     set_dest_id(0, cc_tx_final_msg_n3);
     if ((err = cc_send_final(resp_rx_ts_arr)) < 0) {

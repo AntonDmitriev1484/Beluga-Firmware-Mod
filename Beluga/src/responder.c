@@ -563,7 +563,7 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
     UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
-    LOG_ERR("Node ID %u sent response to %u", this_id, initiator_id);
+    LOG_ERR("Node %u tx RESPONSE to %u", this_id, initiator_id);
 
     return 0;
 }
