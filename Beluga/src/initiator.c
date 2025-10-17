@@ -666,7 +666,6 @@ static int cc_send_final(uint64_t* resp_rx_ts_arr) {
     UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
-    LOG_ERR("Sent final");
     return 0;
 }
 

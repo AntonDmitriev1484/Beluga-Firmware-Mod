@@ -583,10 +583,9 @@ static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
         (status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
         (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)) {
         if (k_sem_count_get(&k_sus_resp) == 0) {
+            LOG_ERR("Preemption? in cc_wait_final");
             dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_RX_ERR);
             dwt_rxreset();
-            // LOG_INF("Responder got suspended");
-            // LOG_ERR("Responder got suspended in cc_wait_final");
             return -EBUSY;
         }
     }
@@ -615,6 +614,10 @@ static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
     // Also I thin DW_BASE_LEN has 4 extra bytes, that would cause it to read into the payload?
     if (!(memcmp(rx_buffer, cc_rx_final_cmp_n3, DW_BASE_LEN) == 0)) {
         LOG_ERR("MEMCMP failed in  cc_wait_final");
+            LOG_ERR("Memcmp failed on %u bytes. Dumping rx buffer:", DW_BASE_LEN);
+        for (int i = 0; i < sizeof(cc_rx_final_cmp_n3); i++) {
+            LOG_ERR("%02X | %02X", ((uint8_t*)rx_buffer)[i], ((uint8_t*)cc_rx_final_cmp_n3)[i]);
+        }
         return -EBADMSG;
     }
 
@@ -637,9 +640,11 @@ static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
     replyB = (double)(resp_tx_ts_32 - poll_rx_ts_32);
     roundA = (double)(resp_rx_ts - poll_tx_ts);
     replyA = (double)(final_tx_ts - resp_rx_ts);
+    double numerator = (roundA * roundB - replyA * replyB);
+    LOG_ERR("roundA %u replyA %u roundB %u replyB %u => numerator %u", (uint32_t)roundA, (uint32_t)replyA, (uint32_t)roundB, (uint32_t)replyB, (uint32_t) numerator);
 
-    if ((roundA * roundB - replyA * replyB) <= 0) {
-        LOG_INF("Bad TOF response");
+    if (numerator <= 0) {
+        LOG_ERR("Bad TOF response");
         return -EINVAL;
     }
 
@@ -671,16 +676,17 @@ int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     SET_EXCHANGE_ID(cc_tx_resp_msg + LOGIC_CLK_OFFSET, _logic_clk);
 
     if ((err = cc_ds_respond(&poll_rx_ts, initiator_id, this_id)) < 0) {
-        LOG_ERR("Error in cc_ds_respond");
+        LOG_ERR("Error %d in cc_ds_respond", err);
         return err;
     }
 
     ////////
     set_src_id(initiator_id, rx_final_msg);
-    SET_EXCHANGE_ID(rx_final_msg + LOGIC_CLK_OFFSET, _logic_clk);
+    SET_EXCHANGE_ID(cc_rx_final_cmp_n3 + LOGIC_CLK_OFFSET, _logic_clk);
+    SET_EXCHANGE_ID(cc_rx_final_msg_n3 + LOGIC_CLK_OFFSET, _logic_clk);
 
     if ((err = cc_wait_final(&tof_dtu, &poll_rx_ts)) < 0) {
-        // LOG_ERR("Error in cc_wait_final");
+        LOG_ERR("Error %d in cc_wait_final", err);
         return err;
     }
 
