@@ -604,10 +604,9 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
 
         rx_buffer[SEQ_CNT_OFFSET] = 0;
 
+
         // Make sure to fetch source id from rx_buffer before clearing for compare
         responder_id = get_src_id(rx_buffer);
-        // Save the timestamp of this response
-        resp_rx_ts_arr[responder_id-1] = get_rx_timestamp_u64();
 
         // Compare received message to template, ignoring source and dest ids
         rx_buffer[SRC_OFFSET] = 0; //mask src to 0 in RX message
@@ -622,13 +621,16 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
             return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade
         }
 
+        // Save the timestamp of this response
+        resp_rx_ts_arr[responder_id-1] = get_rx_timestamp_u64();
+
         n_responses++;
     }
     return 0;
 }
 
-#define CC_POLL_TX_TS_IDX           RESP_MSG_POLL_RX_TS_IDX
-#define CC_RESP_RX_TS_BASE_IDX      RESP_MSG_RESP_TX_TS_IDX
+#define CC_POLL_TX_TS_IDX           DW_BASE_PAYLOAD_OFFSET
+#define CC_RESP_RX_TS_BASE_IDX      DW_BASE_PAYLOAD_OFFSET + TIMESTAMP_OVERHEAD
 #define CC_FINAL_TX_TS_IDX          CC_RESP_RX_TS_BASE_IDX + (NUM_USERS)*TIMESTAMP_OVERHEAD
 
 static int cc_send_final(uint64_t* resp_rx_ts_arr) {
@@ -648,9 +650,22 @@ static int cc_send_final(uint64_t* resp_rx_ts_arr) {
 
     ts_replyA_end = (((uint64)(resp_tx_time & 0xFFFFFFFEUL)) << 8) + TX_ANT_DLY;
 
+    LOG_ERR("Node %u TX Final", this_id);
     msg_set_ts(&cc_tx_final_msg_n3[CC_POLL_TX_TS_IDX], poll_tx_ts);
-    msg_set_ts(&cc_tx_final_msg_n3[CC_RESP_RX_TS_BASE_IDX], resp_rx_ts_arr);
+    // LOG_ERR("Poll TX TS: %llu", poll_tx_ts);
+    for (int i = 0; i < NUM_USERS-1; i++) {
+        // Setting each of the response rx timestamps
+        // msg_set_ts only sets 4 bytes at a time
+        // LOG_ERR("Resp RX TS %d: %llu", i, resp_rx_ts_arr[i]);
+        msg_set_ts(&cc_tx_final_msg_n3[CC_RESP_RX_TS_BASE_IDX + (i*TIMESTAMP_OVERHEAD)], resp_rx_ts_arr[i]);
+    }
     msg_set_ts(&cc_tx_final_msg_n3[CC_FINAL_TX_TS_IDX], ts_replyA_end);
+    // LOG_ERR("Final TX TS: %llu",  ts_replyA_end);
+
+    // LOG_ERR("Node %u TX final message", this_id);
+    // for (int i = 14; i < sizeof(cc_tx_final_msg_n3); i++) {
+    //     LOG_ERR("%02X | %02X", ((uint8_t*)cc_tx_final_msg_n3)[i], ((uint8_t*)cc_tx_final_msg_n3)[i]);
+    // }
 
     dwt_writetxdata(sizeof(cc_tx_final_msg_n3), cc_tx_final_msg_n3, 0);
     dwt_writetxfctrl(sizeof(cc_tx_final_msg_n3), 0, 1);
@@ -712,7 +727,7 @@ int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *
 
     uint64_t end_ms = k_uptime_get();
     uint64_t elapsed_ms = end_ms-start_ms;
-    LOG_ERR("Initator elapsed time %llu ms", elapsed_ms);
+    // LOG_ERR("Initator elapsed time %llu ms", elapsed_ms);
 
 
     return 0;

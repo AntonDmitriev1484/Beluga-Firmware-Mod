@@ -568,8 +568,8 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
     return 0;
 }
 
-#define CC_POLL_TX_TS_IDX           RESP_MSG_POLL_RX_TS_IDX
-#define CC_RESP_RX_TS_BASE_IDX      RESP_MSG_RESP_TX_TS_IDX
+#define CC_POLL_TX_TS_IDX           DW_BASE_PAYLOAD_OFFSET
+#define CC_RESP_RX_TS_BASE_IDX      DW_BASE_PAYLOAD_OFFSET + TIMESTAMP_OVERHEAD
 #define CC_FINAL_TX_TS_IDX          CC_RESP_RX_TS_BASE_IDX + (NUM_USERS)*TIMESTAMP_OVERHEAD
 
 static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
@@ -624,24 +624,41 @@ static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
     final_rx_ts = get_rx_timestamp_u64();
     resp_tx_ts = get_tx_timestamp_u64();
 
+    LOG_ERR("Node %u RX FINAL", this_id);
     msg_get_ts(&rx_buffer[CC_POLL_TX_TS_IDX], &poll_tx_ts);
-    msg_get_ts(&rx_buffer[CC_RESP_RX_TS_BASE_IDX + (TIMESTAMP_OVERHEAD * this_id-1)], &resp_rx_ts); 
-    // Index into the rx_ts array, to get the initiator's rx timestamp for the response sent by our node.
+    // LOG_ERR("Poll TX TS: %u", poll_tx_ts);
+    // for (int i = 0; i < NUM_USERS-1; i++) {
+    //     // Setting each of the response rx timestamps
+    //     // msg_set_ts only sets 4 bytes at a time
+    //     uint32_t resp_rx_ts_temp;
+    //     msg_get_ts(&rx_buffer[CC_RESP_RX_TS_BASE_IDX + (TIMESTAMP_OVERHEAD * i)], &resp_rx_ts_temp);
+    //     LOG_ERR("Final RX TS %d: %u", i, resp_rx_ts_temp);
+    // }
+    msg_get_ts(&rx_buffer[CC_RESP_RX_TS_BASE_IDX + (TIMESTAMP_OVERHEAD * (this_id-1))], &resp_rx_ts); 
+    // LOG_ERR("Selected Final RX TS: %u", resp_rx_ts);
     msg_get_ts(&rx_buffer[CC_FINAL_TX_TS_IDX], &final_tx_ts);
+    // LOG_ERR("Final TX TS: %u", final_tx_ts);
+
+    // LOG_ERR("Node %u RX final message", this_id);
+    // for (int i = 14; i < sizeof(cc_rx_final_cmp_n3); i++) {
+    //     LOG_ERR("%02X | %02X", ((uint8_t*)rx_buffer)[i], ((uint8_t*)cc_rx_final_cmp_n3)[i]);
+    // }
 
     // uint32 is unsigned long on decawave
     poll_rx_ts_32 = (uint32)(*poll_rx_ts);
     resp_tx_ts_32 = (uint32)resp_tx_ts;
     final_rx_ts_32 = (uint32)final_rx_ts;
 
-    // LOG_ERR("Hello message %lu , %lu, %lu", poll_tx_ts, resp_rx_ts, final_tx_ts);
+    // LOG_ERR("Final Timestamps: poll_tx_ts* %u, poll_rx_ts %lu, resp_tx_ts %lu, resp_rx_ts* %u, final_tx_ts* %u, final_rx_ts %lu",
+    // poll_tx_ts, poll_rx_ts_32, resp_tx_ts_32, resp_rx_ts, final_tx_ts, final_rx_ts_32);
+
 
     roundB = (double)(final_rx_ts_32 - resp_tx_ts_32);
     replyB = (double)(resp_tx_ts_32 - poll_rx_ts_32);
     roundA = (double)(resp_rx_ts - poll_tx_ts);
     replyA = (double)(final_tx_ts - resp_rx_ts);
     double numerator = (roundA * roundB - replyA * replyB);
-    LOG_ERR("roundA %u replyA %u roundB %u replyB %u => numerator %u", (uint32_t)roundA, (uint32_t)replyA, (uint32_t)roundB, (uint32_t)replyB, (uint32_t) numerator);
+    //LOG_ERR("roundA %u replyA %u roundB %u replyB %u => numerator %u", (uint32_t)roundA, (uint32_t)replyA, (uint32_t)roundB, (uint32_t)replyB, (uint32_t) numerator);
 
     if (numerator <= 0) {
         LOG_ERR("Bad TOF response");
@@ -684,16 +701,15 @@ int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     set_src_id(initiator_id, rx_final_msg);
     SET_EXCHANGE_ID(cc_rx_final_cmp_n3 + LOGIC_CLK_OFFSET, _logic_clk);
     SET_EXCHANGE_ID(cc_rx_final_msg_n3 + LOGIC_CLK_OFFSET, _logic_clk);
-
     if ((err = cc_wait_final(&tof_dtu, &poll_rx_ts)) < 0) {
         LOG_ERR("Error %d in cc_wait_final", err);
         return err;
     }
 
-    // double range =((double)tof_dtu * SPEED_OF_LIGHT / 1e9);
-    // char float_str[32]; // Buffer to hold the string representation
-    // snprintk(float_str, sizeof(float_str), "%.2f", range); // Format to 2 decimal places
-    // LOG_ERR("Distance to node %d = %s m", initiator_id, float_str); // Cant print floats apparently
+    // In cm so we don't have to print format or round up to nearest m
+    double range_m =(tof_dtu * DWT_TIME_UNITS * SPEED_OF_LIGHT);
+    uint32_t range_cm_ = (uint32_t)(100 * range_m); // rounding to nearest cm
+    LOG_ERR("Distance to node %u = %u cm", initiator_id, range_cm_); // Cant print floats apparently
 
     // set_dest_id(initiator_id, tx_report_msg);
     // SET_EXCHANGE_ID(tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);
