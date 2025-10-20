@@ -74,6 +74,7 @@ int ss_resp_run(uint16_t *id, uint32_t *logic_clk);
 
 static int cc_wait_poll_message(uint16_t *src_id, uint32_t *logic_clk);
 static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t this_id);
+// static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts, const uint16_t initiator_id);
 int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk);
 
 /**

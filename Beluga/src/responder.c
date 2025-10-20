@@ -525,6 +525,14 @@ static int cc_wait_poll_message(uint16_t *src_id, uint32_t *logic_clk) {
     return 0;
 }
 
+uint32 get_slot(uint16_t this_id, uint16_t initiator_id) {
+    if (this_id < initiator_id) {
+        return this_id; // IDs start at 1, so node with ID 1 is in slot 0
+    } else {
+        return this_id - 1; // Skip over initiator's slot
+    }
+}
+
 #define CC_DELAY_WINDOW_UUS 1000
 
 static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t this_id) {
@@ -533,12 +541,7 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
 
     // Initiator id should already be baked into the message
 
-    uint32 slot;
-    if (this_id < initiator_id) {
-        slot = this_id - 1; // IDs start at 1, so node with ID 1 is in slot 0
-    } else {
-        slot = this_id - 2; // Skip over initiator's slot
-    }
+    uint32 slot = get_slot(this_id, initiator_id);
     *poll_rx_ts = get_rx_timestamp_u64();
     cc_delay_uus = slot * (int)(CC_DELAY_WINDOW_UUS / (NUM_USERS - 1)); // delay in microseconds based on node ID
     uint32 total_delay_uus = (POLL_RX_TO_RESP_TX_DLY_UUS + cc_delay_uus);
@@ -572,7 +575,7 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
 #define CC_RESP_RX_TS_BASE_IDX      DW_BASE_PAYLOAD_OFFSET + TIMESTAMP_OVERHEAD
 #define CC_FINAL_TX_TS_IDX          CC_RESP_RX_TS_BASE_IDX + (NUM_USERS)*TIMESTAMP_OVERHEAD
 
-static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
+static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts, const uint16_t initiator_id) {
 
     uint32 status_reg, frame_len, poll_rx_ts_32, resp_tx_ts_32, final_rx_ts_32;
     uint32_t resp_rx_ts, poll_tx_ts, final_tx_ts;
@@ -653,23 +656,29 @@ static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
     // poll_tx_ts, poll_rx_ts_32, resp_tx_ts_32, resp_rx_ts, final_tx_ts, final_rx_ts_32);
 
 
-    roundB = (double)(final_rx_ts_32 - resp_tx_ts_32);
-    replyB = (double)(resp_tx_ts_32 - poll_rx_ts_32);
-    roundA = (double)(resp_rx_ts - poll_tx_ts);
-    replyA = (double)(final_tx_ts - resp_rx_ts);
+
+    uint32 slot = get_slot(this_id, initiator_id);
+    uint32 cc_delay_uus = slot * ((int)(CC_DELAY_WINDOW_UUS / (NUM_USERS - 1))); // delay in microseconds based on node ID
+    uint32 cc_A_delay = cc_delay_uus;
+    uint32 cc_B_delay = CC_DELAY_WINDOW_UUS - cc_delay_uus;
+
+    // This is better than normalizing after casting to a double
+    roundB = (double)(final_rx_ts_32 - resp_tx_ts_32 - cc_B_delay);
+    replyB = (double)(resp_tx_ts_32 - poll_rx_ts_32 - cc_B_delay);
+    roundA = (double)(resp_rx_ts - poll_tx_ts - cc_A_delay);
+    replyA = (double)(final_tx_ts - resp_rx_ts - cc_A_delay);
+
     double numerator = (roundA * roundB - replyA * replyB);
-    //LOG_ERR("roundA %u replyA %u roundB %u replyB %u => numerator %u", (uint32_t)roundA, (uint32_t)replyA, (uint32_t)roundB, (uint32_t)replyB, (uint32_t) numerator);
 
     if (numerator <= 0) {
         LOG_ERR("Bad TOF response");
         return -EINVAL;
     }
 
-    // NOTE: Although we compute ToF here, we do not use it to update our own distance estimate to the received node.
-    // Why not? This could double the rate at which ranges are updated?
     *tof_dtu = (uint64)((roundA * roundB - replyA * replyB) /
                         (roundA + roundB + replyA + replyB));
-
+    // NOTE: Although we compute ToF here, we do not use it to update our own distance estimate to the received node.
+    // Why not? This could double the rate at which ranges are updated?
     return 0;
 }
 
@@ -701,13 +710,13 @@ int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     set_src_id(initiator_id, rx_final_msg);
     SET_EXCHANGE_ID(cc_rx_final_cmp_n3 + LOGIC_CLK_OFFSET, _logic_clk);
     SET_EXCHANGE_ID(cc_rx_final_msg_n3 + LOGIC_CLK_OFFSET, _logic_clk);
-    if ((err = cc_wait_final(&tof_dtu, &poll_rx_ts)) < 0) {
+    if ((err = cc_wait_final(&tof_dtu, &poll_rx_ts, initiator_id)) < 0) {
         LOG_ERR("Error %d in cc_wait_final", err);
         return err;
     }
 
     // In cm so we don't have to print format or round up to nearest m
-    double range_m =(tof_dtu * DWT_TIME_UNITS * SPEED_OF_LIGHT);
+    double range_m =((tof_dtu * DWT_TIME_UNITS) * SPEED_OF_LIGHT);
     uint32_t range_cm_ = (uint32_t)(100 * range_m); // rounding to nearest cm
     LOG_ERR("Distance to node %u = %u cm", initiator_id, range_cm_); // Cant print floats apparently
 
