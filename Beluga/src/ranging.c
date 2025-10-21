@@ -801,6 +801,9 @@ static void initiate_ranging(void) {
         
     }
 
+    //After you update seen_list entries with the new ranges in initiate_ranging(), send a NEIGHBOR_UPDATES beluga message using the comms_write_msg() API. The beluga_message encoder already supports NEIGHBOR_UPDATES and encodes the neighbor list as JSON.
+
+
     resp_reconfig();
     dwt_forcetrxoff();
 
