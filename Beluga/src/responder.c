@@ -134,8 +134,8 @@ static uint8 cc_tx_report_msg[REPORT_MSG_LEN] = {
     0x41, 0x88, // frame control
       0, // sequence number
       0xCA, 0xDE, // PAN ID
-       'V', 'E', //dest addr -> will be initiator id
-        'W', 'A', //source addr -> will be responder id
+       0 ,0 , //dest addr -> will be initiator id
+        0, 0, //source addr -> will be responder id
          0xE3, // function code
           0, 0, 0, 0, // ToF
            0, 0}; //CRC
@@ -539,7 +539,7 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
     uint32 resp_tx_time, cc_delay_uus;
     int ret;
 
-    // Initiator id should already be baked into the message
+    // src and initiator id should already be baked into the message
 
     uint32 slot = get_slot(this_id, initiator_id);
     *poll_rx_ts = get_rx_timestamp_u64();
@@ -566,8 +566,6 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
     UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
-    LOG_ERR("Node %u tx RESPONSE to %u", this_id, initiator_id);
-
     return 0;
 }
 
@@ -586,7 +584,7 @@ static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts, const uint
         (status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
         (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)) {
         if (k_sem_count_get(&k_sus_resp) == 0) {
-            LOG_ERR("Preemption? in cc_wait_final");
+            LOG_ERR("Preemption in cc_wait_final");
             dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_RX_ERR);
             dwt_rxreset();
             return -EBUSY;
@@ -617,7 +615,7 @@ static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts, const uint
     // Also I thin DW_BASE_LEN has 4 extra bytes, that would cause it to read into the payload?
     if (!(memcmp(rx_buffer, cc_rx_final_cmp_n3, DW_BASE_LEN) == 0)) {
         LOG_ERR("MEMCMP failed in  cc_wait_final");
-            LOG_ERR("Memcmp failed on %u bytes. Dumping rx buffer:", DW_BASE_LEN);
+        LOG_ERR("Memcmp failed on %u bytes. Dumping rx buffer:", DW_BASE_LEN);
         for (int i = 0; i < sizeof(cc_rx_final_cmp_n3); i++) {
             LOG_ERR("%02X | %02X", ((uint8_t*)rx_buffer)[i], ((uint8_t*)cc_rx_final_cmp_n3)[i]);
         }
@@ -627,35 +625,13 @@ static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts, const uint
     final_rx_ts = get_rx_timestamp_u64();
     resp_tx_ts = get_tx_timestamp_u64();
 
-    LOG_ERR("Node %u RX FINAL", this_id);
     msg_get_ts(&rx_buffer[CC_POLL_TX_TS_IDX], &poll_tx_ts);
-    // LOG_ERR("Poll TX TS: %u", poll_tx_ts);
-    // for (int i = 0; i < NUM_USERS-1; i++) {
-    //     // Setting each of the response rx timestamps
-    //     // msg_set_ts only sets 4 bytes at a time
-    //     uint32_t resp_rx_ts_temp;
-    //     msg_get_ts(&rx_buffer[CC_RESP_RX_TS_BASE_IDX + (TIMESTAMP_OVERHEAD * i)], &resp_rx_ts_temp);
-    //     LOG_ERR("Final RX TS %d: %u", i, resp_rx_ts_temp);
-    // }
     msg_get_ts(&rx_buffer[CC_RESP_RX_TS_BASE_IDX + (TIMESTAMP_OVERHEAD * (this_id-1))], &resp_rx_ts); 
-    // LOG_ERR("Selected Final RX TS: %u", resp_rx_ts);
     msg_get_ts(&rx_buffer[CC_FINAL_TX_TS_IDX], &final_tx_ts);
-    // LOG_ERR("Final TX TS: %u", final_tx_ts);
 
-    // LOG_ERR("Node %u RX final message", this_id);
-    // for (int i = 14; i < sizeof(cc_rx_final_cmp_n3); i++) {
-    //     LOG_ERR("%02X | %02X", ((uint8_t*)rx_buffer)[i], ((uint8_t*)cc_rx_final_cmp_n3)[i]);
-    // }
-
-    // uint32 is unsigned long on decawave
     poll_rx_ts_32 = (uint32)(*poll_rx_ts);
     resp_tx_ts_32 = (uint32)resp_tx_ts;
     final_rx_ts_32 = (uint32)final_rx_ts;
-
-    // LOG_ERR("Final Timestamps: poll_tx_ts* %u, poll_rx_ts %lu, resp_tx_ts %lu, resp_rx_ts* %u, final_tx_ts* %u, final_rx_ts %lu",
-    // poll_tx_ts, poll_rx_ts_32, resp_tx_ts_32, resp_rx_ts, final_tx_ts, final_rx_ts_32);
-
-
 
     uint32 slot = get_slot(this_id, initiator_id);
     uint32 cc_delay_uus = slot * ((int)(CC_DELAY_WINDOW_UUS / (NUM_USERS - 1))); // delay in microseconds based on node ID
@@ -677,10 +653,43 @@ static int cc_wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts, const uint
 
     *tof_dtu = (uint64)((roundA * roundB - replyA * replyB) /
                         (roundA + roundB + replyA + replyB));
-    // NOTE: Although we compute ToF here, we do not use it to update our own distance estimate to the received node.
-    // Why not? This could double the rate at which ranges are updated?
+
     return 0;
 }
+
+static int cc_send_report(uint64 tof_dtu, uint16_t initiator_id, uint16_t this_id) {
+    uint32 resp_tx_time, cc_delay_uus;
+    int ret;
+
+    // src and initiator id should already be baked into the message
+
+    uint32 slot = get_slot(this_id, initiator_id);
+    uint64_t final_rx_ts = get_rx_timestamp_u64();
+    cc_delay_uus = slot * (int)(CC_DELAY_WINDOW_UUS / (NUM_USERS - 1)); // delay in microseconds based on node ID
+    uint32 total_delay_uus = (POLL_RX_TO_RESP_TX_DLY_UUS + cc_delay_uus);
+    // compute TX timestamp from the delay from when the initial poll frame was RX
+    resp_tx_time =
+        (final_rx_ts + (total_delay_uus * UUS_TO_DWT_TIME)) >> 8;
+    dwt_setdelayedtrxtime(resp_tx_time);
+
+    msg_set_ts(&cc_tx_report_msg[RESP_MSG_POLL_RX_TS_IDX], tof_dtu);
+
+    dwt_writetxdata(sizeof(cc_tx_report_msg), cc_tx_report_msg, 0);
+    dwt_writetxfctrl(sizeof(cc_tx_report_msg), 0, 1);
+    ret = dwt_starttx(DWT_START_TX_IMMEDIATE);
+
+    if (ret != DWT_SUCCESS) {
+        dwt_rxreset();
+        LOG_ERR("Failed to transmit in cc_send_report");
+        return -EBADMSG;
+    }
+
+    UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
+    dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
+
+    return 0;
+}
+
 
 int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     int err;
@@ -696,11 +705,9 @@ int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     if ((err = cc_wait_poll_message(&initiator_id, &_logic_clk)) < 0) {
         return err;
     }
-    // ID reception is correct
 
     set_dest_id(initiator_id, cc_tx_resp_msg);
     SET_EXCHANGE_ID(cc_tx_resp_msg + LOGIC_CLK_OFFSET, _logic_clk);
-
     if ((err = cc_ds_respond(&poll_rx_ts, initiator_id, this_id)) < 0) {
         LOG_ERR("Error %d in cc_ds_respond", err);
         return err;
@@ -720,12 +727,12 @@ int cc_ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     uint32_t range_cm_ = (uint32_t)(100 * range_m); // rounding to nearest cm
     LOG_ERR("Distance to node %u = %u cm", initiator_id, range_cm_); // Cant print floats apparently
 
-    // set_dest_id(initiator_id, tx_report_msg);
-    // SET_EXCHANGE_ID(tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);
-
-    // if ((err = send_report(tof_dtu)) < 0) {
-    //     return err;
-    // }
+    set_dest_id(initiator_id, cc_tx_report_msg);
+    SET_EXCHANGE_ID(cc_tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);
+    if ((err = cc_send_report(tof_dtu, initiator_id, this_id)) < 0) {
+        LOG_ERR("Error %d in cc_send_report", err);
+        return err;
+    }
 
     if (logic_clk != NULL) {
         *logic_clk = _logic_clk;

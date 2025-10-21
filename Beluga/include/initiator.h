@@ -111,7 +111,7 @@ int ss_init_run(uint16_t id, double *distance, uint32_t *logic_clock);
 // Cascaded ranging functions
 static int cc_send_poll(void);
 static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr);
-int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock);
+int cc_ds_init_run(uint16_t id, double *range_arr, dwt_rxdiag_t* diag_arr, uint32_t *logic_clock);
 
 
 /**

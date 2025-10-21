@@ -647,7 +647,7 @@ int set_rate(uint32_t rate) {
  * initializes the DW1000 with default values
  */
 void init_uwb(void) {
-    LOG_ERR("starting... in init_uwb");
+    LOG_ERR("In init_uwb");
 
     if (!IS_ENABLED(CONFIG_ENABLE_BELUGA_UWB)) {
         LOG_ERR("UWB disabled");
@@ -696,9 +696,13 @@ static void resp_reconfig() {
     dwt_setrxtimeout(UWB_RESP_RX_TIMEOUT);
 }
 
+#define NUM_USERS 3
 /**
  * @brief Find a node in the neighbors list and range to that node
  */
+
+// Cascaded ranging message implementation
+
 static void initiate_ranging(void) {
     // Time left to sleep in ms
     static int32_t time_left = CONFIG_POLLING_REFRESH_PERIOD;
@@ -723,8 +727,7 @@ static void initiate_ranging(void) {
     }
     time_left = initiator_freq;
 
-    if (drop) {
-        // note: this is whats determining the ALOHA scheduling likely
+    if (drop) { // Pure ALOHA scheduling
         uint16_t delay = get_rand_num_exp_collision(initiator_freq);
         k_msleep(delay);
         drop = false;
@@ -735,33 +738,28 @@ static void initiate_ranging(void) {
     dwt_forcetrxoff();
     init_reconfig();
 
-    for (size_t search_count = 0; seen_list[current_neighbor].UUID == 0;
-         search_count++) {
+    // Previously. This is what would pick the node we range to.
+    // With cascaded, we ignore this parameter in cc_ds_init_run
+    for (size_t search_count = 0; seen_list[current_neighbor].UUID == 0; search_count++) {
         BOUND_INCREMENT(current_neighbor, MAX_ANCHOR_COUNT);
-
         if (search_count >= (MAX_ANCHOR_COUNT - 1)) {
             search_broken = true;
             break;
         }
     }
 
-    dwt_rxdiag_t diag;
+    dwt_rxdiag_t diag_arr[NUM_USERS];
+    double range_arr[NUM_USERS];
 
     if (!search_broken) {
         int err;
 
         if (twr_mode) {
-            //note: This is the function we want to enacpsulate but now with our TDMA
-            // err = ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,
-            //                   &exchange);
-            // LOG_INF("Double sided ranging returned %d", err);
-            err = cc_ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,
+             err = cc_ds_init_run(seen_list[current_neighbor].UUID, range_arr, diag_arr,
                               &exchange);
-            LOG_INF("CC Double sided ranging returned %d", err);
-        } else {
-            err = ss_init_run(seen_list[current_neighbor].UUID, &range,
-                              &exchange);
-            LOG_INF("Single sided ranging returned %d", err);
+        }
+        else {
+            LOG_ERR("What are you doing man...");
         }
 
         if (err != 0) {
@@ -769,29 +767,38 @@ static void initiate_ranging(void) {
         }
 
         if (!drop && RANGE_CONDITION(range)) {
-            seen_list[current_neighbor].update_flag = true;
-            seen_list[current_neighbor].range = (float)range;
-            seen_list[current_neighbor].time_stamp = k_uptime_get();
+            // TODO: Can we replace current_neighbor, with i?
+            // With all of the ranges we have received, update the entire neighbors list
+            // TODO -1 because we're skipping the 3rd node for now
+            for (int i = 1; i <= NUM_USERS-1; i++) {
+                if (i != this_id) {
 
-            // Added diagnostic information to final range
-            seen_list[current_neighbor].maxNoise = diag.maxNoise;
-            seen_list[current_neighbor].firstPathAmp1 = diag.firstPathAmp1;
-            seen_list[current_neighbor].firstPathAmp2 = diag.firstPathAmp2;
-            seen_list[current_neighbor].firstPathAmp3 = diag.firstPathAmp3;
-            seen_list[current_neighbor].stdNoise = diag.stdNoise;
-            seen_list[current_neighbor].maxGrowthCIR = diag.maxGrowthCIR;
-            seen_list[current_neighbor].rxPreamCount = diag.rxPreamCount;
-            seen_list[current_neighbor].firstPath = diag.firstPath;
+                    LOG_ERR("Updating neighbor %d", i);
+                    seen_list[i].update_flag = true;
+                    seen_list[i].range = (float)range_arr[i];
+                    seen_list[i].time_stamp = k_uptime_get();
 
-            
+                    // Added diagnostic information to final range
+                    seen_list[i].maxNoise = diag_arr[i].maxNoise;
+                    seen_list[i].firstPathAmp1 = diag_arr[i].firstPathAmp1;
+                    seen_list[i].firstPathAmp2 = diag_arr[i].firstPathAmp2;
+                    seen_list[i].firstPathAmp3 = diag_arr[i].firstPathAmp3;
+                    seen_list[i].stdNoise = diag_arr[i].stdNoise;
+                    seen_list[i].maxGrowthCIR = diag_arr[i].maxGrowthCIR;
+                    seen_list[i].rxPreamCount = diag_arr[i].rxPreamCount;
+                    seen_list[i].firstPath = diag_arr[i].firstPath;
+                    seen_list[i].update_flag = true;
+                    seen_list[i].range = (float)range;
+                    seen_list[i].time_stamp = k_uptime_get();
+
 #if defined(CONFIG_UWB_LOGIC_CLK)
-            seen_list[current_neighbor].exchange_id = exchange;
-#endif // defined(CONFIG_UWB_LOGIC_CLK)
-
-            update_ble_service(seen_list[current_neighbor].UUID, range);
+                    seen_list[i].exchange_id = exchange;
+#endif
+                    update_ble_service(seen_list[i].UUID, range); // I think this triggers the output to ROS
+                }
+            }
         }
-
-        BOUND_INCREMENT(current_neighbor, MAX_ANCHOR_COUNT);
+        
     }
 
     resp_reconfig();

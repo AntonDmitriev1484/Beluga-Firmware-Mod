@@ -519,8 +519,6 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
         return -EINVAL;
     }
 
-    id = 0;
-    
     set_exchange_id();
 
     set_dest_id(0, tx_poll_msg);
@@ -528,8 +526,6 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
         return err;
     }
 
-    // Now need to change the logic in ds_rx_response
-    // to handle multiple nodes
     if ((err = ds_rx_response()) < 0) {
         return err;
     }
@@ -548,7 +544,6 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
     uint64_t end_ms = k_uptime_get();
     uint64_t elapsed_ms = end_ms-start_ms;
     LOG_ERR("Initator elapsed time %llu ms", elapsed_ms);
-
 
     return 0;
 }
@@ -578,9 +573,8 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
     uint32 status_reg, frame_len;
     uint16_t responder_id;
     int n_responses = 0;
-    // We need to wait for N such responses
 
-    // TODO Change this
+    // We need to wait for NUM_USERS-1 responses
     while (n_responses < NUM_USERS-1-1) {
         UWB_WAIT((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
                  (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR));
@@ -602,13 +596,11 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
             dwt_readrxdata(rx_buffer, frame_len, 0);
         }
 
-        rx_buffer[SEQ_CNT_OFFSET] = 0;
-
-
         // Make sure to fetch source id from rx_buffer before clearing for compare
         responder_id = get_src_id(rx_buffer);
 
-        // Compare received message to template, ignoring source and dest ids
+        // Compare received message to template, ignoring seqnum, and source and dest ids
+        rx_buffer[SEQ_CNT_OFFSET] = 0;
         rx_buffer[SRC_OFFSET] = 0; //mask src to 0 in RX message
         rx_buffer[SRC_OFFSET + 1] = 0;
         rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
@@ -640,8 +632,8 @@ static int cc_send_final(uint64_t* resp_rx_ts_arr) {
     int ret;
 
     poll_tx_ts = get_tx_timestamp_u64();
-    last_response_rx_ts = get_rx_timestamp_u64(); //Timestamp of last received poll response, we compute our transmit time based off of this.
-    // Should be D + array window
+    last_response_rx_ts = get_rx_timestamp_u64(); 
+    //Timestamp of last received poll response, we compute our transmit time based off of this.
     // This should be the same as the last entry in resp_rx_ts_arr, but we use the direct read here.
 
     resp_tx_time =
@@ -650,22 +642,14 @@ static int cc_send_final(uint64_t* resp_rx_ts_arr) {
 
     ts_replyA_end = (((uint64)(resp_tx_time & 0xFFFFFFFEUL)) << 8) + TX_ANT_DLY;
 
-    LOG_ERR("Node %u TX Final", this_id);
     msg_set_ts(&cc_tx_final_msg_n3[CC_POLL_TX_TS_IDX], poll_tx_ts);
-    // LOG_ERR("Poll TX TS: %llu", poll_tx_ts);
     for (int i = 0; i < NUM_USERS-1; i++) {
         // Setting each of the response rx timestamps
         // msg_set_ts only sets 4 bytes at a time
-        // LOG_ERR("Resp RX TS %d: %llu", i, resp_rx_ts_arr[i]);
         msg_set_ts(&cc_tx_final_msg_n3[CC_RESP_RX_TS_BASE_IDX + (i*TIMESTAMP_OVERHEAD)], resp_rx_ts_arr[i]);
     }
     msg_set_ts(&cc_tx_final_msg_n3[CC_FINAL_TX_TS_IDX], ts_replyA_end);
-    // LOG_ERR("Final TX TS: %llu",  ts_replyA_end);
 
-    // LOG_ERR("Node %u TX final message", this_id);
-    // for (int i = 14; i < sizeof(cc_tx_final_msg_n3); i++) {
-    //     LOG_ERR("%02X | %02X", ((uint8_t*)cc_tx_final_msg_n3)[i], ((uint8_t*)cc_tx_final_msg_n3)[i]);
-    // }
 
     dwt_writetxdata(sizeof(cc_tx_final_msg_n3), cc_tx_final_msg_n3, 0);
     dwt_writetxfctrl(sizeof(cc_tx_final_msg_n3), 0, 1);
@@ -684,50 +668,102 @@ static int cc_send_final(uint64_t* resp_rx_ts_arr) {
     return 0;
 }
 
-int cc_ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock) {
+
+static int cc_rx_report(double* range_arr, dwt_rxdiag_t* diag_arr) {
+    uint32 status_reg, frame_len;
+    uint32_t msg_tof_dtu;
+    double tof;
+    int n_responses = 0;
+    uint16_t responder_id;
+
+    // We need to wait for NUM_USERS-1 responses
+    while (n_responses < NUM_USERS-1-1) {
+        UWB_WAIT((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
+                (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR));
+
+        if (!(status_reg & SYS_STATUS_RXFCG)) {
+            dwt_write32bitreg(SYS_STATUS_ID,
+                            SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
+            dwt_rxreset();
+            LOG_ERR("Bad reception in cc_rx_report");
+            return -EBADMSG;
+        }
+
+        dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
+
+        frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFL_MASK_1023;
+        if (frame_len <= RX_BUFFER_LEN) {
+            dwt_readrxdata(rx_buffer, frame_len, 0);
+        }
+
+        // Make sure to fetch source id from rx_buffer before clearing for compare
+        responder_id = get_src_id(rx_buffer);
+
+        // Compare received message to template, ignoring seqnum, and source and dest ids
+        rx_buffer[SEQ_CNT_OFFSET] = 0;
+        rx_buffer[SRC_OFFSET] = 0; //mask src to 0 in RX message
+        rx_buffer[SRC_OFFSET + 1] = 0;
+        rx_buffer[DEST_OFFSET] = 0; //mask dest to 0 in RX message
+        rx_buffer[DEST_OFFSET + 1] = 0;
+        if (!(memcmp(rx_buffer, cc_rx_report_cmp, DW_BASE_LEN) == 0)) {
+                LOG_ERR("Memcmp failed on %u bytes. Dumping rx buffer:", DW_BASE_LEN);
+                for (int i = 0; i < sizeof(cc_rx_report_cmp); i++) {
+                    LOG_ERR("%02X | %02X", ((uint8_t*)rx_buffer)[i], ((uint8_t*)cc_rx_report_cmp)[i]);
+                }
+            return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade
+        }
+
+        msg_get_ts(&rx_buffer[RESP_MSG_POLL_RX_TS_IDX], &msg_tof_dtu);
+        tof = msg_tof_dtu * DWT_TIME_UNITS;
+        range_arr[responder_id-1] = tof * SPEED_OF_LIGHT; // Update the range entry for responder id
+        dwt_readdiagnostics(&diag_arr[responder_id-1]); // Update diagnostics entry for responder id
+
+        n_responses++;
+    }
+
+    return 0;
+}
+
+int cc_ds_init_run(uint16_t id, double *range_arr, dwt_rxdiag_t* diag_arr, uint32_t *logic_clock) {
     int err;
     uint64_t resp_rx_ts_arr[NUM_USERS];
     resp_rx_ts_arr[this_id-1] = 0; // 0 our own slot in the array
 
-    // Note: This is where we need to add our timer
-
     uint64_t start_ms = k_uptime_get();
-
-    if (distance == NULL) {
+    
+    if (range_arr == NULL) {
         return -EINVAL;
     }
 
     set_exchange_id();
     set_dest_id(0, cc_tx_poll_msg);
     if ((err = cc_send_poll()) < 0) {
+        LOG_ERR("Error %d in cc_send_poll", err);
         return err;
     }
 
-    // cc_ds_rx_response records every response timestamp it gets in this array.
     if ((err = cc_ds_rx_response(resp_rx_ts_arr)) < 0) {
-        LOG_ERR("Error in cc_ds_rx_response");
+        LOG_ERR("Error %d in cc_ds_rx_response", err);
         return err;
-    }
-
-    for (int i = 0; i < NUM_USERS-1; i++) {
-        LOG_ERR("resp_rx_ts_arr[%d] = %llu", i, resp_rx_ts_arr[i]);
     }
 
     set_dest_id(0, cc_tx_final_msg_n3);
     if ((err = cc_send_final(resp_rx_ts_arr)) < 0) {
-        LOG_ERR("Error in cc_send_final");
+        LOG_ERR("Error %d in cc_send_final", err);
         return err;
     }
 
-    // if ((err = rx_report(distance, diag)) < 0) {
-    //     return err;
-    // }
+
+    if ((err = cc_rx_report(range_arr, diag_arr)) < 0) {
+        LOG_ERR("Error %d in cc_rx_report", err);
+        return err;
+    }
 
     update_exchange(logic_clock);
 
     uint64_t end_ms = k_uptime_get();
     uint64_t elapsed_ms = end_ms-start_ms;
-    // LOG_ERR("Initator elapsed time %llu ms", elapsed_ms);
+    LOG_ERR("Initator elapsed time %llu ms", elapsed_ms);
 
 
     return 0;
