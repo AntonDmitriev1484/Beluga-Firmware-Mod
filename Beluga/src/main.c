@@ -34,7 +34,7 @@
 /**
  * Logger for main
  */
-LOG_MODULE_REGISTER(beluga_main, CONFIG_BELUGA_MAIN_LOG_LEVEL);
+LOG_MODULE_REGISTER(beluga_main, LOG_LEVEL_DBG);//CONFIG_BELUGA_MAIN_LOG_LEVEL);
 
 cir_ring_buffer_t cir_buffer = {0};
 
@@ -474,6 +474,7 @@ static void load_settings(const struct comms *comms) {
  * @return 1 on error
  */
 int main(void) {
+    LOG_ERR("MAIN STARTED");
     const struct comms *comms = comms_backend_uart_get_ptr();
     RESET_CAUSE();
 

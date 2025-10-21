@@ -864,6 +864,7 @@ NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
  * @param p3 Additional context (unused)
  */
 NO_RETURN static void responder_task_function(void *p1, void *p2, void *p3) {
+    LOG_ERR("Inside of Responder Task");
     ARG_UNUSED(p1);
     ARG_UNUSED(p2);
     ARG_UNUSED(p3);
@@ -899,9 +900,11 @@ NO_RETURN static void responder_task_function(void *p1, void *p2, void *p3) {
             // A packet was successfully received, so process its CIR data.
             // We use a while loop to drain the buffer in case the ISR processed
             // more than one packet while this thread was blocked.
+            LOG_ERR("Inside of Responder Task, Beofre Reading CIR");
             while (cir_buffer.head != cir_buffer.tail) {
                 // You now have access to the CIR data at the tail index.
-                printf("--- Processing CIR Data (128 samples) ---\n");
+                // printf("--- Processing CIR Data (128 samples) ---\n");
+                LOG_ERR("--- Processing CIR Data (128 samples) ---");
                 
                 // Optional: Print the actual samples
                 // for (int i = 0; i < CIR_SAMPLES_TO_READ; i++) {

@@ -2398,6 +2398,7 @@ uint8 dwt_checkirq(void) {
  */
 void dwt_isr(void) {
 
+    LOG_ERR("Inside DWT_ISR");
     uint32 status = pdw1000local->cbData.status =
         dwt_read32bitreg(SYS_STATUS_ID); // Read status register low 32bits
 
@@ -2410,6 +2411,8 @@ void dwt_isr(void) {
             SYS_STATUS_ID,
             SYS_STATUS_ALL_RX_GOOD); // Clear all receive status bits
         
+        LOG_ERR("Before reading CIR Buffer");
+        
         uint8_t next_head = (cir_buffer.head + 1) % CIR_BUFFER_SIZE;
 
         // Check if the buffer is full. If not, add the new data.
@@ -2419,6 +2422,8 @@ void dwt_isr(void) {
 
             // Advance the head pointer. This makes the new data available.
             cir_buffer.head = next_head;
+
+            LOG_ERR("Inside the IF");
         }
 
         pdw1000local->cbData.rx_flags = 0;

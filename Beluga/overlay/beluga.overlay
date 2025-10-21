@@ -15,3 +15,9 @@
 &uart0 {
 	status = "disabled";
 };
+
+&dw1000_spi {
+    // This adds the STANDARD interrupt property that Zephyr requires.
+    // The pin number (&gpio1 13) is taken from your main .dts file.
+    irq-gpios = <&gpio1 13 GPIO_ACTIVE_HIGH>;
+};
