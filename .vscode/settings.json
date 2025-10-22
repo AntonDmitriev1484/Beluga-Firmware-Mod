@@ -3,6 +3,8 @@
         "${workspaceFolder}/Beluga"
     ],
     "files.associations": {
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "deca_device_api.h": "c",
+        "gpio.h": "c"
     }
 }

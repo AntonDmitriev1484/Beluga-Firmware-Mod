@@ -647,7 +647,7 @@ void init_uwb(void) {
         LOG_INF("UWB disabled");
         return;
     }
-    setup_DW1000RSTnIRQ(0);
+    setup_DW1000RSTnIRQ(1);
     toggle_cs_line(400);
 
     reset_DW1000();
@@ -670,6 +670,17 @@ void init_uwb(void) {
 
     /* Set expected response's timeout. (keep listening so timeout is 0) */
     dwt_setrxtimeout(0);
+
+    // Set callbacks (can be NULL if you just want to test the ISR)
+    dwt_setcallbacks(NULL, NULL, NULL, NULL);
+
+    uint32_t mask = DWT_INT_TFRS | DWT_INT_RFCG | DWT_INT_RFTO | 
+                    DWT_INT_RXPTO | DWT_INT_RPHE | DWT_INT_RFCE |
+                    DWT_INT_RFSL | DWT_INT_SFDT;
+
+    dwt_setinterrupt(mask, 1);  // Enable these interrupts
+
+    printk("DW1000 interrupt mask set to: 0x%08x\n", mask);
 
     LOG_INF("UWB initialized");
 }
@@ -863,6 +874,7 @@ NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
  * @param p3 Additional context (unused)
  */
 NO_RETURN static void responder_task_function(void *p1, void *p2, void *p3) {
+    LOG_ERR("TEST THE BUILD");
     ARG_UNUSED(p1);
     ARG_UNUSED(p2);
     ARG_UNUSED(p3);
