@@ -119,6 +119,15 @@ static double hertz_to_ppm_multiplier = HERTZ_TO_PPM_MULTIPLIER_CHAN_5;
  * @return 0 upon success
  * @return -EBUSY if UWB is active
  */
+
+typedef struct {
+    int16 real;  // Use int16 (DecaDriver style) not int16_t
+    int16 imag;
+} __attribute__((packed)) cir_sample_t;
+
+// Global buffer to store CIR data (1016 complex samples = 4064 bytes)
+static cir_sample_t global_cir_buffer[128];
+
 int set_initiator_id(uint16_t id) {
     CHECK_UWB_ACTIVE();
 
@@ -373,6 +382,10 @@ static int rx_report(double *distance, dwt_rxdiag_t* diag) {
         dwt_rxreset();
         return -EBADMSG;
     }
+
+    dwt_readaccdata((uint8_t *)global_cir_buffer, sizeof(global_cir_buffer), 0);
+    printk("CIR captured! Sample 0: real=%d, imag=%d\n", 
+        global_cir_buffer[0].real, global_cir_buffer[0].imag);
 
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
 

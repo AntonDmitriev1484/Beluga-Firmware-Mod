@@ -680,9 +680,9 @@ void init_uwb(void) {
 
     dwt_setinterrupt(mask, 1);  // Enable these interrupts
 
-    printk("DW1000 interrupt mask set to: 0x%08x\n", mask);
-
-    LOG_INF("UWB initialized");
+    uint32_t read_mask = dwt_read32bitreg(SYS_MASK_ID);
+    printk("DW1000 interrupt mask written: 0x%08x\n", mask);
+    printk("DW1000 interrupt mask read back: 0x%08x\n", read_mask);
 }
 
 /**
@@ -853,6 +853,13 @@ NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
 
     while (true) {
         watchdog_red_rocket(&watchdogAttr);
+
+        dw1000_process_irq();
+        
+        uint32_t status_poll = dwt_read32bitreg(SYS_STATUS_ID);
+        if (status_poll & SYS_STATUS_RXFCG) {
+            printk("*** RX frame detected by polling! (status=0x%08x) ***\n", status_poll);
+        }
 
         if (initiator_freq > 0) {
             initiate_ranging();

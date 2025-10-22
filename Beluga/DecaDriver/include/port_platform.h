@@ -86,6 +86,7 @@ void process_dwRSTn_irq(void);
 void process_deca_irq(void);
 
 void setup_DW1000RSTnIRQ(int enable);
+void dw1000_process_irq(void);
 
 void reset_DW1000(void);
 #else

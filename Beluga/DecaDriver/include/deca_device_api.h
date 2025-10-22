@@ -9,6 +9,7 @@
  * All rights reserved.
  *
  */
+#include <stdint.h>
 
 #ifndef _DECA_DEVICE_API_H_
 #define _DECA_DEVICE_API_H_
@@ -260,6 +261,8 @@ typedef struct {
     uint16 TXW;   // power up warn
 
 } dwt_deviceentcnts_t;
+
+
 
 /********************************************************************************************************************/
 /*                                                 REMOVED API LIST */

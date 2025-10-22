@@ -18,6 +18,7 @@
 #include "deca_param_types.h"
 #include "deca_regs.h"
 #include "deca_types.h"
+#include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(dwt_isr, LOG_LEVEL_DBG);
 
@@ -2398,7 +2399,7 @@ uint8 dwt_checkirq(void) {
  * no return value
  */
 void dwt_isr(void) {
-    LOG_ERR("TEST THE ISR");
+    printk(">>> ISR ENTRY <<<\n");
 
     uint32 status = pdw1000local->cbData.status =
         dwt_read32bitreg(SYS_STATUS_ID); // Read status register low 32bits

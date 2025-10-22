@@ -52,6 +52,8 @@ static const struct gpio_dt_spec dw1000_irq_pin =
 #error "Unable to get DW1000 IRQ GPIO"
 #endif
 
+static volatile bool dw1000_irq_pending = false;
+
 static struct k_work dw1000_irq_work;
 static struct gpio_callback dw1000_irq_cb_data;
 static void dw1000_irq_handler(const struct device *dev, 
@@ -259,12 +261,11 @@ void deca_sleep(unsigned int time_ms) { k_msleep(time_ms); }
 
 // currently do nothing
 decaIrqStatus_t decamutexon(void) {
-    return (decaIrqStatus_t)irq_lock();  // Returns key for unlocking
+    return (decaIrqStatus_t)irq_lock();
 }
 
-// Re-enable interrupts after critical section
 void decamutexoff(decaIrqStatus_t s) {
-    irq_unlock((unsigned int)s);  // Restore using saved key
+    irq_unlock((unsigned int)s);
 }
 
 /****************************************************************************
@@ -285,7 +286,15 @@ static void dw1000_irq_handler(const struct device *dev,
                                 struct gpio_callback *cb, 
                                 uint32_t pins)
 {
-    dwt_isr();
+    dw1000_irq_pending = true;  // Just set flag, don't call dwt_isr
+}
+
+// Add this function to be called from main loop
+void dw1000_process_irq(void) {
+    if (dw1000_irq_pending) {
+        dw1000_irq_pending = false;
+        dwt_isr();  // Safe to call from thread context
+    }
 }
 /****************************************************************************
  *
