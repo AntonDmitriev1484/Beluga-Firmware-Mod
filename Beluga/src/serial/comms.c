@@ -665,6 +665,8 @@ static int s_write_neighbors(const struct comms *comms,
         return -EINVAL;
     }
 
+    LOG_ERR("IN WRITE NEIGHBORS");
+
     for (size_t i = 0; i < MAX_ANCHOR_COUNT; i++) {
         if (list[i].UUID != 0 && (!stream || list[i].update_flag)) {
             char s[256];
@@ -743,6 +745,7 @@ static int comms_write_normal(const struct comms *comms,
     __ASSERT_NO_MSG(comms && msg);
     int ret = 0;
 
+    LOG_ERR("In comms write normal");
     switch (msg->type) {
     case COMMAND_RESPONSE: {
         comms_write(comms, comms->ctx->tx_buf.buf, comms->ctx->tx_buf.len);
@@ -780,6 +783,8 @@ static int comms_write_normal(const struct comms *comms,
 static int comms_write_frame(const struct comms *comms,
                              const struct beluga_msg *msg) {
     __ASSERT_NO_MSG(comms && msg);
+
+    LOG_ERR("Writing frame");
 
     ssize_t len = frame_length(msg);
     if (len < 1) {

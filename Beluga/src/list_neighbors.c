@@ -82,9 +82,13 @@ NO_RETURN static void list_task_function(void *p1, void *p2, void *p3) {
 
         msg.payload.stream = stream_mode;
 
-        // comms_write_msg(comms, &msg);
-        if (stream_mode) {
-            ARRAY_FOR_EACH(seen_list, i) { seen_list[i].update_flag = false; }
+        comms_write_msg(comms, &msg); // Definitely making it in here.
+        // With the default proj.conf
+        if (stream_mode) { // I guess stream_mode is off
+            ARRAY_FOR_EACH(seen_list, i) { 
+                seen_list[i].update_flag = false; 
+            }
+
         }
 
         k_sem_give(&print_list_sem);

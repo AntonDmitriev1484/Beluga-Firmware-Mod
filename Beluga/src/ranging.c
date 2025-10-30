@@ -751,6 +751,8 @@ static void initiate_ranging(void) {
     dwt_rxdiag_t diag_arr[NUM_USERS];
     double range_arr[NUM_USERS];
 
+    LOG_ERR("current neighbor id %u", seen_list[current_neighbor].UUID);
+
     if (!search_broken) {
         int err;
 
@@ -770,7 +772,13 @@ static void initiate_ranging(void) {
             // TODO: Can we replace current_neighbor, with i?
             // With all of the ranges we have received, update the entire neighbors list
             // TODO -1 because we're skipping the 3rd node for now
-            for (int i = 1; i <= NUM_USERS-1; i++) {
+            for (int x = 1; x <= NUM_USERS-1; x++) {
+                
+                int i = 0; // Get the index into seen_list corresponding to our id.
+                for (int j = 0; j < MAX_ANCHOR_COUNT; j++){
+                    if (seen_list[j].UUID == x) i = j;
+                }
+
                 if (i != this_id) {
 
                     LOG_ERR("Updating neighbor %d", i);

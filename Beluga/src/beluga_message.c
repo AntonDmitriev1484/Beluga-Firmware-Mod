@@ -343,7 +343,7 @@ int construct_frame(const struct beluga_msg *msg, uint8_t buffer[],
     ssize_t msgLen;
     int ret;
     if (msg == NULL || buffer == NULL) {
-        LOG_ERR("Invalid intput parameters (%p) (%p)", msg, buffer);
+        LOG_ERR("Invalid input parameters (%p) (%p)", msg, buffer);
         return -EINVAL;
     }
 
@@ -358,14 +358,17 @@ int construct_frame(const struct beluga_msg *msg, uint8_t buffer[],
         break;
     }
     case NEIGHBOR_UPDATES:
+            LOG_ERR("Framing neighbor update");
         msgLen = encode_neighbor_list(msg, buffer + MSG_PAYLOAD_OFFSET,
                                       len - MSG_OVERHEAD);
         break;
     case RANGING_EVENT:
+            LOG_ERR("Framing range event");
         msgLen = encode_ranging_event(msg, buffer + MSG_PAYLOAD_OFFSET,
                                       len - MSG_OVERHEAD);
         break;
     case NEIGHBOR_DROP: {
+            LOG_ERR("Framing Neighbor drop");
         msgLen = snprintf(buffer + MSG_PAYLOAD_OFFSET, len - MSG_OVERHEAD,
                           "%" PRIu32, msg->payload.dropped_neighbor);
         break;
