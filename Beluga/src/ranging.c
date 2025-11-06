@@ -749,6 +749,7 @@ static void initiate_ranging(void) {
         }
     }
 
+    // Index id-1 contains the data for user id
     dwt_rxdiag_t diag_arr[NUM_USERS];
     double range_arr[NUM_USERS];
 
@@ -770,78 +771,54 @@ static void initiate_ranging(void) {
         }
 
         if (!drop) {
-            for (int my_id = 1; my_id <= NUM_USERS-1; my_id++) {
+            for (int id = 1; id <= NUM_USERS-1; id++) { // My id, translates to an index into the array
                 
-                // This thing is messed up
-                int i = 0; // Get the index into seen_list corresponding to our id.
-                for (int j = 0; j < MAX_ANCHOR_COUNT; j++){
-                    if (seen_list[j].UUID == my_id) i = j;
-                }
+                if (id != this_id) {
 
-                // if (my_id != this_id) {
+                    int my_idx = id-1; // Index for data for this user, is id -1 
+                    int beluga_idx = 0;
+                    // Get the Beluga idx, for the current node id
+                    for (int j = 0; j < MAX_ANCHOR_COUNT; j++){
+                        if (seen_list[j].UUID == id) beluga_idx = j;
+                    }
 
-                    LOG_ERR("Updating neighbor %d, id %d ", i, my_id);
-                    seen_list[i].update_flag = true;
-                    seen_list[i].range = (float)range_arr[my_id];
-                    seen_list[i].time_stamp = k_uptime_get();
+                    LOG_ERR("Updating neighbor %d, id %d , my_idx %d", beluga_idx, id, my_idx);
+                    seen_list[beluga_idx].update_flag = true;
+                    seen_list[beluga_idx].range = (float)range_arr[my_idx];
+                    seen_list[beluga_idx].time_stamp = k_uptime_get();
 
                     // Added diagnostic information to final range
-                    seen_list[i].maxNoise = diag_arr[my_id].maxNoise;
-                    seen_list[i].firstPathAmp1 = diag_arr[my_id].firstPathAmp1;
-                    seen_list[i].firstPathAmp2 = diag_arr[my_id].firstPathAmp2;
-                    seen_list[i].firstPathAmp3 = diag_arr[my_id].firstPathAmp3;
-                    seen_list[i].stdNoise = diag_arr[my_id].stdNoise;
-                    seen_list[i].maxGrowthCIR = diag_arr[my_id].maxGrowthCIR;
-                    seen_list[i].rxPreamCount = diag_arr[my_id].rxPreamCount;
-                    seen_list[i].firstPath = diag_arr[my_id].firstPath;
-                    seen_list[i].update_flag = true;
-                    seen_list[i].range = (float)range;
-                    seen_list[i].time_stamp = k_uptime_get();
+                    seen_list[beluga_idx].maxNoise = diag_arr[my_idx].maxNoise;
+                    seen_list[beluga_idx].firstPathAmp1 = diag_arr[my_idx].firstPathAmp1;
+                    seen_list[beluga_idx].firstPathAmp2 = diag_arr[my_idx].firstPathAmp2;
+                    seen_list[beluga_idx].firstPathAmp3 = diag_arr[my_idx].firstPathAmp3;
+                    seen_list[beluga_idx].stdNoise = diag_arr[my_idx].stdNoise;
+                    seen_list[beluga_idx].maxGrowthCIR = diag_arr[my_idx].maxGrowthCIR;
+                    seen_list[beluga_idx].rxPreamCount = diag_arr[my_idx].rxPreamCount;
+                    seen_list[beluga_idx].firstPath = diag_arr[my_idx].firstPath;
+                    seen_list[beluga_idx].update_flag = true;
+                    seen_list[beluga_idx].range = (float)range;
+                    seen_list[beluga_idx].time_stamp = k_uptime_get();
 
 #if defined(CONFIG_UWB_LOGIC_CLK)
-                    seen_list[i].exchange_id = exchange;
+                    seen_list[beluga_idx].exchange_id = exchange;
 #endif
-                    update_ble_service(seen_list[i].UUID, range); // I think this triggers the output to ROS
+                    update_ble_service(seen_list[beluga_idx].UUID, range); // I think this triggers the output to ROS
 
-                        // This could help us check if seen list is actually modified
-                        // LOG_ERR("%u,%.6f,%u,%u,%u,%u,%u,%u,%u,%u,%u",
-                        // seen_list[i].id,
-                        // seen_list[i].range,
-                        // seen_list[i].exchange_id,
-                        // seen_list[i].maxNoise,
-                        // seen_list[i].firstPathAmp1,
-                        // seen_list[i].firstPathAmp2,
-                        // seen_list[i].firstPathAmp3,
-                        // seen_list[i].stdNoise,
-                        // seen_list[i].maxGrowthCIR,
-                        // seen_list[i].rxPreamCount,
-                        // seen_list[i].firstPath);
-                        LOG_ERR("test");
-                        LOG_ERR("{%u,%u,%u,%u,%u,%u,%u,%u,%u,%u}",
-                            my_id,
+                        printk("{%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u}",
+                            id,
+                            (uint32_t)(range_arr[my_idx]*100),
                             exchange,
-                            diag_arr[my_id].maxNoise,
-                            diag_arr[my_id].firstPathAmp1,
-                            diag_arr[my_id].firstPathAmp2,
-                            diag_arr[my_id].firstPathAmp3,
-                            diag_arr[my_id].stdNoise,
-                            diag_arr[my_id].maxGrowthCIR,
-                            diag_arr[my_id].rxPreamCount,
-                            diag_arr[my_id].firstPath);
-                        // LOG_ERR("{%u,%.3f,%u,%u,%u,%u,%u,%u,%u,%u,%u}",
-                        //     x,
-                        //     (float)range,
-                        //     exchange,
-                        //     diag_arr[i].maxNoise,
-                        //     diag_arr[i].firstPathAmp1,
-                        //     diag_arr[i].firstPathAmp2,
-                        //     diag_arr[i].firstPathAmp3,
-                        //     diag_arr[i].stdNoise,
-                        //     diag_arr[i].maxGrowthCIR,
-                        //     diag_arr[i].rxPreamCount,
-                        //     diag_arr[i].firstPath);
+                            diag_arr[my_idx].maxNoise,
+                            diag_arr[my_idx].firstPathAmp1,
+                            diag_arr[my_idx].firstPathAmp2,
+                            diag_arr[my_idx].firstPathAmp3,
+                            diag_arr[my_idx].stdNoise,
+                            diag_arr[my_idx].maxGrowthCIR,
+                            diag_arr[my_idx].rxPreamCount,
+                            diag_arr[my_idx].firstPath);
                 
-                // }
+                }
             }
         }
         

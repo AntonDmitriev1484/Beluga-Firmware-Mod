@@ -581,7 +581,7 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
         if (!(status_reg & SYS_STATUS_RXFCG)) {
             dwt_write32bitreg(SYS_STATUS_ID,
                               SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
-            LOG_ERR("Error in response");
+            LOG_ERR("Error in response"); // So we're hitting this error here quite frequently
             frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
             dwt_readrxdata(rx_buffer, frame_len, 0);
             dwt_rxreset();
