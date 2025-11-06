@@ -766,7 +766,6 @@ static void initiate_ranging(void) {
         }
 
         if (err != 0) {
-            LOG_ERR("DROPP");
             drop = true;
         }
 
