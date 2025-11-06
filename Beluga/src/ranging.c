@@ -777,6 +777,7 @@ static void initiate_ranging(void) {
 
                     int my_idx = id-1; // Index for data for this user, is id -1 
                     int beluga_idx = 0;
+
                     // Get the Beluga idx, for the current node id
                     for (int j = 0; j < MAX_ANCHOR_COUNT; j++){
                         if (seen_list[j].UUID == id) beluga_idx = j;
@@ -796,14 +797,12 @@ static void initiate_ranging(void) {
                     seen_list[beluga_idx].maxGrowthCIR = diag_arr[my_idx].maxGrowthCIR;
                     seen_list[beluga_idx].rxPreamCount = diag_arr[my_idx].rxPreamCount;
                     seen_list[beluga_idx].firstPath = diag_arr[my_idx].firstPath;
-                    seen_list[beluga_idx].update_flag = true;
-                    seen_list[beluga_idx].range = (float)range;
-                    seen_list[beluga_idx].time_stamp = k_uptime_get();
 
 #if defined(CONFIG_UWB_LOGIC_CLK)
                     seen_list[beluga_idx].exchange_id = exchange;
 #endif
-                    update_ble_service(seen_list[beluga_idx].UUID, range); // I think this triggers the output to ROS
+                    update_ble_service(seen_list[beluga_idx].UUID, (float)range_arr[my_idx];); 
+                    // Not sure what this does, I'm going to leave it to be safe
 
                         printk("{%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u}",
                             id,
