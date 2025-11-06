@@ -697,6 +697,7 @@ static void resp_reconfig() {
 }
 
 #define NUM_USERS 3
+#define PYTHON_CLIENT true
 /**
  * @brief Find a node in the neighbors list and range to that node
  */
@@ -751,7 +752,7 @@ static void initiate_ranging(void) {
     dwt_rxdiag_t diag_arr[NUM_USERS];
     double range_arr[NUM_USERS];
 
-    LOG_ERR("current neighbor id %u", seen_list[current_neighbor].UUID);
+    // LOG_ERR("current neighbor id %u", seen_list[current_neighbor].UUID);
 
     if (!search_broken) {
         int err;
@@ -765,36 +766,35 @@ static void initiate_ranging(void) {
         }
 
         if (err != 0) {
+            LOG_ERR("DROPP");
             drop = true;
         }
 
-        if (!drop && RANGE_CONDITION(range)) {
-            // TODO: Can we replace current_neighbor, with i?
-            // With all of the ranges we have received, update the entire neighbors list
-            // TODO -1 because we're skipping the 3rd node for now
-            for (int x = 1; x <= NUM_USERS-1; x++) {
+        if (!drop) {
+            for (int my_id = 1; my_id <= NUM_USERS-1; my_id++) {
                 
+                // This thing is messed up
                 int i = 0; // Get the index into seen_list corresponding to our id.
                 for (int j = 0; j < MAX_ANCHOR_COUNT; j++){
-                    if (seen_list[j].UUID == x) i = j;
+                    if (seen_list[j].UUID == my_id) i = j;
                 }
 
-                if (i != this_id) {
+                // if (my_id != this_id) {
 
-                    LOG_ERR("Updating neighbor %d", i);
+                    LOG_ERR("Updating neighbor %d, id %d ", i, my_id);
                     seen_list[i].update_flag = true;
-                    seen_list[i].range = (float)range_arr[i];
+                    seen_list[i].range = (float)range_arr[my_id];
                     seen_list[i].time_stamp = k_uptime_get();
 
                     // Added diagnostic information to final range
-                    seen_list[i].maxNoise = diag_arr[i].maxNoise;
-                    seen_list[i].firstPathAmp1 = diag_arr[i].firstPathAmp1;
-                    seen_list[i].firstPathAmp2 = diag_arr[i].firstPathAmp2;
-                    seen_list[i].firstPathAmp3 = diag_arr[i].firstPathAmp3;
-                    seen_list[i].stdNoise = diag_arr[i].stdNoise;
-                    seen_list[i].maxGrowthCIR = diag_arr[i].maxGrowthCIR;
-                    seen_list[i].rxPreamCount = diag_arr[i].rxPreamCount;
-                    seen_list[i].firstPath = diag_arr[i].firstPath;
+                    seen_list[i].maxNoise = diag_arr[my_id].maxNoise;
+                    seen_list[i].firstPathAmp1 = diag_arr[my_id].firstPathAmp1;
+                    seen_list[i].firstPathAmp2 = diag_arr[my_id].firstPathAmp2;
+                    seen_list[i].firstPathAmp3 = diag_arr[my_id].firstPathAmp3;
+                    seen_list[i].stdNoise = diag_arr[my_id].stdNoise;
+                    seen_list[i].maxGrowthCIR = diag_arr[my_id].maxGrowthCIR;
+                    seen_list[i].rxPreamCount = diag_arr[my_id].rxPreamCount;
+                    seen_list[i].firstPath = diag_arr[my_id].firstPath;
                     seen_list[i].update_flag = true;
                     seen_list[i].range = (float)range;
                     seen_list[i].time_stamp = k_uptime_get();
@@ -803,7 +803,46 @@ static void initiate_ranging(void) {
                     seen_list[i].exchange_id = exchange;
 #endif
                     update_ble_service(seen_list[i].UUID, range); // I think this triggers the output to ROS
-                }
+
+                        // This could help us check if seen list is actually modified
+                        // LOG_ERR("%u,%.6f,%u,%u,%u,%u,%u,%u,%u,%u,%u",
+                        // seen_list[i].id,
+                        // seen_list[i].range,
+                        // seen_list[i].exchange_id,
+                        // seen_list[i].maxNoise,
+                        // seen_list[i].firstPathAmp1,
+                        // seen_list[i].firstPathAmp2,
+                        // seen_list[i].firstPathAmp3,
+                        // seen_list[i].stdNoise,
+                        // seen_list[i].maxGrowthCIR,
+                        // seen_list[i].rxPreamCount,
+                        // seen_list[i].firstPath);
+                        LOG_ERR("test");
+                        LOG_ERR("{%u,%u,%u,%u,%u,%u,%u,%u,%u,%u}",
+                            my_id,
+                            exchange,
+                            diag_arr[my_id].maxNoise,
+                            diag_arr[my_id].firstPathAmp1,
+                            diag_arr[my_id].firstPathAmp2,
+                            diag_arr[my_id].firstPathAmp3,
+                            diag_arr[my_id].stdNoise,
+                            diag_arr[my_id].maxGrowthCIR,
+                            diag_arr[my_id].rxPreamCount,
+                            diag_arr[my_id].firstPath);
+                        // LOG_ERR("{%u,%.3f,%u,%u,%u,%u,%u,%u,%u,%u,%u}",
+                        //     x,
+                        //     (float)range,
+                        //     exchange,
+                        //     diag_arr[i].maxNoise,
+                        //     diag_arr[i].firstPathAmp1,
+                        //     diag_arr[i].firstPathAmp2,
+                        //     diag_arr[i].firstPathAmp3,
+                        //     diag_arr[i].stdNoise,
+                        //     diag_arr[i].maxGrowthCIR,
+                        //     diag_arr[i].rxPreamCount,
+                        //     diag_arr[i].firstPath);
+                
+                // }
             }
         }
         

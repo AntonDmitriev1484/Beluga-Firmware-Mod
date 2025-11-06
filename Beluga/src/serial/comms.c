@@ -83,6 +83,8 @@ static void comms_signal_handle(const struct comms *comms,
     }
 }
 
+#define PYTHON_CLIENT
+
 static void cmd_buffer_clear(const struct comms *comms) {
     comms->ctx->rx_buf.buf[0] = '\0';
     comms->ctx->rx_buf.len = 0;
@@ -654,6 +656,8 @@ int set_format(const struct comms *comms, enum comms_out_format_mode mode) {
  * @return 0 upon success
  * @return -EINVAL if list is not present
  */
+
+
 static int s_write_neighbors(const struct comms *comms,
                              const struct beluga_msg *msg) {
     __ASSERT_NO_MSG(comms && msg);
@@ -665,7 +669,7 @@ static int s_write_neighbors(const struct comms *comms,
         return -EINVAL;
     }
 
-    LOG_ERR("IN WRITE NEIGHBORS");
+    // LOG_ERR("IN WRITE NEIGHBORS");
 
     for (size_t i = 0; i < MAX_ANCHOR_COUNT; i++) {
         if (list[i].UUID != 0 && (!stream || list[i].update_flag)) {
@@ -745,7 +749,6 @@ static int comms_write_normal(const struct comms *comms,
     __ASSERT_NO_MSG(comms && msg);
     int ret = 0;
 
-    LOG_ERR("In comms write normal");
     switch (msg->type) {
     case COMMAND_RESPONSE: {
         comms_write(comms, comms->ctx->tx_buf.buf, comms->ctx->tx_buf.len);
@@ -783,8 +786,6 @@ static int comms_write_normal(const struct comms *comms,
 static int comms_write_frame(const struct comms *comms,
                              const struct beluga_msg *msg) {
     __ASSERT_NO_MSG(comms && msg);
-
-    LOG_ERR("Writing frame");
 
     ssize_t len = frame_length(msg);
     if (len < 1) {
