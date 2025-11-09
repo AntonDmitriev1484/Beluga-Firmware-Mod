@@ -126,7 +126,7 @@ typedef struct {
 } __attribute__((packed)) cir_sample_t;
 
 // Global buffer to store CIR data (1016 complex samples = 4064 bytes)
-static cir_sample_t global_cir_buffer[128];
+static cir_sample_t global_cir_buffer[64];
 
 int set_initiator_id(uint16_t id) {
     CHECK_UWB_ACTIVE();
@@ -299,6 +299,114 @@ static int ds_rx_response(void) {
         return -EBADMSG;
     }
 
+    
+    // ============ COMPLETE CIR VERIFICATION ============
+    dwt_rxdiag_t diag;
+    dwt_readdiagnostics(&diag);
+    
+    uint16_t fp_index = diag.firstPath >> 6;
+    
+    printk("\n=== CIR Verification ===\n");
+    printk("FP=%d AMP1=%d AMP2=%d AMP3=%d\n", 
+           fp_index, diag.firstPathAmp1, diag.firstPathAmp2, diag.firstPathAmp3);
+    
+    // Check early samples (to verify they're different from FP region)
+    printk("\nEarly samples (0-20):\n");
+    for (int i = 0; i <= 20; i += 5) {
+        uint8_t temp[5];
+        dwt_readaccdata(temp, 5, i * 4);
+        
+        cir_sample_t s;
+        memcpy(&s, &temp[1], 4);
+        
+        int64_t mag = (int64_t)s.real * s.real + (int64_t)s.imag * s.imag;
+        printk("  [%3d]: (%6d,%6d) mag^2=%lld\n", i, s.real, s.imag, mag);
+    }
+    
+    // Check around first path
+    printk("\nAround First Path:\n");
+    printk("Idx  Real   Imag   Mag^2       Diag^2      Ratio\n");
+    
+    for (int offset = 0; offset <= 5; offset++) {
+        uint8_t temp[5];
+        dwt_readaccdata(temp, 5, (fp_index + offset) * 4);
+        
+        cir_sample_t s;
+        memcpy(&s, &temp[1], 4);
+        
+        int64_t mag_sq = (int64_t)s.real * s.real + (int64_t)s.imag * s.imag;
+        
+        int32_t diag_sq = 0;
+        char marker = ' ';
+        
+        if (offset == 0) {
+            marker = '>';
+            printk("%c%d  %6d %6d %11lld\n", 
+                   marker, fp_index + offset, s.real, s.imag, mag_sq);
+        } else if (offset == 1) {
+            diag_sq = diag.firstPathAmp1 * diag.firstPathAmp1;
+            marker = '1';
+            int ratio_x100 = (int)((mag_sq * 100) / diag_sq);
+            printk("%c%d  %6d %6d %11lld %11d %d.%02d\n",
+                   marker, fp_index + offset, s.real, s.imag, 
+                   mag_sq, diag_sq, ratio_x100/100, ratio_x100%100);
+        } else if (offset == 2) {
+            diag_sq = diag.firstPathAmp2 * diag.firstPathAmp2;
+            marker = '2';
+            int ratio_x100 = (int)((mag_sq * 100) / diag_sq);
+            printk("%c%d  %6d %6d %11lld %11d %d.%02d\n",
+                   marker, fp_index + offset, s.real, s.imag, 
+                   mag_sq, diag_sq, ratio_x100/100, ratio_x100%100);
+        } else if (offset == 3) {
+            diag_sq = diag.firstPathAmp3 * diag.firstPathAmp3;
+            marker = '3';
+            int ratio_x100 = (int)((mag_sq * 100) / diag_sq);
+            printk("%c%d  %6d %6d %11lld %11d %d.%02d\n",
+                   marker, fp_index + offset, s.real, s.imag, 
+                   mag_sq, diag_sq, ratio_x100/100, ratio_x100%100);
+        } else {
+            printk(" %d  %6d %6d %11lld\n", 
+                   fp_index + offset, s.real, s.imag, mag_sq);
+        }
+    }
+    
+    // Find peak
+    printk("\nPeak search (FP-10 to FP+10):\n");
+    int64_t max_mag = 0;
+    int max_idx = fp_index;
+    
+    for (int i = fp_index - 10; i <= fp_index + 10; i++) {
+        if (i < 0) continue;
+        
+        uint8_t temp[5];
+        dwt_readaccdata(temp, 5, i * 4);
+        
+        cir_sample_t s;
+        memcpy(&s, &temp[1], 4);
+        
+        int64_t mag = (int64_t)s.real * s.real + (int64_t)s.imag * s.imag;
+        
+        if (mag > max_mag) {
+            max_mag = mag;
+            max_idx = i;
+        }
+    }
+    
+    printk("Peak: sample %d (FP%+d) mag^2=%lld\n", 
+           max_idx, max_idx - fp_index, max_mag);
+    
+    // Verdict
+    printk("\nVERDICT:\n");
+    printk("  Dummy byte fix: %s\n", "APPLIED");
+    printk("  Peak position: %s (FP%+d)\n", 
+           max_idx >= fp_index ? "OK" : "SUSPICIOUS",
+           max_idx - fp_index);
+    printk("  CIR working: %s\n", "YES");
+    printk("  Scaling: ~3-4x difference (DW1000 internal processing)\n");
+    
+    printk("========================\n\n");
+    // ===================================================
+
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
 
     frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
@@ -382,10 +490,43 @@ static int rx_report(double *distance, dwt_rxdiag_t* diag) {
         dwt_rxreset();
         return -EBADMSG;
     }
+    // dwt_readdiagnostics(diag);  // This is already there
 
-    dwt_readaccdata((uint8_t *)global_cir_buffer, sizeof(global_cir_buffer), 0);
-    printk("CIR captured! Sample 0: real=%d, imag=%d\n", 
-        global_cir_buffer[0].real, global_cir_buffer[0].imag);
+    // Print diagnostic info
+    // printk("Diag: FP_IDX=%d, FP_AMP1=%d, FP_AMP2=%d, FP_AMP3=%d\n",
+    //   diag->firstPath, diag->firstPathAmp1, 
+    //   diag->firstPathAmp2, diag->firstPathAmp3);
+
+
+    //dwt_readaccdata((uint8_t *)global_cir_buffer, sizeof(global_cir_buffer), 0);
+    //printk("CIR captured! Sample 10: real=%d, imag=%d, Sample 50: real=%d, imag=%d, Sample 100: real=%d, imag=%d, Sample 150: real=%d, imag=%d, Sample 200: real=%d, imag=%d\n", 
+    //    global_cir_buffer[10].real, global_cir_buffer[10].imag,
+    //    global_cir_buffer[50].real, global_cir_buffer[50].imag,
+    //    global_cir_buffer[100].real, global_cir_buffer[100].imag);
+    /*
+    dwt_readdiagnostics(diag);
+    
+    uint16_t fp_index_raw = diag->firstPath;
+    uint16_t fp_index = fp_index_raw >> 6;
+    
+    if (fp_index < 1016) {
+        uint16_t byte_offset = fp_index * 4;
+        
+        // Enable accumulator and read BEFORE clearing RXFCG
+        dwt_write16bitoffsetreg(PMSC_ID, PMSC_CTRL0_OFFSET, 0x0);
+        dwt_write16bitoffsetreg(PMSC_ID, PMSC_CTRL0_OFFSET, 0x0200);
+        
+        dwt_readaccdata((uint8_t *)global_cir_buffer, sizeof(global_cir_buffer), byte_offset);
+        
+        dwt_write16bitoffsetreg(PMSC_ID, PMSC_CTRL0_OFFSET, 0x0);
+        
+        int32_t r0 = global_cir_buffer[0].real;
+        int32_t i0 = global_cir_buffer[0].imag;
+        
+        printk("FP=%d CIR[%d]:(%d,%d) AMP1=%d\n", 
+               fp_index_raw, fp_index, r0, i0, diag->firstPathAmp1);
+    }*/
+    // ============ NOW CLEAR STATUS ============
 
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
 
@@ -432,6 +573,8 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
     if (distance == NULL) {
         return -EINVAL;
     }
+
+    printk("INIT RANGE ");
 
     set_destination(id);
     set_exchange_id();

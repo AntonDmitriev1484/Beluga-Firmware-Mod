@@ -664,6 +664,15 @@ void init_uwb(void) {
     dwt_configure(&config);
     dwt_configuretxrf(&config_tx);
 
+    uint16_t pmsc_ctrl0 = dwt_read16bitoffsetreg(PMSC_ID, PMSC_CTRL0_OFFSET);
+    uint16_t pmsc_ctrl1 = dwt_read16bitoffsetreg(PMSC_ID, PMSC_CTRL1_OFFSET);
+    printk("=== LDE CHECK ===\n");
+    printk("PMSC_CTRL0: 0x%04x\n", pmsc_ctrl0);
+    printk("PMSC_CTRL1: 0x%04x\n", pmsc_ctrl1);
+    printk("LDE enabled: %s\n", (pmsc_ctrl1 & 0x0200) ? "YES" : "NO");
+    printk("================\n");
+
+
     /* Apply default antenna delay value. See NOTE 2 below. */
     dwt_setrxantennadelay(RX_ANT_DLY);
     dwt_settxantennadelay(TX_ANT_DLY);
