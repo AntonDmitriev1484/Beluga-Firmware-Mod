@@ -120,10 +120,10 @@ static double hertz_to_ppm_multiplier = HERTZ_TO_PPM_MULTIPLIER_CHAN_5;
  * @return -EBUSY if UWB is active
  */
 
-typedef struct {
-    int16 real;  // Use int16 (DecaDriver style) not int16_t
-    int16 imag;
-} __attribute__((packed)) cir_sample_t;
+// typedef struct {
+//     int16 real;  // Use int16 (DecaDriver style) not int16_t
+//     int16 imag;
+// } __attribute__((packed)) cir_sample_t;
 
 // Global buffer to store CIR data (1016 complex samples = 4064 bytes)
 static cir_sample_t global_cir_buffer[64];
@@ -131,6 +131,7 @@ static cir_sample_t global_cir_buffer[64];
 int set_initiator_id(uint16_t id) {
     CHECK_UWB_ACTIVE();
 
+    
     set_src_id(id, tx_poll_msg);
     set_dest_id(id, rx_resp_msg);
     set_src_id(id, tx_final_msg);
@@ -286,7 +287,7 @@ static int send_poll(void) {
  * @return -EBADMSG if there was an rx error, rx timeout, or the message
  * received did not match the expected message
  */
-static int ds_rx_response(void) {
+static int ds_rx_response(cir_sample_t* cir_samples) {
     uint32 status_reg, frame_len;
 
     UWB_WAIT((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
@@ -331,7 +332,7 @@ static int ds_rx_response(void) {
         uint8_t temp[5];
         dwt_readaccdata(temp, 5, (fp_index + offset) * 4);
         
-        cir_sample_t s;
+        cir_sample_t s; // cir_sample_t s from array temp, that gets returned by readaccdata
         memcpy(&s, &temp[1], 4);
         
         int64_t mag_sq = (int64_t)s.real * s.real + (int64_t)s.imag * s.imag;
@@ -391,6 +392,19 @@ static int ds_rx_response(void) {
             max_idx = i;
         }
     }
+
+    // typedef struct {
+//     int16 real;  // Use int16 (DecaDriver style) not int16_t
+//     int16 imag;
+// } __attribute__((packed)) cir_sample_t;
+
+    int N_samples = 128; // Number of complete (real+complex) samples to read
+    uint16 N_bytes = N_samples * sizeof(cir_sample_t);
+    uint16 offset = N_samples/2;
+    uint8 temp[N_bytes];
+    dwt_readaccdata(temp, N_bytes, (fp_index - offset) * 4);
+    // Need to run a memcpy here because temp goes by bye as soon as this stack frame is gone
+    memcpy(cir_samples, temp, N_bytes);
     
     printk("Peak: sample %d (FP%+d) mag^2=%lld\n", 
            max_idx, max_idx - fp_index, max_mag);
@@ -406,6 +420,10 @@ static int ds_rx_response(void) {
     
     printk("========================\n\n");
     // ===================================================
+
+
+
+
 
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
 
@@ -567,7 +585,7 @@ static int rx_report(double *distance, dwt_rxdiag_t* diag) {
  * assumed that the logic_clock output is not desired and the run will still be
  * initiated.
  */
-int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock) {
+int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock, cir_sample_t* cir_samples) {
     int err;
 
     if (distance == NULL) {
@@ -583,7 +601,7 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
         return err;
     }
 
-    if ((err = ds_rx_response()) < 0) {
+    if ((err = ds_rx_response(cir_samples)) < 0) {
         return err;
     }
 

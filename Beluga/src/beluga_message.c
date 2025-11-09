@@ -110,6 +110,8 @@ struct node_json_struct {
     int32_t maxGrowthCIR;
     int32_t rxPreamCount;
     int32_t firstPath; // TODO: Worried this will make the frame too large
+
+    cir_sample_t cir_samples[128];
 };
 
 /**
@@ -127,6 +129,13 @@ struct node_json_struct {
                      sizeof((json_obj).str_##float_container) - 1, "%f",       \
                      (double)(float_prim));                                    \
         (json_obj).float_container.start = (json_obj).str_##float_container;   \
+    } while (0)
+
+#define COPY_CIR_SAMPLES(json_obj, src_node)                                   \
+    do {                                                                       \
+        memcpy((json_obj).cir_samples,                                         \
+               (src_node).cir_samples,                                         \
+               sizeof((json_obj).cir_samples));                                \
     } while (0)
 
 /**
@@ -149,7 +158,8 @@ struct node_json_struct {
         (json_node).stdNoise       = (int32_t)(node).stdNoise;        \
         (json_node).maxGrowthCIR   = (int32_t)(node).maxGrowthCIR;    \
         (json_node).rxPreamCount   = (int32_t)(node).rxPreamCount;    \
-        (json_node).firstPath      = (int32_t)(node).firstPath;       \
+        (json_node).firstPath      = (int32_t)(node).firstPath;   \
+        COPY_CIR_SAMPLES(json_node, node);     \
     } while (0)
 
 /**
@@ -192,6 +202,9 @@ static const struct json_obj_descr neighbor_json[] = {
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, maxGrowthCIR, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, rxPreamCount, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPath, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, cir_samples, JSON_TOK_OBJ_ARRAY),
+
+
 };
 
 

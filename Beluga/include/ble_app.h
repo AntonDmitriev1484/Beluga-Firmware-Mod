@@ -14,8 +14,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <zephyr/kernel.h>
-
 #include <deca_device_api.h>
+
+#include <initiator.h> // Added for the sake of adding cir_sample outputting
 
 /**
  * Eviction policies for when the neighbor list is full
@@ -51,6 +52,7 @@ struct node {
     uint16_t maxGrowthCIR;
     uint16_t rxPreamCount;
     uint16_t firstPath;
+    cir_sample_t cir_samples[128];
 
 #if IS_ENABLED(CONFIG_UWB_LOGIC_CLK)
     uint32_t exchange_id; /** Ranging exchange ID (Logic clock) */

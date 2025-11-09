@@ -759,12 +759,15 @@ static void initiate_ranging(void) {
 
     dwt_rxdiag_t diag;
 
+    int N_samples = 128;
+    cir_sample_t cir_samples[N_samples];
+
     if (!search_broken) {
         int err;
 
         if (twr_mode) {
             err = ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,
-                              &exchange);
+                              &exchange, cir_samples);
             LOG_INF("Double sided ranging returned %d", err);
         } else {
             err = ss_init_run(seen_list[current_neighbor].UUID, &range,
@@ -790,6 +793,8 @@ static void initiate_ranging(void) {
             seen_list[current_neighbor].maxGrowthCIR = diag.maxGrowthCIR;
             seen_list[current_neighbor].rxPreamCount = diag.rxPreamCount;
             seen_list[current_neighbor].firstPath = diag.firstPath;
+
+            memcpy( &seen_list[current_neighbor].cir_samples, &cir_samples, N_samples * sizeof(cir_sample_t));
 
             
 #if defined(CONFIG_UWB_LOGIC_CLK)

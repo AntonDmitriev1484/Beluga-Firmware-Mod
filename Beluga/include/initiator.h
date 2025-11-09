@@ -31,6 +31,12 @@
 #include <stdint.h>
 #include <zephyr/kernel.h>
 
+
+typedef struct {
+    int16 real;  // Use int16 (DecaDriver style) not int16_t
+    int16 imag;
+} __attribute__((packed)) cir_sample_t;
+
 /**
  * @brief Sets the source IDs for the messages that the initiator sends and the
  * destination ID for the messages the initiator receives
@@ -87,7 +93,7 @@ void set_hertz_to_ppm_multiplier(uint8_t channel);
  * initiated.
  */
 // int ds_init_run(uint16_t id, double *distance, uint32_t *logic_clock);
-int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock);
+int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock, cir_sample_t* cir_samples);
 
 /**
  * @brief Initiates a single-sided ranging measurement to a certain node.
