@@ -533,7 +533,7 @@ uint32 get_slot(uint16_t this_id, uint16_t initiator_id) {
     }
 }
 
-#define CC_DELAY_WINDOW_UUS 1000
+#define CC_DELAY_WINDOW_UUS 4000
 
 static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t this_id) {
     uint32 resp_tx_time, cc_delay_uus;
@@ -550,6 +550,8 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
         (*poll_rx_ts + (total_delay_uus * UUS_TO_DWT_TIME)) >> 8;
 
     dwt_setdelayedtrxtime(resp_tx_time); 
+
+    // LOG_ERR("Node %u, respond to %u, total delay: %u ms, cc delay: %u ms", this_id, initiator_id, total_delay_uus, cc_delay_uus);
 
     dwt_writetxdata(sizeof(cc_tx_resp_msg), cc_tx_resp_msg, 0);
     dwt_writetxfctrl(sizeof(cc_tx_resp_msg), 0, 1); 

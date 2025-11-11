@@ -574,22 +574,48 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
     uint16_t responder_id;
     int n_responses = 0;
 
+    // dwt_rxenable(DWT_START_RX_IMMEDIATE);
+
+
     // We need to wait for NUM_USERS-1 responses
-    while (n_responses < NUM_USERS-1-1) {
+    while (n_responses < NUM_USERS-1) {
+        LOG_ERR("wait %u", n_responses);
+
+        uint64_t start_ms = k_uptime_get();
+        
+        // Value read should & with all of these masks to be non-zero.
+        // So basically SYS_STATUS_ID must meet all 3 criteria
         UWB_WAIT((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
-                 (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR));
+                 (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)){
+                    LOG_ERR("RXFCG=%d RXERR=%d RXTO=%d\n",
+                        !!(status_reg & SYS_STATUS_RXFCG),
+                        !!(status_reg & SYS_STATUS_ALL_RX_ERR),
+                        !!(status_reg & SYS_STATUS_ALL_RX_TO));
+                    LOG_ERR("status_reg %d", dwt_read32bitreg(SYS_STATUS_ID));
+                 };
+        
+        uint64_t mid_ms = k_uptime_get();
+        LOG_ERR("RXFCG=%d RXERR=%d RXTO=%d\n",
+            !!(status_reg & SYS_STATUS_RXFCG),
+            !!(status_reg & SYS_STATUS_ALL_RX_ERR),
+            !!(status_reg & SYS_STATUS_ALL_RX_TO));
+
+        // LOG_ERR("done");
         if (!(status_reg & SYS_STATUS_RXFCG)) {
             dwt_write32bitreg(SYS_STATUS_ID,
                               SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
-            LOG_ERR("Error in response"); // So we're hitting this error here quite frequently
+            LOG_ERR("Error in response");
             frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
             dwt_readrxdata(rx_buffer, frame_len, 0);
             dwt_rxreset();
             return -EBADMSG;
         }
 
-        dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
-
+        // Re-set receiver for next signal
+        // TO vs RFTO?????
+        // I don't quite understand what setting these flags in the register does
+        dwt_write32bitreg(SYS_STATUS_ID, (SYS_STATUS_RXFCG | SYS_STATUS_RXRFTO | SYS_STATUS_ALL_RX_ERR));
+        // dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
         frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
 
         if (frame_len <= RX_BUF_LEN) {
@@ -598,6 +624,7 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
 
         // Make sure to fetch source id from rx_buffer before clearing for compare
         responder_id = get_src_id(rx_buffer);
+        // LOG_ERR("Got cc_ds_rx_response from %u", responder_id);
 
         // Compare received message to template, ignoring seqnum, and source and dest ids
         rx_buffer[SEQ_CNT_OFFSET] = 0;
@@ -613,10 +640,16 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
             return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade
         }
 
+
         // Save the timestamp of this response
         resp_rx_ts_arr[responder_id-1] = get_rx_timestamp_u64();
+        // LOG_ERR("set arr");
 
         n_responses++;
+
+        uint64_t end_ms = k_uptime_get();
+        uint64_t elapsed_ms = end_ms-start_ms;
+        LOG_ERR("total %u ms, afterwait %u ms", (uint16_t)elapsed_ms, (uint16_t)(end_ms-mid_ms));
     }
     return 0;
 }
@@ -677,7 +710,7 @@ static int cc_rx_report(double* range_arr, dwt_rxdiag_t* diag_arr) {
     uint16_t responder_id;
 
     // We need to wait for NUM_USERS-1 responses
-    while (n_responses < NUM_USERS-1-1) {
+    while (n_responses < NUM_USERS-1) {
         UWB_WAIT((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) &
                 (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR));
 
