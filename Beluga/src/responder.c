@@ -533,7 +533,7 @@ uint32 get_slot(uint16_t this_id, uint16_t initiator_id) {
     }
 }
 
-#define CC_DELAY_WINDOW_UUS 4000
+#define CC_DELAY_WINDOW_UUS 2000
 
 static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t this_id) {
     uint32 resp_tx_time, cc_delay_uus;
