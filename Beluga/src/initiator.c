@@ -611,7 +611,8 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
             return -EBADMSG;
         }
 
-        // dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
+        dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG);
+        
         frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
 
         if (frame_len <= RX_BUF_LEN) {
@@ -646,10 +647,10 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
         // dwt_write32bitreg(SYS_STATUS_ID, original_reg);
 
         /* After processing */
-dwt_write32bitreg(SYS_STATUS_ID, status_reg & (SYS_STATUS_RXFCG |
-                                                SYS_STATUS_ALL_RX_TO |
-                                                SYS_STATUS_ALL_RX_ERR));
-
+// dwt_write32bitreg(SYS_STATUS_ID, status_reg & (SYS_STATUS_RXFCG |
+//                                                 SYS_STATUS_ALL_RX_TO |
+//                                                 SYS_STATUS_ALL_RX_ERR));
+        dwt_rxenable();
         n_responses++;
     }
     return 0;

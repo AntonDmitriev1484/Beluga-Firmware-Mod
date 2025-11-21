@@ -545,6 +545,7 @@ static int cc_ds_respond(uint64_t *poll_rx_ts, uint16_t initiator_id, uint16_t t
     *poll_rx_ts = get_rx_timestamp_u64();
     cc_delay_uus = slot * (int)(CC_DELAY_WINDOW_UUS / (NUM_USERS - 1)); // delay in microseconds based on node ID
     uint32 total_delay_uus = (POLL_RX_TO_RESP_TX_DLY_UUS + cc_delay_uus);
+        // uint32 total_delay_uus = (POLL_RX_TO_RESP_TX_DLY_UUS + 2000);
     // compute TX timestamp from the delay from when the initial poll frame was RX
     resp_tx_time =
         (*poll_rx_ts + (total_delay_uus * UUS_TO_DWT_TIME)) >> 8;
