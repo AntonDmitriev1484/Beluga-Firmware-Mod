@@ -895,7 +895,6 @@ NO_RETURN void rangingTask(void *p1, void *p2, void *p3) {
  * @param p3 Additional context (unused)
  */
 NO_RETURN static void responder_task_function(void *p1, void *p2, void *p3) {
-    LOG_ERR("TEST THE BUILD");
     ARG_UNUSED(p1);
     ARG_UNUSED(p2);
     ARG_UNUSED(p3);
