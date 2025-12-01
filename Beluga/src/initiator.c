@@ -569,12 +569,39 @@ static int cc_send_poll(void) {
     return 0;
 }
 
+/* Declaration of static functions. */
+static void rx_ok_cb(const dwt_cb_data_t *cb_data);
+static void rx_err_cb(const dwt_cb_data_t *cb_data);
+
+static void rx_ok_cb(const dwt_cb_data_t *cb_data)
+{
+    /* Perform manual RX re-enabling. See NOTE 5 below. */
+    dwt_rxenable(DWT_START_RX_IMMEDIATE | DWT_NO_SYNC_PTRS);
+
+    /* TESTING BREAKPOINT LOCATION #1 */
+
+    /* A frame has been received, copy it to our local buffer. See NOTE 6 below. */
+    if (cb_data->datalength <= RX_BUF_LEN)
+    {
+        dwt_readrxdata(rx_buffer, cb_data->datalength, 0);
+    }
+
+    /* TESTING BREAKPOINT LOCATION #2 */
+}
+
+static void rx_err_cb(const dwt_cb_data_t *cb_data)
+{
+    /* Re-activate reception immediately. */
+    dwt_rxenable(DWT_START_RX_IMMEDIATE);
+
+    /* TESTING BREAKPOINT LOCATION #3 */
+}
+
+
 static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
     uint32 status_reg, frame_len;
     uint16_t responder_id;
     int n_responses = 0;
-
-    // dwt_rxenable(DWT_START_RX_IMMEDIATE);
 
     uint32 original_reg = dwt_read32bitreg(SYS_STATUS_ID);
 
@@ -590,7 +617,7 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
                     //     !!(status_reg & SYS_STATUS_RXFCG),
                     //     !!(status_reg & SYS_STATUS_ALL_RX_ERR),
                     //     !!(status_reg & SYS_STATUS_ALL_RX_TO));
-                    LOG_ERR("status_reg %d", dwt_read32bitreg(SYS_STATUS_ID));
+                    // LOG_ERR("status_reg %d", dwt_read32bitreg(SYS_STATUS_ID));
                  };
         // Crashes on the UWB_WAIT macro iteration always, does not complete the macro and log 596, nor does it indicate
         // any changed state from the log 593.
@@ -638,19 +665,10 @@ static int cc_ds_rx_response(uint64_t* resp_rx_ts_arr) {
             return -EBADMSG; // Note, with this, a single bad range will drop all ranges in the cascade
         }
 
-
         // Save the timestamp of this response
         resp_rx_ts_arr[responder_id-1] = get_rx_timestamp_u64();
-        // LOG_ERR("set arr");
 
-        // Shouldnt do this because its a write-1-to-clear
-        // dwt_write32bitreg(SYS_STATUS_ID, original_reg);
-
-        /* After processing */
-// dwt_write32bitreg(SYS_STATUS_ID, status_reg & (SYS_STATUS_RXFCG |
-//                                                 SYS_STATUS_ALL_RX_TO |
-//                                                 SYS_STATUS_ALL_RX_ERR));
-        dwt_rxenable();
+        dwt_rxenable(DWT_START_RX_IMMEDIATE);
         n_responses++;
     }
     return 0;

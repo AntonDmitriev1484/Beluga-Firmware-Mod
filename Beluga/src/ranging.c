@@ -685,7 +685,8 @@ void init_uwb(void) {
  */
 static void init_reconfig() {
     dwt_setrxaftertxdelay(POLL_TX_TO_RESP_RX_DLY_UUS);
-    dwt_setrxtimeout(UWB_INIT_TIMEOUT);
+    // dwt_setrxtimeout(UWB_INIT_TIMEOUT);
+    dwt_setrxtimeout(5000);
 }
 
 /**
@@ -804,18 +805,18 @@ static void initiate_ranging(void) {
                     update_ble_service(seen_list[beluga_idx].UUID, (float)range_arr[my_idx];); 
                     // Not sure what this does, I'm going to leave it to be safe
 
-                        printk("{%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u}",
-                            id,
-                            (uint32_t)(range_arr[my_idx]*100),
-                            exchange,
-                            diag_arr[my_idx].maxNoise,
-                            diag_arr[my_idx].firstPathAmp1,
-                            diag_arr[my_idx].firstPathAmp2,
-                            diag_arr[my_idx].firstPathAmp3,
-                            diag_arr[my_idx].stdNoise,
-                            diag_arr[my_idx].maxGrowthCIR,
-                            diag_arr[my_idx].rxPreamCount,
-                            diag_arr[my_idx].firstPath);
+                        // printk("{%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u}",
+                        //     id,
+                        //     (uint32_t)(range_arr[my_idx]*100),
+                        //     exchange,
+                        //     diag_arr[my_idx].maxNoise,
+                        //     diag_arr[my_idx].firstPathAmp1,
+                        //     diag_arr[my_idx].firstPathAmp2,
+                        //     diag_arr[my_idx].firstPathAmp3,
+                        //     diag_arr[my_idx].stdNoise,
+                        //     diag_arr[my_idx].maxGrowthCIR,
+                        //     diag_arr[my_idx].rxPreamCount,
+                        //     diag_arr[my_idx].firstPath);
                 
                 }
             }
