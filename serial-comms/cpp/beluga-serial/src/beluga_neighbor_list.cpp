@@ -47,6 +47,9 @@ uint16_t BelugaNeighbor::rxPreamCount() const noexcept { return _rxPreamCount; }
 
 uint16_t BelugaNeighbor::firstPath() const noexcept { return _firstPath; }
 
+std::vector<int16_t> BelugaNeighbor::realCIRSamples() const noexcept { return _realcirsamples; }
+std::vector<int16_t> BelugaNeighbor::imagCIRSamples() const noexcept { return _imagcirsamples; }
+
 void BelugaNeighbor::updated(bool update) { _updated = update; }
 
 void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
@@ -63,6 +66,15 @@ void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
     _rxPreamCount = neighbor.rxPreamCount;
     _firstPath = neighbor.firstPath;
     _updated = true;
+
+    for (int i = 0 ; i < 128; i++) {
+        int32_t raw = neighbor.cirsamples[i];
+        uint16_t real = raw >> 16; // No idea if this is actually the way they're serialized.
+        uint16_t imag = raw;
+        cir_sample_t sample {real, imag};
+        _realcirsamples[i] = real;
+        _imagcirsamples[i] = imag;
+    }
 }
 
 

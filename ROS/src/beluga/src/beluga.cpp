@@ -212,6 +212,9 @@ void Beluga::publish_ranges(
         range.rxpreamcount = it.rxPreamCount();
         range.firstpath = it.firstPath();
 
+        range.realcir = it.realCIRSamples();
+        range.imagcir = it.imagCIRSamples();
+
         message.ranges.push_back(range);
     }
     range_updates_publisher->publish(message);

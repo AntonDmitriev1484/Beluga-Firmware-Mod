@@ -10,3 +10,5 @@ uint16 stdnoise
 uint16 maxgrowthcir
 uint16 rxpreamcount
 uint16 firstpath
+int16[] realcir
+int16[] imagcir

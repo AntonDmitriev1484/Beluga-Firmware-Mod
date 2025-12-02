@@ -41,6 +41,8 @@ class BelugaEntryError : std::exception {
     std::string _msg;
 };
 
+
+
 /// Class representing a neighbor in the Beluga network
 class BelugaNeighbor {
   public:
@@ -160,6 +162,8 @@ class BelugaNeighbor {
     [[nodiscard]] uint16_t firstPath() const noexcept;
 
 
+     [[nodiscard]] std::vector<int16_t> realCIRSamples() const noexcept;
+          [[nodiscard]] std::vector<int16_t> imagCIRSamples() const noexcept;
 
     /**
      * Indicates if the neighbor has been updated since the last read
@@ -173,6 +177,11 @@ class BelugaNeighbor {
      * @param[in] neighbor The NeighborUpdate to update the BelugaNeighbor
      */
     void update(const BelugaFrame::NeighborUpdate &neighbor);
+
+  typedef struct {
+    uint16_t real;
+    uint16_t imag;
+  } cir_sample_t;
 
   private:
     uint16_t _id = 0;
@@ -190,6 +199,8 @@ class BelugaNeighbor {
         uint16_t _maxGrowthCIR;
         uint16_t _rxPreamCount;
         uint16_t _firstPath;   
+    std::vector<int16_t> _realcirsamples;   
+    std::vector<int16_t> _imagcirsamples;   
 };
 
 /// Class representing a list of Beluga neighbors
