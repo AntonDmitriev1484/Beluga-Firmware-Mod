@@ -300,7 +300,7 @@ static int ds_rx_response(cir_sample_t* cir_samples) {
         return -EBADMSG;
     }
 
-    
+    LOG_ERR("RX response received");
     // ============ COMPLETE CIR VERIFICATION ============
     dwt_rxdiag_t diag;
     dwt_readdiagnostics(&diag);
@@ -393,33 +393,28 @@ static int ds_rx_response(cir_sample_t* cir_samples) {
         }
     }
 
-    // typedef struct {
-//     int16 real;  // Use int16 (DecaDriver style) not int16_t
-//     int16 imag;
-// } __attribute__((packed)) cir_sample_t;
-
+    LOG_ERR("Before memcpy");
     int N_samples = 128; // Number of complete (real+complex) samples to read
     uint16 N_bytes = N_samples * sizeof(cir_sample_t);
     uint16 offset = N_samples/2;
-    uint8 temp[N_bytes];
-    dwt_readaccdata(temp, N_bytes, (fp_index - offset) * 4);
     // Need to run a memcpy here because temp goes by bye as soon as this stack frame is gone
-    memcpy(cir_samples, temp, N_bytes);
+    memcpy(cir_samples, &rx_buffer[fp_index - (offset * 4)], N_bytes);
+    LOG_ERR("After memcpy");
     
     printk("Peak: sample %d (FP%+d) mag^2=%lld\n", 
            max_idx, max_idx - fp_index, max_mag);
     
-    // Verdict
-    printk("\nVERDICT:\n");
-    printk("  Dummy byte fix: %s\n", "APPLIED");
-    printk("  Peak position: %s (FP%+d)\n", 
-           max_idx >= fp_index ? "OK" : "SUSPICIOUS",
-           max_idx - fp_index);
-    printk("  CIR working: %s\n", "YES");
-    printk("  Scaling: ~3-4x difference (DW1000 internal processing)\n");
+    // // Verdict
+    // printk("\nVERDICT:\n");
+    // printk("  Dummy byte fix: %s\n", "APPLIED");
+    // printk("  Peak position: %s (FP%+d)\n", 
+    //        max_idx >= fp_index ? "OK" : "SUSPICIOUS",
+    //        max_idx - fp_index);
+    // printk("  CIR working: %s\n", "YES");
+    // printk("  Scaling: ~3-4x difference (DW1000 internal processing)\n");
     
-    printk("========================\n\n");
-    // ===================================================
+    // printk("========================\n\n");
+    // // ===================================================
 
 
 
@@ -592,7 +587,7 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
         return -EINVAL;
     }
 
-    printk("INIT RANGE ");
+    LOG_ERR("INIT RANGE ");
 
     set_destination(id);
     set_exchange_id();

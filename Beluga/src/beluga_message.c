@@ -109,7 +109,7 @@ struct node_json_struct {
     int32_t stdNoise;
     int32_t maxGrowthCIR;
     int32_t rxPreamCount;
-    int32_t firstPath; // TODO: Worried this will make the frame too large
+    int32_t firstPath;
 
     cir_sample_t cir_samples[128];
 };
@@ -132,7 +132,7 @@ struct node_json_struct {
     } while (0)
 
 #define COPY_CIR_SAMPLES(json_obj, src_node)                                   \
-    do {                                                                       \
+    do {                                                                        \
         memcpy((json_obj).cir_samples,                                         \
                (src_node).cir_samples,                                         \
                sizeof((json_obj).cir_samples));                                \
@@ -159,7 +159,6 @@ struct node_json_struct {
         (json_node).maxGrowthCIR   = (int32_t)(node).maxGrowthCIR;    \
         (json_node).rxPreamCount   = (int32_t)(node).rxPreamCount;    \
         (json_node).firstPath      = (int32_t)(node).firstPath;   \
-        COPY_CIR_SAMPLES(json_node, node);     \
     } while (0)
 
 /**
@@ -202,7 +201,7 @@ static const struct json_obj_descr neighbor_json[] = {
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, maxGrowthCIR, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, rxPreamCount, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPath, JSON_TOK_NUMBER),
-    JSON_OBJ_DESCR_PRIM(struct node_json_struct, cir_samples, JSON_TOK_OBJ_ARRAY),
+    // JSON_OBJ_DESCR_PRIM(struct node_json_struct, cir_samples, JSON_TOK_OBJ_ARRAY),
 
 
 };
@@ -259,6 +258,7 @@ static ssize_t encode_neighbor_list(const struct beluga_msg *msg,
     struct neighbor_list_json_struct neighbors = {0};
     ssize_t numBytes = 0;
     int err;
+    LOG_ERR("encode_neighbor_list");
 
     if (msg->payload.neighbor_list == NULL) {
         LOG_ERR("Invalid neighbor list");
@@ -269,9 +269,11 @@ static ssize_t encode_neighbor_list(const struct beluga_msg *msg,
         if (msg->payload.neighbor_list[i].UUID != 0 &&
             (!msg->payload.stream ||
              msg->payload.neighbor_list[i].update_flag)) {
-
+            
+                LOG_ERR("Before copy node");
             COPY_NODE(neighbors.neighbors[neighbors.neighbors_len],
                       msg->payload.neighbor_list[i]);
+                      LOG_ERR("After copy node");
             neighbors.neighbors_len++;
         }
     }
@@ -360,8 +362,11 @@ int construct_frame(const struct beluga_msg *msg, uint8_t buffer[],
         return -EINVAL;
     }
 
+    LOG_ERR("construct_frame");
+
     switch (msg->type) {
     case COMMAND_RESPONSE: {
+         LOG_ERR("calling command_response");
         if (msg->payload.response == NULL) {
             LOG_ERR("Invalid response");
             return -EINVAL;
@@ -371,19 +376,23 @@ int construct_frame(const struct beluga_msg *msg, uint8_t buffer[],
         break;
     }
     case NEIGHBOR_UPDATES:
+        LOG_ERR("calling encode_neighbor_list");
         msgLen = encode_neighbor_list(msg, buffer + MSG_PAYLOAD_OFFSET,
                                       len - MSG_OVERHEAD);
         break;
     case RANGING_EVENT:
+        LOG_ERR("calling encode_ranging_event");
         msgLen = encode_ranging_event(msg, buffer + MSG_PAYLOAD_OFFSET,
                                       len - MSG_OVERHEAD);
         break;
     case NEIGHBOR_DROP: {
+         LOG_ERR("calling neighbor_drop");
         msgLen = snprintf(buffer + MSG_PAYLOAD_OFFSET, len - MSG_OVERHEAD,
                           "%" PRIu32, msg->payload.dropped_neighbor);
         break;
     }
     case START_EVENT: {
+                LOG_ERR("calling start_event");
         if (msg->payload.node_version == NULL) {
             LOG_ERR("Invalid start event");
             return -EINVAL;

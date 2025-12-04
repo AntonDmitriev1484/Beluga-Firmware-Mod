@@ -353,7 +353,8 @@ void Beluga::_init_time_sync() {
     _last_mapping["ros"] = rclcpp::Time();
     _last_mapping["beluga"] = 0;
     _time_sync(true);
-
+    RCLCPP_INFO(this->get_logger(), "Made it past first time sync call");
+    // Crashes somewhere around here
     for (size_t i = 0; i < init_time_sync_runs; i++) {
         this->get_clock()->sleep_until(this->get_clock()->now() +
                                        rclcpp::Duration(500ms));

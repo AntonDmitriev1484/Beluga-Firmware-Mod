@@ -780,6 +780,7 @@ static int comms_write_normal(const struct comms *comms,
 static int comms_write_frame(const struct comms *comms,
                              const struct beluga_msg *msg) {
     __ASSERT_NO_MSG(comms && msg);
+    LOG_ERR("comms_write_frame");
 
     ssize_t len = frame_length(msg);
     if (len < 1) {

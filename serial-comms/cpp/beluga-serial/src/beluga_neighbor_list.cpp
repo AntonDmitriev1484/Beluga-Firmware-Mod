@@ -68,12 +68,13 @@ void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
     _updated = true;
 
     for (int i = 0 ; i < 128; i++) {
+        printf("Before on for %d", i);
         int32_t raw = neighbor.cirsamples[i];
         uint16_t real = raw >> 16; // No idea if this is actually the way they're serialized.
         uint16_t imag = raw;
-        cir_sample_t sample {real, imag};
         _realcirsamples[i] = real;
         _imagcirsamples[i] = imag;
+        printf("After");
     }
 }
 

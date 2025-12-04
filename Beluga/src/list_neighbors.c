@@ -78,6 +78,8 @@ NO_RETURN static void list_task_function(void *p1, void *p2, void *p3) {
     while (true) {
         k_sleep(K_MSEC(50));
 
+        LOG_ERR("List task func awoke");
+
         k_sem_take(&print_list_sem, K_FOREVER);
 
         msg.payload.stream = stream_mode;

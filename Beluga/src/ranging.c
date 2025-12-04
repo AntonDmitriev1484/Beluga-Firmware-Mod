@@ -759,8 +759,10 @@ static void initiate_ranging(void) {
 
     dwt_rxdiag_t diag;
 
+    LOG_ERR("Pre cir_samples");
     int N_samples = 128;
     cir_sample_t cir_samples[N_samples];
+    LOG_ERR("Allocated cir_samples");
 
     if (!search_broken) {
         int err;
