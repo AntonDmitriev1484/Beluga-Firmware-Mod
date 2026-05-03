@@ -47,6 +47,18 @@ uint16_t BelugaNeighbor::rxPreamCount() const noexcept { return _rxPreamCount; }
 
 uint16_t BelugaNeighbor::firstPath() const noexcept { return _firstPath; }
 
+uint32_t BelugaNeighbor::pollTxTs() const noexcept { return _poll_tx_ts; }
+
+uint64_t BelugaNeighbor::pollRxTs() const noexcept { return _poll_rx_ts; }
+
+uint64_t BelugaNeighbor::respTxTs() const noexcept { return _resp_tx_ts; }
+
+uint32_t BelugaNeighbor::respRxTs() const noexcept { return _resp_rx_ts; }
+
+uint32_t BelugaNeighbor::finalTxTs() const noexcept { return _final_tx_ts; }
+
+uint64_t BelugaNeighbor::finalRxTs() const noexcept { return _final_rx_ts; }
+
 void BelugaNeighbor::updated(bool update) { _updated = update; }
 
 void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
@@ -54,6 +66,7 @@ void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
     _rssi = neighbor.RSSI;
     _time = neighbor.TIMESTAMP;
     _exchange = neighbor.EXCHANGE;
+
     _maxNoise = neighbor.maxNoise;
     _firstPathAmp1 = neighbor.firstPathAmp1;
     _firstPathAmp2 = neighbor.firstPathAmp2;
@@ -62,6 +75,14 @@ void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
     _maxGrowthCIR = neighbor.maxGrowthCIR;
     _rxPreamCount = neighbor.rxPreamCount;
     _firstPath = neighbor.firstPath;
+
+    _poll_tx_ts  = neighbor.poll_tx_ts;
+    _poll_rx_ts  = neighbor.poll_rx_ts;
+    _resp_tx_ts  = neighbor.resp_tx_ts;
+    _resp_rx_ts  = neighbor.resp_rx_ts;
+    _final_tx_ts = neighbor.final_tx_ts;
+    _final_rx_ts = neighbor.final_rx_ts;
+
     _updated = true;
 }
 

@@ -103,7 +103,14 @@ class BelugaFrame {
         uint16_t stdNoise;
         uint16_t maxGrowthCIR;
         uint16_t rxPreamCount;
-        uint16_t firstPath;                   
+        uint16_t firstPath;  
+        
+        uint32_t poll_tx_ts;
+        uint64_t poll_rx_ts;
+        uint64_t resp_tx_ts;
+        uint32_t resp_rx_ts;
+        uint32_t final_tx_ts;
+        uint64_t final_rx_ts;
     };
 
     /// Structure for decoded frame data

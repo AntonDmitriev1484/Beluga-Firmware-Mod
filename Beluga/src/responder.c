@@ -379,12 +379,21 @@ int ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
         return err;
     }
     
-    seen_list[src_id].poll_tx_ts  = poll_tx_ts;
-    seen_list[src_id].poll_rx_ts  = poll_rx_ts;
-    seen_list[src_id].resp_tx_ts  = resp_tx_ts;
-    seen_list[src_id].resp_rx_ts  = resp_rx_ts;
-    seen_list[src_id].final_tx_ts = final_tx_ts;
-    seen_list[src_id].final_rx_ts = final_rx_ts;
+    // Segfault not coming from here. Commenting doesnt change outcome.
+    // Map id to the actual Beluga index. In seen list.
+    int beluga_idx = 0;
+    for (int j = 0; j < MAX_ANCHOR_COUNT; j++) {
+        if (seen_list[j].UUID == src_id) {
+            beluga_idx = j;
+            break;
+        }
+    }
+    seen_list[beluga_idx].poll_tx_ts  = poll_tx_ts;
+    seen_list[beluga_idx].poll_rx_ts  = poll_rx_ts;
+    seen_list[beluga_idx].resp_tx_ts  = resp_tx_ts;
+    seen_list[beluga_idx].resp_rx_ts  = resp_rx_ts;
+    seen_list[beluga_idx].final_tx_ts = final_tx_ts;
+    seen_list[beluga_idx].final_rx_ts = final_rx_ts;
 
     set_dest_id(src_id, tx_report_msg);
     SET_EXCHANGE_ID(tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);

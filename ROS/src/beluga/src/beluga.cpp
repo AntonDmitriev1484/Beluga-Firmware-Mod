@@ -193,17 +193,17 @@ void Beluga::publish_neighbor_list(
 void Beluga::publish_ranges(
     const std::vector<BelugaSerial::BelugaNeighbor> &ranges) {
     auto message = beluga_messages::msg::BelugaRanges();
+
     for (const auto &it : ranges) {
         auto range = beluga_messages::msg::BelugaRange();
+
         range.id = it.id();
         range.range = (float)it.range();
         range.exchange = it.exchange();
         range.timestamp = _beluga_to_ros_time(it.time());
 
-        // Here, convert from BelugaNeighbor internal type initialized from serial frames
-        // to the ROS fields in BelugaRange.msg
-        
-        range.maxnoise = it.maxNoise(); // Modified
+        // Diagnostics
+        range.maxnoise = it.maxNoise();
         range.firstpathamp1 = it.firstPathAmp1();
         range.firstpathamp2 = it.firstPathAmp2();
         range.firstpathamp3 = it.firstPathAmp3();
@@ -212,8 +212,17 @@ void Beluga::publish_ranges(
         range.rxpreamcount = it.rxPreamCount();
         range.firstpath = it.firstPath();
 
+        // DS-TWR timestamps
+        range.poll_tx_ts  = it.pollTxTs();
+        range.poll_rx_ts  = it.pollRxTs();
+        range.resp_tx_ts  = it.respTxTs();
+        range.resp_rx_ts  = it.respRxTs();
+        range.final_tx_ts = it.finalTxTs();
+        range.final_rx_ts = it.finalRxTs();
+
         message.ranges.push_back(range);
     }
+
     range_updates_publisher->publish(message);
     PRINT_RANGES(message);
 }

@@ -159,7 +159,41 @@ class BelugaNeighbor {
      */
     [[nodiscard]] uint16_t firstPath() const noexcept;
 
+    /**
+     * Poll TX timestamp
+     * @return Poll transmit timestamp
+     */
+    [[nodiscard]] uint32_t pollTxTs() const noexcept;
 
+    /**
+     * Poll RX timestamp
+     * @return Poll receive timestamp
+     */
+    [[nodiscard]] uint64_t pollRxTs() const noexcept;
+
+    /**
+     * Response TX timestamp
+     * @return Response transmit timestamp
+     */
+    [[nodiscard]] uint64_t respTxTs() const noexcept;
+
+    /**
+     * Response RX timestamp
+     * @return Response receive timestamp
+     */
+    [[nodiscard]] uint32_t respRxTs() const noexcept;
+
+    /**
+     * Final TX timestamp
+     * @return Final transmit timestamp
+     */
+    [[nodiscard]] uint32_t finalTxTs() const noexcept;
+
+    /**
+     * Final RX timestamp
+     * @return Final receive timestamp
+     */
+    [[nodiscard]] uint64_t finalRxTs() const noexcept;
 
     /**
      * Indicates if the neighbor has been updated since the last read
@@ -183,13 +217,20 @@ class BelugaNeighbor {
     bool _updated = false;
 
     uint16_t _maxNoise; /** Added diagnostic information */
-        uint16_t _firstPathAmp1;
-        uint16_t _firstPathAmp2;
-        uint16_t _firstPathAmp3;
-        uint16_t _stdNoise;
-        uint16_t _maxGrowthCIR;
-        uint16_t _rxPreamCount;
-        uint16_t _firstPath;   
+          uint16_t _firstPathAmp1;
+          uint16_t _firstPathAmp2;
+          uint16_t _firstPathAmp3;
+          uint16_t _stdNoise;
+          uint16_t _maxGrowthCIR;
+          uint16_t _rxPreamCount;
+          uint16_t _firstPath;   
+
+              uint32_t _poll_tx_ts;
+    uint64_t _poll_rx_ts;
+    uint64_t _resp_tx_ts;
+    uint32_t _resp_rx_ts;
+    uint32_t _final_tx_ts;
+    uint64_t _final_rx_ts;
 };
 
 /// Class representing a list of Beluga neighbors
