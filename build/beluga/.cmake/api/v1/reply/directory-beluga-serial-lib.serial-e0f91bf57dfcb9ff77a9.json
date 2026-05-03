@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "beluga-serial-lib/serial",
+		"source" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial/serial"
+	}
+}

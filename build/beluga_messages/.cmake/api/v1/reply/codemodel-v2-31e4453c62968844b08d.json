@@ -1,0 +1,233 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-cdc5dab649509b96c315.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				},
+				{
+					"build" : "beluga_messages__py",
+					"jsonFile" : "directory-beluga_messages__py-b6b1de6afddd53a14366.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/beluga_messages__py",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "beluga_messages",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_beluga_messages_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_beluga_messages_egg-ef2f86002b63380c3fc9.json",
+					"name" : "ament_cmake_python_build_beluga_messages_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_beluga_messages::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_beluga_messages-a7ebad98b4982c7bdc5f.json",
+					"name" : "ament_cmake_python_copy_beluga_messages",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages-6e436384093565a5b199.json",
+					"name" : "beluga_messages",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__cpp-a29ab0525d0290dd1798.json",
+					"name" : "beluga_messages__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "beluga_messages__py::@ae77bcbdbd831a8b578a",
+					"jsonFile" : "target-beluga_messages__py-5c992bd221a1785b548a.json",
+					"name" : "beluga_messages__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_generator_c-f682eef92f176094298b.json",
+					"name" : "beluga_messages__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_generator_py-6cb37921072fb793dec4.json",
+					"name" : "beluga_messages__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_typesupport_c-8b8ff08dbb20743bd345.json",
+					"name" : "beluga_messages__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_typesupport_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_typesupport_c__pyext-d0777117301cff7161dc.json",
+					"name" : "beluga_messages__rosidl_typesupport_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_typesupport_cpp-39cc3f46f49ecc0c7c86.json",
+					"name" : "beluga_messages__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_typesupport_fastrtps_c-fe48685f7b984a07c298.json",
+					"name" : "beluga_messages__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_typesupport_fastrtps_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_typesupport_fastrtps_c__pyext-8434afd0da35a42e78ef.json",
+					"name" : "beluga_messages__rosidl_typesupport_fastrtps_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_typesupport_fastrtps_cpp-9e5da22cd6efd4a44ec5.json",
+					"name" : "beluga_messages__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_typesupport_introspection_c-8d38839e46428958aa52.json",
+					"name" : "beluga_messages__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_typesupport_introspection_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_typesupport_introspection_c__pyext-16318a1e42bb5a848f1c.json",
+					"name" : "beluga_messages__rosidl_typesupport_introspection_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages__rosidl_typesupport_introspection_cpp-70e2f266c9d83282a42c.json",
+					"name" : "beluga_messages__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_messages_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_messages_uninstall-ce05dc438197076fc784.json",
+					"name" : "beluga_messages_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-09df8743bf0e9265a5d0.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages",
+		"source" : "/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

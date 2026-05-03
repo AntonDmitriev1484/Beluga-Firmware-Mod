@@ -1,0 +1,3 @@
+repository='https://github.com/beached/utf_range.git'
+module=''
+tag='origin'

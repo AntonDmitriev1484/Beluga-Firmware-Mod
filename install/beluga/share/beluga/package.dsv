@@ -1,0 +1,8 @@
+source;share/beluga/hook/cmake_prefix_path.ps1
+source;share/beluga/hook/cmake_prefix_path.dsv
+source;share/beluga/hook/cmake_prefix_path.sh
+source;share/beluga/local_setup.bash
+source;share/beluga/local_setup.dsv
+source;share/beluga/local_setup.ps1
+source;share/beluga/local_setup.sh
+source;share/beluga/local_setup.zsh

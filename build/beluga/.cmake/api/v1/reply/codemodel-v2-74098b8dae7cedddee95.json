@@ -1,0 +1,244 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-1557345dfca44b92b8e4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						4
+					]
+				},
+				{
+					"build" : "beluga-serial-lib",
+					"childIndexes" : 
+					[
+						2,
+						7
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-beluga-serial-lib-bf5849514d9870ac25d0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "_deps/daw_json_link-build",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.daw_json_link-build-a118497edd6d6d9bc300.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-src"
+				},
+				{
+					"build" : "_deps/daw_json_link-build/extern",
+					"childIndexes" : 
+					[
+						4,
+						5
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.daw_json_link-build.extern-907b53fe5e8ffb853138.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-src/extern"
+				},
+				{
+					"build" : "_deps/daw_header_libraries-build",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.daw_header_libraries-build-088d4e8b596b2fd3e4a9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 2,
+					"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-src"
+				},
+				{
+					"build" : "_deps/daw_utf_range-build",
+					"childIndexes" : 
+					[
+						6
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.daw_utf_range-build-28951202fee216882054.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_utf_range-src"
+				},
+				{
+					"build" : "_deps/daw_utf_range-build/extern",
+					"jsonFile" : "directory-_deps.daw_utf_range-build.extern-2541b982e3b781594bd8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 3,
+					"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_utf_range-src/extern"
+				},
+				{
+					"build" : "beluga-serial-lib/serial",
+					"jsonFile" : "directory-beluga-serial-lib.serial-e0f91bf57dfcb9ff77a9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial/serial",
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						7
+					],
+					"name" : "beluga",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2,
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2,
+						3
+					],
+					"name" : "daw-json-link",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "daw-header-libraries",
+					"parentIndex" : 1
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5,
+						6
+					],
+					"name" : "daw-utf-range",
+					"parentIndex" : 1
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga-7a67107bf45061d319eb.json",
+					"name" : "beluga",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "beluga-serial::@1bdec208aae9db53806e",
+					"jsonFile" : "target-beluga-serial-dd1a0de748e24254bc08.json",
+					"name" : "beluga-serial",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "beluga_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-beluga_uninstall-d33e7722e202830e2464.json",
+					"name" : "beluga_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "serial::@71fc0e0ee0c75a9e9c34",
+					"jsonFile" : "target-serial-3349dbaac5d338c9e8ec.json",
+					"name" : "serial",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-61b635bc3c9b41ff6c69.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga",
+		"source" : "/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libserial.a CMakeFiles/serial.dir/src/core/C-API/serial_posix.c.o CMakeFiles/serial.dir/src/core/serial_base.cpp.o CMakeFiles/serial.dir/src/core/serial_posix.cpp.o CMakeFiles/serial.dir/src/tools/core/sys_fs_common.cpp.o CMakeFiles/serial.dir/src/tools/core/sys_fs_linux.cpp.o CMakeFiles/serial.dir/src/tools/list_ports.cpp.o
+/usr/bin/ranlib libserial.a

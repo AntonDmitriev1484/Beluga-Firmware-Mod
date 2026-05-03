@@ -1,0 +1,13 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from beluga_messages/msg/BelugaRanges.msg
+// generated code does not contain a copyright notice
+
+#include "beluga_messages/msg/BelugaRange.idl"
+
+module beluga_messages {
+  module msg {
+    struct BelugaRanges {
+      sequence<beluga_messages::msg::BelugaRange> ranges;
+    };
+  };
+};

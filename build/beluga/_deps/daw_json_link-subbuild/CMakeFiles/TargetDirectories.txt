@@ -1,0 +1,3 @@
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-subbuild/CMakeFiles/daw_json_link-populate.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-subbuild/CMakeFiles/edit_cache.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-subbuild/CMakeFiles/rebuild_cache.dir

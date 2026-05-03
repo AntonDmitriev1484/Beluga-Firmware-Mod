@@ -1,0 +1,6 @@
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaNeighbor.idl
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaNeighbors.idl
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:srv/BelugaATCommand.idl
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaRange.idl
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaRanges.idl
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaExchange.idl

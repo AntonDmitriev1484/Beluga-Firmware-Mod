@@ -1,0 +1,35 @@
+{
+  "package_name": "beluga_messages",
+  "output_dir": "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_typesupport_introspection_c/beluga_messages",
+  "template_dir": "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource",
+  "idl_tuples": [
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaNeighbor.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaNeighbors.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:srv/BelugaATCommand.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaRange.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaRanges.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages:msg/BelugaExchange.idl"
+  ],
+  "ros_interface_dependencies": [
+    "builtin_interfaces:/opt/ros/humble/share/builtin_interfaces/msg/Duration.idl",
+    "builtin_interfaces:/opt/ros/humble/share/builtin_interfaces/msg/Time.idl"
+  ],
+  "target_dependencies": [
+    "/opt/ros/humble/lib/rosidl_typesupport_introspection_c/rosidl_typesupport_introspection_c",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_typesupport_introspection_c/__init__.py",
+    "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em",
+    "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource/idl__type_support.c.em",
+    "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource/msg__rosidl_typesupport_introspection_c.h.em",
+    "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource/msg__type_support.c.em",
+    "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource/srv__rosidl_typesupport_introspection_c.h.em",
+    "/opt/ros/humble/share/rosidl_typesupport_introspection_c/resource/srv__type_support.c.em",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages/msg/BelugaNeighbor.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages/msg/BelugaNeighbors.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages/srv/BelugaATCommand.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages/msg/BelugaRange.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages/msg/BelugaRanges.idl",
+    "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/rosidl_adapter/beluga_messages/msg/BelugaExchange.idl",
+    "/opt/ros/humble/share/builtin_interfaces/msg/Duration.idl",
+    "/opt/ros/humble/share/builtin_interfaces/msg/Time.idl"
+  ]
+}

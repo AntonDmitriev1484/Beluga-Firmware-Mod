@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from beluga_messages/msg/BelugaNeighbor.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module beluga_messages {
+  module msg {
+    struct BelugaNeighbor {
+      uint16 id;
+
+      float distance;
+
+      int8 rssi;
+
+      uint32 exchange;
+
+      builtin_interfaces::msg::Time timestamp;
+    };
+  };
+};

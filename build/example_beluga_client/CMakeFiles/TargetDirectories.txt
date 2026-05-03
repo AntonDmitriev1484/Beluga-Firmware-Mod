@@ -1,0 +1,10 @@
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/uninstall.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/example_beluga_client_uninstall.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/client.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/test.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/edit_cache.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/rebuild_cache.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/list_install_components.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/install.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/install/local.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client/CMakeFiles/install/strip.dir

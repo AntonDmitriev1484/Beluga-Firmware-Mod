@@ -1,0 +1,84 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_utf_range-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 66,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 72,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 77,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/daw-utf-range",
+			"exportName" : "daw-utf-range_Targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "daw-utf-range::@8544d63a002d5698158d",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"_deps/daw_utf_range-build/CMakeFiles/Export/lib/cmake/daw-utf-range/daw-utf-rangeTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/daw-utf-range",
+			"paths" : 
+			[
+				"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_utf_range-build/daw-utf-rangeConfig.cmake",
+				"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_utf_range-build/daw-utf-rangeConfigVersion.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_utf_range-src/include/daw"
+			],
+			"type" : "directory"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "_deps/daw_utf_range-build",
+		"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_utf_range-src"
+	}
+}

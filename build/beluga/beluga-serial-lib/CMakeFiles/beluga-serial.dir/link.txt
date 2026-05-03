@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbeluga-serial.a CMakeFiles/beluga-serial.dir/src/beluga_event.cpp.o CMakeFiles/beluga-serial.dir/src/beluga_frame.cpp.o CMakeFiles/beluga-serial.dir/src/beluga_neighbor_list.cpp.o CMakeFiles/beluga-serial.dir/src/beluga_serial.cpp.o
+/usr/bin/ranlib libbeluga-serial.a

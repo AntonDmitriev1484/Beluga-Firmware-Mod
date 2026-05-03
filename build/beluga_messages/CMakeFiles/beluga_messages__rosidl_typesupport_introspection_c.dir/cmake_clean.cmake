@@ -1,0 +1,33 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_exchange__type_support.c.o"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_exchange__type_support.c.o.d"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_neighbor__type_support.c.o"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_neighbor__type_support.c.o.d"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_neighbors__type_support.c.o"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_neighbors__type_support.c.o.d"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_range__type_support.c.o"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_range__type_support.c.o.d"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_ranges__type_support.c.o"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_ranges__type_support.c.o.d"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/srv/detail/beluga_at_command__type_support.c.o"
+  "CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/beluga_messages/srv/detail/beluga_at_command__type_support.c.o.d"
+  "libbeluga_messages__rosidl_typesupport_introspection_c.pdb"
+  "libbeluga_messages__rosidl_typesupport_introspection_c.so"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_exchange__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_exchange__type_support.c"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_neighbor__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_neighbor__type_support.c"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_neighbors__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_neighbors__type_support.c"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_range__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_range__type_support.c"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_ranges__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/beluga_messages/msg/detail/beluga_ranges__type_support.c"
+  "rosidl_typesupport_introspection_c/beluga_messages/srv/detail/beluga_at_command__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/beluga_messages/srv/detail/beluga_at_command__type_support.c"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

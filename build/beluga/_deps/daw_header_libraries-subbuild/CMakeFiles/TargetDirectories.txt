@@ -1,0 +1,3 @@
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-subbuild/CMakeFiles/daw_header_libraries-populate.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-subbuild/CMakeFiles/edit_cache.dir
+/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-subbuild/CMakeFiles/rebuild_cache.dir

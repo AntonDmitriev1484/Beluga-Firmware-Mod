@@ -1,0 +1,87 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 170,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 175,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 179,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "share/daw-json-link/cmake",
+			"exportName" : "daw-json-link_Targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "daw-json-link::@93a54cb647bfbcbd2094",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"_deps/daw_json_link-build/CMakeFiles/Export/share/daw-json-link/cmake/daw-json-linkTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "share/daw-json-link/cmake",
+			"paths" : 
+			[
+				"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-build/daw-json-linkConfig.cmake",
+				"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-build/daw-json-linkConfigVersion.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include/",
+			"paths" : 
+			[
+				{
+					"from" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-src/include",
+					"to" : "."
+				}
+			],
+			"type" : "directory"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "_deps/daw_json_link-build",
+		"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-src"
+	}
+}

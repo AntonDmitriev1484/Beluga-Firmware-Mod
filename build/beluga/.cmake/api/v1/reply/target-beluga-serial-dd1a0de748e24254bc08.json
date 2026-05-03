@@ -1,0 +1,194 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "beluga-serial-lib/libbeluga-serial.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"add_compile_options",
+			"include_directories",
+			"target_include_directories",
+			"target_sources"
+		],
+		"files" : 
+		[
+			"/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial/CMakeLists.txt",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 2,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 18,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 7,
+				"parent" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 23,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"backtrace" : 4,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 4,
+					"fragment" : "-Wextra"
+				},
+				{
+					"backtrace" : 4,
+					"fragment" : "-Wpedantic"
+				},
+				{
+					"fragment" : "-std=gnu++20"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_json_link-src/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-src/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_utf_range-src/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial/serial/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "serial::@71fc0e0ee0c75a9e9c34"
+		}
+	],
+	"id" : "beluga-serial::@1bdec208aae9db53806e",
+	"name" : "beluga-serial",
+	"nameOnDisk" : "libbeluga-serial.a",
+	"paths" : 
+	{
+		"build" : "beluga-serial-lib",
+		"source" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 7,
+			"compileGroupIndex" : 0,
+			"path" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial/src/beluga_event.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 7,
+			"compileGroupIndex" : 0,
+			"path" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial/src/beluga_frame.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 7,
+			"compileGroupIndex" : 0,
+			"path" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial/src/beluga_neighbor_list.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 7,
+			"compileGroupIndex" : 0,
+			"path" : "/home/admi3ev/Beluga-Firmware-Mod/serial-comms/cpp/beluga-serial/src/beluga_serial.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

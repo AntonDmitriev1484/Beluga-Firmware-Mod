@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "_deps/daw_utf_range-build/extern",
+		"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_utf_range-src/extern"
+	}
+}

@@ -1,0 +1,16 @@
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/lib/example_beluga_client/client
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/ament_index/resource_index/package_run_dependencies/example_beluga_client
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/ament_index/resource_index/parent_prefix_path/example_beluga_client
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/environment/ament_prefix_path.sh
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/environment/ament_prefix_path.dsv
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/environment/path.sh
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/environment/path.dsv
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/local_setup.bash
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/local_setup.sh
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/local_setup.zsh
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/local_setup.dsv
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.dsv
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/ament_index/resource_index/packages/example_beluga_client
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/cmake/example_beluga_clientConfig.cmake
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/cmake/example_beluga_clientConfig-version.cmake
+/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.xml

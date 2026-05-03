@@ -1,0 +1,493 @@
+[0.285s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.286s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x71e70f6c8ee0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x71e70f6c8880>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x71e70f6c8880>>, mixin_verb=('build',))
+[0.634s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.634s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.634s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.635s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.635s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.635s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.635s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/admi3ev/Beluga-Firmware-Mod'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(Beluga) by extensions ['ignore', 'ignore_ament_install']
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(Beluga) by extension 'ignore'
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Beluga) ignored
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extensions ['ignore', 'ignore_ament_install']
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extension 'ignore'
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extension 'ignore_ament_install'
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extensions ['colcon_pkg']
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extension 'colcon_pkg'
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extensions ['colcon_meta']
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extension 'colcon_meta'
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extensions ['ros']
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extension 'ros'
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extensions ['cmake', 'python']
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extension 'cmake'
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extension 'python'
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extensions ['python_setup_py']
+[0.652s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation) by extension 'python_setup_py'
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extensions ['ignore', 'ignore_ament_install']
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extension 'ignore'
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extension 'ignore_ament_install'
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extensions ['colcon_pkg']
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extension 'colcon_pkg'
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extensions ['colcon_meta']
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extension 'colcon_meta'
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extensions ['ros']
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extension 'ros'
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extensions ['cmake', 'python']
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extension 'cmake'
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extension 'python'
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extensions ['python_setup_py']
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/Beluga) by extension 'python_setup_py'
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extensions ['ignore', 'ignore_ament_install']
+[0.653s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extension 'ignore'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extension 'ignore_ament_install'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extensions ['colcon_pkg']
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extension 'colcon_pkg'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extensions ['colcon_meta']
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extension 'colcon_meta'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extensions ['ros']
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extension 'ros'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extensions ['cmake', 'python']
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extension 'cmake'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extension 'python'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extensions ['python_setup_py']
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Documentation/DW1000_docs) by extension 'python_setup_py'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extensions ['ignore', 'ignore_ament_install']
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extension 'ignore'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extension 'ignore_ament_install'
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extensions ['colcon_pkg']
+[0.654s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extension 'colcon_pkg'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extensions ['colcon_meta']
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extension 'colcon_meta'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extensions ['ros']
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extension 'ros'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extensions ['cmake', 'python']
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extension 'cmake'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extension 'python'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extensions ['python_setup_py']
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(Hardware) by extension 'python_setup_py'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extensions ['ignore', 'ignore_ament_install']
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extension 'ignore'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extension 'ignore_ament_install'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extensions ['colcon_pkg']
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extension 'colcon_pkg'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extensions ['colcon_meta']
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extension 'colcon_meta'
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extensions ['ros']
+[0.655s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extension 'ros'
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extensions ['cmake', 'python']
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extension 'cmake'
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extension 'python'
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extensions ['python_setup_py']
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS) by extension 'python_setup_py'
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extensions ['ignore', 'ignore_ament_install']
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extension 'ignore'
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extension 'ignore_ament_install'
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extensions ['colcon_pkg']
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extension 'colcon_pkg'
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extensions ['colcon_meta']
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extension 'colcon_meta'
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extensions ['ros']
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extension 'ros'
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extensions ['cmake', 'python']
+[0.656s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extension 'cmake'
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extension 'python'
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extensions ['python_setup_py']
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src) by extension 'python_setup_py'
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga) by extensions ['ignore', 'ignore_ament_install']
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga) by extension 'ignore'
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga) by extension 'ignore_ament_install'
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga) by extensions ['colcon_pkg']
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga) by extension 'colcon_pkg'
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga) by extensions ['colcon_meta']
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga) by extension 'colcon_meta'
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga) by extensions ['ros']
+[0.657s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga) by extension 'ros'
+[0.662s] DEBUG:colcon.colcon_core.package_identification:Package 'ROS/src/beluga' with type 'ros.ament_cmake' and name 'beluga'
+[0.662s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga_messages) by extensions ['ignore', 'ignore_ament_install']
+[0.662s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga_messages) by extension 'ignore'
+[0.663s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga_messages) by extension 'ignore_ament_install'
+[0.663s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga_messages) by extensions ['colcon_pkg']
+[0.663s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga_messages) by extension 'colcon_pkg'
+[0.663s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga_messages) by extensions ['colcon_meta']
+[0.663s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga_messages) by extension 'colcon_meta'
+[0.663s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga_messages) by extensions ['ros']
+[0.663s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/beluga_messages) by extension 'ros'
+[0.664s] DEBUG:colcon.colcon_core.package_identification:Package 'ROS/src/beluga_messages' with type 'ros.ament_cmake' and name 'beluga_messages'
+[0.664s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/example_beluga_client) by extensions ['ignore', 'ignore_ament_install']
+[0.664s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/example_beluga_client) by extension 'ignore'
+[0.664s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/example_beluga_client) by extension 'ignore_ament_install'
+[0.664s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/example_beluga_client) by extensions ['colcon_pkg']
+[0.664s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/example_beluga_client) by extension 'colcon_pkg'
+[0.664s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/example_beluga_client) by extensions ['colcon_meta']
+[0.664s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/example_beluga_client) by extension 'colcon_meta'
+[0.664s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/example_beluga_client) by extensions ['ros']
+[0.664s] Level 1:colcon.colcon_core.package_identification:_identify(ROS/src/example_beluga_client) by extension 'ros'
+[0.665s] DEBUG:colcon.colcon_core.package_identification:Package 'ROS/src/example_beluga_client' with type 'ros.ament_cmake' and name 'example_beluga_client'
+[0.665s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.665s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.665s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.665s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extensions ['ignore', 'ignore_ament_install']
+[0.665s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extension 'ignore'
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extension 'ignore_ament_install'
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extensions ['colcon_pkg']
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extension 'colcon_pkg'
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extensions ['colcon_meta']
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extension 'colcon_meta'
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extensions ['ros']
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extension 'ros'
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extensions ['cmake', 'python']
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extension 'cmake'
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extension 'python'
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extensions ['python_setup_py']
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool) by extension 'python_setup_py'
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extensions ['ignore', 'ignore_ament_install']
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extension 'ignore'
+[0.666s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extension 'ignore_ament_install'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extensions ['colcon_pkg']
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extension 'colcon_pkg'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extensions ['colcon_meta']
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extension 'colcon_meta'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extensions ['ros']
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extension 'ros'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extensions ['cmake', 'python']
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extension 'cmake'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extension 'python'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extensions ['python_setup_py']
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src) by extension 'python_setup_py'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extensions ['ignore', 'ignore_ament_install']
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extension 'ignore'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extension 'ignore_ament_install'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extensions ['colcon_pkg']
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extension 'colcon_pkg'
+[0.667s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extensions ['colcon_meta']
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extension 'colcon_meta'
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extensions ['ros']
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extension 'ros'
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extensions ['cmake', 'python']
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extension 'cmake'
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extension 'python'
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extensions ['python_setup_py']
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash) by extension 'python_setup_py'
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extensions ['ignore', 'ignore_ament_install']
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extension 'ignore'
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extension 'ignore_ament_install'
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extensions ['colcon_pkg']
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extension 'colcon_pkg'
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extensions ['colcon_meta']
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extension 'colcon_meta'
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extensions ['ros']
+[0.668s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extension 'ros'
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extensions ['cmake', 'python']
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extension 'cmake'
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extension 'python'
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extensions ['python_setup_py']
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(flash-tool/src/imgflash/app) by extension 'python_setup_py'
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extensions ['ignore', 'ignore_ament_install']
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extension 'ignore'
+[0.669s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extension 'ignore_ament_install'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extensions ['colcon_pkg']
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extension 'colcon_pkg'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extensions ['colcon_meta']
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extension 'colcon_meta'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extensions ['ros']
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extension 'ros'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extensions ['cmake', 'python']
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extension 'cmake'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extension 'python'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extensions ['python_setup_py']
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms) by extension 'python_setup_py'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extensions ['ignore', 'ignore_ament_install']
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extension 'ignore'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extension 'ignore_ament_install'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extensions ['colcon_pkg']
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extension 'colcon_pkg'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extensions ['colcon_meta']
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extension 'colcon_meta'
+[0.670s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extensions ['ros']
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extension 'ros'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extensions ['cmake', 'python']
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extension 'cmake'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extension 'python'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extensions ['python_setup_py']
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/architectures) by extension 'python_setup_py'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extensions ['ignore', 'ignore_ament_install']
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extension 'ignore'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extension 'ignore_ament_install'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extensions ['colcon_pkg']
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extension 'colcon_pkg'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extensions ['colcon_meta']
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extension 'colcon_meta'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extensions ['ros']
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extension 'ros'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extensions ['cmake', 'python']
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extension 'cmake'
+[0.671s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extension 'python'
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extensions ['python_setup_py']
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp) by extension 'python_setup_py'
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp/beluga-serial) by extensions ['ignore', 'ignore_ament_install']
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp/beluga-serial) by extension 'ignore'
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/cpp/beluga-serial) ignored
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extensions ['ignore', 'ignore_ament_install']
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extension 'ignore'
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extension 'ignore_ament_install'
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extensions ['colcon_pkg']
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extension 'colcon_pkg'
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extensions ['colcon_meta']
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extension 'colcon_meta'
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extensions ['ros']
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extension 'ros'
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extensions ['cmake', 'python']
+[0.672s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extension 'cmake'
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extension 'python'
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extensions ['python_setup_py']
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python) by extension 'python_setup_py'
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extensions ['ignore', 'ignore_ament_install']
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extension 'ignore'
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extension 'ignore_ament_install'
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extensions ['colcon_pkg']
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extension 'colcon_pkg'
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extensions ['colcon_meta']
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extension 'colcon_meta'
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extensions ['ros']
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extension 'ros'
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extensions ['cmake', 'python']
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extension 'cmake'
+[0.673s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extension 'python'
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extensions ['python_setup_py']
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial) by extension 'python_setup_py'
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extensions ['ignore', 'ignore_ament_install']
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extension 'ignore'
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extension 'ignore_ament_install'
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extensions ['colcon_pkg']
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extension 'colcon_pkg'
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extensions ['colcon_meta']
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extension 'colcon_meta'
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extensions ['ros']
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extension 'ros'
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extensions ['cmake', 'python']
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extension 'cmake'
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extension 'python'
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extensions ['python_setup_py']
+[0.674s] Level 1:colcon.colcon_core.package_identification:_identify(serial-comms/python/beluga_serial/app) by extension 'python_setup_py'
+[0.675s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.675s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.675s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.675s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.675s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.710s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.710s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.715s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/admi3ev/ros2_ws/install
+[0.716s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 276 installed packages in /opt/ros/humble
+[0.718s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.766s] Level 5:colcon.colcon_core.verb:set package 'beluga_messages' build argument 'cmake_args' from command line to 'None'
+[0.766s] Level 5:colcon.colcon_core.verb:set package 'beluga_messages' build argument 'cmake_target' from command line to 'None'
+[0.766s] Level 5:colcon.colcon_core.verb:set package 'beluga_messages' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.766s] Level 5:colcon.colcon_core.verb:set package 'beluga_messages' build argument 'cmake_clean_cache' from command line to 'False'
+[0.766s] Level 5:colcon.colcon_core.verb:set package 'beluga_messages' build argument 'cmake_clean_first' from command line to 'False'
+[0.766s] Level 5:colcon.colcon_core.verb:set package 'beluga_messages' build argument 'cmake_force_configure' from command line to 'False'
+[0.766s] Level 5:colcon.colcon_core.verb:set package 'beluga_messages' build argument 'ament_cmake_args' from command line to 'None'
+[0.766s] Level 5:colcon.colcon_core.verb:set package 'beluga_messages' build argument 'catkin_cmake_args' from command line to 'None'
+[0.766s] Level 5:colcon.colcon_core.verb:set package 'beluga_messages' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.766s] DEBUG:colcon.colcon_core.verb:Building package 'beluga_messages' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages', 'merge_install': False, 'path': '/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages', 'symlink_install': False, 'test_result_base': None}
+[0.767s] Level 5:colcon.colcon_core.verb:set package 'beluga' build argument 'cmake_args' from command line to 'None'
+[0.767s] Level 5:colcon.colcon_core.verb:set package 'beluga' build argument 'cmake_target' from command line to 'None'
+[0.767s] Level 5:colcon.colcon_core.verb:set package 'beluga' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.767s] Level 5:colcon.colcon_core.verb:set package 'beluga' build argument 'cmake_clean_cache' from command line to 'False'
+[0.767s] Level 5:colcon.colcon_core.verb:set package 'beluga' build argument 'cmake_clean_first' from command line to 'False'
+[0.767s] Level 5:colcon.colcon_core.verb:set package 'beluga' build argument 'cmake_force_configure' from command line to 'False'
+[0.767s] Level 5:colcon.colcon_core.verb:set package 'beluga' build argument 'ament_cmake_args' from command line to 'None'
+[0.767s] Level 5:colcon.colcon_core.verb:set package 'beluga' build argument 'catkin_cmake_args' from command line to 'None'
+[0.767s] Level 5:colcon.colcon_core.verb:set package 'beluga' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.767s] DEBUG:colcon.colcon_core.verb:Building package 'beluga' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/admi3ev/Beluga-Firmware-Mod/build/beluga', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/admi3ev/Beluga-Firmware-Mod/install/beluga', 'merge_install': False, 'path': '/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga', 'symlink_install': False, 'test_result_base': None}
+[0.768s] Level 5:colcon.colcon_core.verb:set package 'example_beluga_client' build argument 'cmake_args' from command line to 'None'
+[0.768s] Level 5:colcon.colcon_core.verb:set package 'example_beluga_client' build argument 'cmake_target' from command line to 'None'
+[0.768s] Level 5:colcon.colcon_core.verb:set package 'example_beluga_client' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.768s] Level 5:colcon.colcon_core.verb:set package 'example_beluga_client' build argument 'cmake_clean_cache' from command line to 'False'
+[0.768s] Level 5:colcon.colcon_core.verb:set package 'example_beluga_client' build argument 'cmake_clean_first' from command line to 'False'
+[0.768s] Level 5:colcon.colcon_core.verb:set package 'example_beluga_client' build argument 'cmake_force_configure' from command line to 'False'
+[0.768s] Level 5:colcon.colcon_core.verb:set package 'example_beluga_client' build argument 'ament_cmake_args' from command line to 'None'
+[0.768s] Level 5:colcon.colcon_core.verb:set package 'example_beluga_client' build argument 'catkin_cmake_args' from command line to 'None'
+[0.768s] Level 5:colcon.colcon_core.verb:set package 'example_beluga_client' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.768s] DEBUG:colcon.colcon_core.verb:Building package 'example_beluga_client' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client', 'merge_install': False, 'path': '/home/admi3ev/Beluga-Firmware-Mod/ROS/src/example_beluga_client', 'symlink_install': False, 'test_result_base': None}
+[0.768s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.770s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.771s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages' with build type 'ament_cmake'
+[0.771s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages'
+[0.778s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.779s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.779s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.799s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages -- -j4 -l4
+[7.917s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages -- -j4 -l4
+[7.932s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages
+[8.120s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(beluga_messages)
+[8.126s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages
+[8.133s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages' for CMake module files
+[8.134s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages' for CMake config files
+[8.136s] Level 1:colcon.colcon_core.shell:create_environment_hook('beluga_messages', 'cmake_prefix_path')
+[8.137s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/cmake_prefix_path.ps1'
+[8.138s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/cmake_prefix_path.dsv'
+[8.140s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/cmake_prefix_path.sh'
+[8.142s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib'
+[8.143s] Level 1:colcon.colcon_core.shell:create_environment_hook('beluga_messages', 'ld_library_path_lib')
+[8.143s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/ld_library_path_lib.ps1'
+[8.144s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/ld_library_path_lib.dsv'
+[8.144s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/ld_library_path_lib.sh'
+[8.146s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/bin'
+[8.146s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/pkgconfig/beluga_messages.pc'
+[8.146s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/python3.10/site-packages'
+[8.147s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/bin'
+[8.147s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.ps1'
+[8.149s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.dsv'
+[8.152s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.sh'
+[8.154s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.bash'
+[8.157s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.zsh'
+[8.159s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/colcon-core/packages/beluga_messages)
+[8.160s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(beluga_messages)
+[8.160s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages' for CMake module files
+[8.161s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages' for CMake config files
+[8.162s] Level 1:colcon.colcon_core.shell:create_environment_hook('beluga_messages', 'cmake_prefix_path')
+[8.163s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/cmake_prefix_path.ps1'
+[8.165s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/cmake_prefix_path.dsv'
+[8.165s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/cmake_prefix_path.sh'
+[8.167s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib'
+[8.167s] Level 1:colcon.colcon_core.shell:create_environment_hook('beluga_messages', 'ld_library_path_lib')
+[8.168s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/ld_library_path_lib.ps1'
+[8.169s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/ld_library_path_lib.dsv'
+[8.171s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/hook/ld_library_path_lib.sh'
+[8.172s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/bin'
+[8.172s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/pkgconfig/beluga_messages.pc'
+[8.172s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/python3.10/site-packages'
+[8.173s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/bin'
+[8.173s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.ps1'
+[8.174s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.dsv'
+[8.175s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.sh'
+[8.175s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.bash'
+[8.176s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.zsh'
+[8.176s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/colcon-core/packages/beluga_messages)
+[8.177s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga' with build type 'ament_cmake'
+[8.178s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga'
+[8.178s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[8.178s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[8.185s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/admi3ev/Beluga-Firmware-Mod/ROS/src/example_beluga_client' with build type 'ament_cmake'
+[8.185s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/admi3ev/Beluga-Firmware-Mod/ROS/src/example_beluga_client'
+[8.185s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[8.185s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[8.211s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/admi3ev/Beluga-Firmware-Mod/build/beluga': AMENT_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble LD_LIBRARY_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/admi3ev/Beluga-Firmware-Mod/build/beluga -- -j4 -l4
+[8.229s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client': AMENT_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble LD_LIBRARY_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client -- -j4 -l4
+[15.481s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client' returned '0': AMENT_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble LD_LIBRARY_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client -- -j4 -l4
+[15.486s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client': AMENT_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble LD_LIBRARY_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client
+[15.508s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(example_beluga_client)
+[15.509s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client' for CMake module files
+[15.509s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client' for CMake config files
+[15.510s] Level 1:colcon.colcon_core.shell:create_environment_hook('example_beluga_client', 'cmake_prefix_path')
+[15.510s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/hook/cmake_prefix_path.ps1'
+[15.511s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client' returned '0': AMENT_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble LD_LIBRARY_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client
+[15.512s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/hook/cmake_prefix_path.dsv'
+[15.512s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/hook/cmake_prefix_path.sh'
+[15.514s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/lib'
+[15.514s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/bin'
+[15.514s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/lib/pkgconfig/example_beluga_client.pc'
+[15.514s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/lib/python3.10/site-packages'
+[15.515s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/bin'
+[15.515s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.ps1'
+[15.517s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.dsv'
+[15.517s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.sh'
+[15.518s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.bash'
+[15.519s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.zsh'
+[15.520s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/colcon-core/packages/example_beluga_client)
+[15.521s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(example_beluga_client)
+[15.521s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client' for CMake module files
+[15.522s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client' for CMake config files
+[15.522s] Level 1:colcon.colcon_core.shell:create_environment_hook('example_beluga_client', 'cmake_prefix_path')
+[15.523s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/hook/cmake_prefix_path.ps1'
+[15.524s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/hook/cmake_prefix_path.dsv'
+[15.524s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/hook/cmake_prefix_path.sh'
+[15.527s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/lib'
+[15.527s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/bin'
+[15.527s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/lib/pkgconfig/example_beluga_client.pc'
+[15.527s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/lib/python3.10/site-packages'
+[15.528s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/bin'
+[15.528s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.ps1'
+[15.530s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.dsv'
+[15.532s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.sh'
+[15.533s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.bash'
+[15.534s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.zsh'
+[15.535s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/colcon-core/packages/example_beluga_client)
+[24.872s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/admi3ev/Beluga-Firmware-Mod/build/beluga' returned '0': AMENT_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble LD_LIBRARY_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/admi3ev/Beluga-Firmware-Mod/build/beluga -- -j4 -l4
+[24.874s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/admi3ev/Beluga-Firmware-Mod/build/beluga': AMENT_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble LD_LIBRARY_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/admi3ev/Beluga-Firmware-Mod/build/beluga
+[24.903s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(beluga)
+[24.903s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga' for CMake module files
+[24.905s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga' for CMake config files
+[24.906s] Level 1:colcon.colcon_core.shell:create_environment_hook('beluga', 'cmake_prefix_path')
+[24.906s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/hook/cmake_prefix_path.ps1'
+[24.907s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/hook/cmake_prefix_path.dsv'
+[24.908s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/hook/cmake_prefix_path.sh'
+[24.909s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib'
+[24.910s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/bin'
+[24.910s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/pkgconfig/beluga.pc'
+[24.910s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/python3.10/site-packages'
+[24.911s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/bin'
+[24.911s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.ps1'
+[24.912s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.dsv'
+[24.913s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.sh'
+[24.914s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.bash'
+[24.915s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.zsh'
+[24.915s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/colcon-core/packages/beluga)
+[24.917s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(beluga)
+[24.917s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga' for CMake module files
+[24.918s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga' for CMake config files
+[24.919s] Level 1:colcon.colcon_core.shell:create_environment_hook('beluga', 'cmake_prefix_path')
+[24.919s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/hook/cmake_prefix_path.ps1'
+[24.920s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/hook/cmake_prefix_path.dsv'
+[24.920s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/hook/cmake_prefix_path.sh'
+[24.922s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib'
+[24.922s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/bin'
+[24.922s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/pkgconfig/beluga.pc'
+[24.922s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/python3.10/site-packages'
+[24.923s] Level 1:colcon.colcon_core.environment:checking '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/bin'
+[24.923s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.ps1'
+[24.924s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.dsv'
+[24.925s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.sh'
+[24.926s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.bash'
+[24.927s] INFO:colcon.colcon_core.shell:Creating package script '/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.zsh'
+[24.928s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/colcon-core/packages/beluga)
+[24.929s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[24.929s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[24.929s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[24.930s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[24.940s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/admi3ev/Beluga-Firmware-Mod/build/beluga' returned '0': AMENT_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble LD_LIBRARY_PATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/admi3ev/Beluga-Firmware-Mod/build/beluga
+[24.947s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[24.947s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[24.947s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[24.967s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[24.967s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/admi3ev/Beluga-Firmware-Mod/install/local_setup.ps1'
+[24.969s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/admi3ev/Beluga-Firmware-Mod/install/_local_setup_util_ps1.py'
+[24.971s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/admi3ev/Beluga-Firmware-Mod/install/setup.ps1'
+[24.972s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/admi3ev/Beluga-Firmware-Mod/install/local_setup.sh'
+[24.973s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/admi3ev/Beluga-Firmware-Mod/install/_local_setup_util_sh.py'
+[24.974s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/admi3ev/Beluga-Firmware-Mod/install/setup.sh'
+[24.975s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/admi3ev/Beluga-Firmware-Mod/install/local_setup.bash'
+[24.977s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/admi3ev/Beluga-Firmware-Mod/install/setup.bash'
+[24.978s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/admi3ev/Beluga-Firmware-Mod/install/local_setup.zsh'
+[24.979s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/admi3ev/Beluga-Firmware-Mod/install/setup.zsh'

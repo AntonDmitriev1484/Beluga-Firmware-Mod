@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "beluga_messages__py",
+		"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages/beluga_messages__py"
+	}
+}

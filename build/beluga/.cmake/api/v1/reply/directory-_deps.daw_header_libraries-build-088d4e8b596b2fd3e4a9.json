@@ -1,0 +1,84 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 70,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 76,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 81,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/daw-header-libraries",
+			"exportName" : "daw-header-libraries_Targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "daw-header-libraries::@55f9cf2d7cc59c14b98b",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"_deps/daw_header_libraries-build/CMakeFiles/Export/lib/cmake/daw-header-libraries/daw-header-librariesTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/daw-header-libraries",
+			"paths" : 
+			[
+				"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-build/daw-header-librariesConfig.cmake",
+				"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-build/daw-header-librariesConfigVersion.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-src/include/daw"
+			],
+			"type" : "directory"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "_deps/daw_header_libraries-build",
+		"source" : "/home/admi3ev/Beluga-Firmware-Mod/build/beluga/_deps/daw_header_libraries-src"
+	}
+}

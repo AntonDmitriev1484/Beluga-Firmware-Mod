@@ -1,0 +1,4 @@
+source;share/example_beluga_client/local_setup.bash
+source;share/example_beluga_client/local_setup.dsv
+source;share/example_beluga_client/local_setup.sh
+source;share/example_beluga_client/local_setup.zsh

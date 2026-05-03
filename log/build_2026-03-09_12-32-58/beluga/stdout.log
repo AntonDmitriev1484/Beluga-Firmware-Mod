@@ -1,0 +1,572 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.13 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found rclcpp: 16.0.18 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found beluga_messages: 0.0.0 (/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake)
+-- DAW_USE_EXCEPTIONS=ON: Errors throw json_exception
+-- DAW_NO_FLATTEN=ON: Disabling function flattening and forced inline optimization
+-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: /home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga/include
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/admi3ev/Beluga-Firmware-Mod/build/beluga
+[  6%] [32mBuilding C object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/core/C-API/serial_posix.c.o[0m
+[ 13%] [32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/core/serial_base.cpp.o[0m
+[ 20%] [32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/core/serial_posix.cpp.o[0m
+[ 26%] [32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/tools/core/sys_fs_common.cpp.o[0m
+[ 33%] [32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/tools/core/sys_fs_linux.cpp.o[0m
+[ 40%] [32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/tools/list_ports.cpp.o[0m
+[ 46%] [32m[1mLinking CXX static library libserial.a[0m
+[ 46%] Built target serial
+[ 60%] [32mBuilding CXX object beluga-serial-lib/CMakeFiles/beluga-serial.dir/src/beluga_neighbor_list.cpp.o[0m
+[ 60%] [32mBuilding CXX object beluga-serial-lib/CMakeFiles/beluga-serial.dir/src/beluga_event.cpp.o[0m
+[ 66%] [32mBuilding CXX object beluga-serial-lib/CMakeFiles/beluga-serial.dir/src/beluga_frame.cpp.o[0m
+[ 73%] [32mBuilding CXX object beluga-serial-lib/CMakeFiles/beluga-serial.dir/src/beluga_serial.cpp.o[0m
+[ 80%] [32m[1mLinking CXX static library libbeluga-serial.a[0m
+[ 80%] Built target beluga-serial
+[ 86%] [32mBuilding CXX object CMakeFiles/beluga.dir/src/beluga_main.cpp.o[0m
+[ 93%] [32mBuilding CXX object CMakeFiles/beluga.dir/src/beluga.cpp.o[0m
+[100%] [32m[1mLinking CXX executable beluga[0m
+[100%] Built target beluga
+-- Install configuration: ""
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-header-libraries/daw-header-librariesTargets.cmake
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-header-libraries/daw-header-librariesConfig.cmake
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-header-libraries/daw-header-librariesConfigVersion.cmake
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_stream.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_print_ostream.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_constant.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unique_array.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_expected.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_sip_hash.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/cpp_17_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ring_adaptor.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_find_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_repeat_n_char_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_integer_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_arrow_proxy.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_checked_iterator_proxy.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_inserter.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_chunk_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_function_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_split_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_find_one_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_zipiter.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_output_stream_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_circular_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_back_inserter.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_indexed_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_counting_iterators.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_bit_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_sorted_insert_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_argument_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_random_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_end_inserter.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/InputIterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_iota_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_reverse_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/impl
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/impl/daw_find_iterator_impl.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_pointer_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_safe_pointer.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/ciso646.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_read_file.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bounded_vector.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_clumpy_sparsy.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_bounded_hash_map.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_collection.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_poly_vector.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_checked_expected.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_cstring.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_heap_value.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string_view1_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_reference.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string_view1.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_vector.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_type.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_ordered_map.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_common_mixins.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_algorithm.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_operators.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_newhelper.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_optional_poly.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_parallel_operators.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_bounded_hash_set.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string_fmt.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_hash_table.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_bounded_string.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_cfile.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_common.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_carray.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_stack_quick_sort.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_fixed_lookup.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_copiable_unique_ptr.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_safe_string.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_fixed_array.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_bounded_graph.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/not_null.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_heap_array.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string_split_range.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_arith_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cpp20_concept.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_swap.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_construct_a.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_keep_n.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_is_detected.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_concepts.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_piecewise_factory.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_format_range.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_mutable_capture.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tracked_allocator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_value_ptr.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_shared_function.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_enable_if.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_count.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_construct_at.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_restrict.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/vector.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_alias_cast.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_sbo.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_concat.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ignored.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple2.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_dependent_false.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_view_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_pipelines.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_sort_n.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_overload.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_is_any_of.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_optional.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_do_n.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function_table.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_virtual_base.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_undefined.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_enable_requires.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_heap_value.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_observer_ptr.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_forward_lvalue.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_not_null.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_rw_ref.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unused.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/format.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_identity_function.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cpp_feature_check.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_exception.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_named_params.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_cast.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cx_offset_of.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_formatters.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_container_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_contract.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_lift.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_reference.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_accumulate.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_adjacent_find.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_partial_sum.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_enumerate_tuple.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_find_transform.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_find.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_array_compare.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_copy_n.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_copy.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_uint_buffer.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bind_args_at.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_move.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_maybe_unique_ptr.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_atomic_wait.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_remove_cvref.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_constinit.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_fnv1a_hash.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unique_ptr.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_iter_view.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_typeof.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_view2.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unreachable.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/split_buffer.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parser_addons.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_use_default.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function_ref.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bounded_array.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_from_string.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_endian.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_nth_pack_element.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_fwd_pack_apply.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_span_writer.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/cpp_20.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_hash_set.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_hide.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_view_version.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_take.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_apply.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_any_if.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_uint_types.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unique_resource.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_move_only_base.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_generic_hash.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_validated.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_math.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_poly_value.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_cast_util.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_compiler_fixups.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parser_helper_sv.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_do_not_optimize.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_character_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_exchange.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_natural.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_int_cmp.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parser_helper.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_utility.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_logic.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_graph_algorithm.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_visit.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_container_help.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_integer_reverse.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_scope_guard.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_operators.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_queues.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cx_atomic.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_metro_hash.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_graph.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_uint_buffer_ios.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_format_tuple.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_data_end.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_likely.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_move_only.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_empty.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parse_args.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ordering_to_integer.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_forward_like.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_visit_as.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_variant_cast.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/vector_algorithm.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ref_counted_pointer.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_poly_var.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_a_type.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_ostream_like.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_remove_cvref.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_rvalue_reference.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_conditional.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_remove_array_ref.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_first_type.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_copy_cvref_t.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_integer_type.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_pack_list.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_one_of.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_nth_element.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_identity.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_formatter.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_same.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_const.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_concepts.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/cpp_17.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_aligned_storage.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_span.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_allow_once.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_prop_const_ptr.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/wrap_iter.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_view.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_array.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/iterator_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/compare_fn.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/reverse_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/hash.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/integer_sequence.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/declval.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/move_fwd_exch.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/readme.md
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/reference_wrapper.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/integral_constant.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/is_convertible.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/enable_if.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/in_place.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/min_and_max.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/data_access.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/tuple_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/range_access.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/void_t.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/remove_cvref.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_algorithm.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_benchmark.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_print.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parse_to.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_memory_mapped_file.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_uninitialized_storage.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_pack_element.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_read_only.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_random.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cxmath.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_min_perfect_hash.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_size_literals.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_container_algorithm.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_stack_function.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_view.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_deduced_type.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_attributes.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bitset.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_to_underlying_type.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_static_bitset.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_consteval.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ensure.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_can_constant_evaluate.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_simple_array.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_contiguous_view.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_describe.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_is_constant_evaluated.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_always_false.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_zipcontainer.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/static_hash_table.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_countable_resource.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_iterator_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bind_front.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_monadic_pointer_ops.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple_helper.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple_forward.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_callable.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ascii.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/slide.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/pipeline.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/range_base.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/flatten.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/iota.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/find.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/zip.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/every.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/sized_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/generate.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/print.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/algorithm.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/concat.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/sample.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/take.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/unique.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/reverse.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/drop.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/pipeline_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/chunk.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/first.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/maybe.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/split.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/enumerate.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/numeric.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/copy.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/elements.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/filter.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/swizzle.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/range.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/skip.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/map.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/cache_last_view.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/foreach.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/predicates.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/to.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_check_exceptions.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_union_pair.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_algorithm_cx.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_container_help_vector.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_msvc_int128.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_container_help_string.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_view_tags.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/formatter_common.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_math_impl.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_numeric_limits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_container_help_ins_ext.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_container_help_impl.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_traits_impl.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_make_trait.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_is_string_view_like.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_gcc_clang_int128.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_int_to_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_int128_check.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_string_impl.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/compressed_pair.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function_view.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_assume.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bitset_helper.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_format_string_view.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-utf-range/daw-utf-rangeTargets.cmake
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-utf-range/daw-utf-rangeConfig.cmake
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-utf-range/daw-utf-rangeConfigVersion.cmake
+-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf_range
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf_range/daw_utf_range.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf_range/daw_utf_string.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8/unchecked.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8/core.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8/checked.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/daw-json-link/cmake/daw-json-linkTargets.cmake
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/daw-json-link/cmake/daw-json-linkConfig.cmake
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/daw-json-link/cmake/daw-json-linkConfigVersion.cmake
+-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/
+-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party/dragonbox
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party/dragonbox/dragonbox_to_chars.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party/dragonbox/dragonbox.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party/dragonbox/dragonbox_to_decimal.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_apply.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_iostream.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_link_describe.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_lines_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_boost_pfr_mapping.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_event_parser.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_to_json.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_exception.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_parse_options.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_switches.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_container_traits_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_container_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/readme.md
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_nullable_value.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_nullable_value_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output_ostream.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output_cstdio.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/impl
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/impl/daw_writable_output_details.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output_basics.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_link.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_schema.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_serialize_options.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_from_json_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_find_path.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_default_constuctor_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_value_state.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_from_json.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_data_contract.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_allocator_wrapper.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/version.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_link_types_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_digit.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_enums.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_option_bits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_traits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_murmur3.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_assert.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_link_types_aggregate.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_std_string.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_types_base.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_array_sse42_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_string_quote.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy_policy_details.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_reflection.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_value.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_find_result.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy_no_comments.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_default_constuctor.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_serialize_options_impl.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_type_options.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_common.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_alternate_mapping.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_options_impl.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_arrow_proxy.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_fp_fallback.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_serialize_policy_details.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_req_helper.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_value_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_location_info.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_real_power10.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_kv_array_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_exec_modes.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_string_util.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_string_need_slow.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_value.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_serialize_policy.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_serialize_impl.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_real.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_count_digits.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_class.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/to_daw_json_string.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_reflection_helpers.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_not_const_ex_functions.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy_hash_comments.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_iso8601_utils.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_value_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/power_of_five_128_table.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy_cpp_comments.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_container_appender.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_name.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_skip.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_kv_class_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_construct_value.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_array_iterator.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_name.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_reflection_impl.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_unsigned_int.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_link_types_iso8601.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_link_types.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_to_json_fwd.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/daw_allocator_construct.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/daw_tuple_forward.h
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/beluga/beluga
+-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/beluga/beluga" to ""
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/ament_index/resource_index/package_run_dependencies/beluga
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/ament_index/resource_index/parent_prefix_path/beluga
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/environment/ament_prefix_path.sh
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/environment/ament_prefix_path.dsv
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/environment/path.sh
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/environment/path.dsv
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/local_setup.bash
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/local_setup.sh
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/local_setup.zsh
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/local_setup.dsv
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.dsv
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/ament_index/resource_index/packages/beluga
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/cmake/belugaConfig.cmake
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/cmake/belugaConfig-version.cmake
+-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.xml

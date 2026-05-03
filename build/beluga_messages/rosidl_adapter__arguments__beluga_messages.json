@@ -1,0 +1,11 @@
+{
+  "package_name": "beluga_messages",
+  "non_idl_tuples": [
+    "/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages:msg/BelugaNeighbor.msg",
+    "/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages:msg/BelugaNeighbors.msg",
+    "/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages:srv/BelugaATCommand.srv",
+    "/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages:msg/BelugaRange.msg",
+    "/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages:msg/BelugaRanges.msg",
+    "/home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga_messages:msg/BelugaExchange.msg"
+  ]
+}

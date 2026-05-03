@@ -1,0 +1,1180 @@
+[0.000000] (-) TimerEvent: {}
+[0.000581] (beluga_messages) JobQueued: {'identifier': 'beluga_messages', 'dependencies': OrderedDict()}
+[0.000635] (beluga) JobQueued: {'identifier': 'beluga', 'dependencies': OrderedDict([('beluga_messages', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages')])}
+[0.000666] (example_beluga_client) JobQueued: {'identifier': 'example_beluga_client', 'dependencies': OrderedDict([('beluga_messages', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages')])}
+[0.001295] (beluga_messages) JobStarted: {'identifier': 'beluga_messages'}
+[0.019896] (beluga_messages) JobProgress: {'identifier': 'beluga_messages', 'progress': 'cmake'}
+[0.026336] (beluga_messages) JobProgress: {'identifier': 'beluga_messages', 'progress': 'build'}
+[0.028889] (beluga_messages) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages', '--', '-j4', '-l4'], 'cwd': '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'admi3ev'), ('USER_ID', '2'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/admi3ev'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.117.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '901'), ('SYSTEMD_EXEC_PID', '1056'), ('IM_CONFIG_CHECK_ENV', '1'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4871'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/admi3ev/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'admi3ev'), ('JOURNAL_STREAM', '8:10710'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'admi3ev'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/home/admi3ev/.local/bin:/opt/ros/humble/bin:/home/admi3ev/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nuc2:@/tmp/.ICE-unix/1026,unix/nuc2:/tmp/.ICE-unix/1026'), ('INVOCATION_ID', '67b3dff36b82477b8138db9958d9c436'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VV9BO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-97298256b5.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble')]), 'shell': False}
+[0.099983] (-) TimerEvent: {}
+[0.160894] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_generator_c\x1b[0m\n'}
+[0.181948] (beluga_messages) StdoutLine: {'line': b'[  1%] Built target beluga_messages__cpp\n'}
+[0.191686] (beluga_messages) StdoutLine: {'line': b'[  1%] Built target ament_cmake_python_copy_beluga_messages\n'}
+[0.196265] (beluga_messages) StdoutLine: {'line': b'[ 12%] Built target beluga_messages__rosidl_generator_c\n'}
+[0.202633] (-) TimerEvent: {}
+[0.211366] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_typesupport_fastrtps_cpp\x1b[0m\n'}
+[0.225166] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_typesupport_introspection_cpp\x1b[0m\n'}
+[0.231013] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_typesupport_cpp\x1b[0m\n'}
+[0.253471] (beluga_messages) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/beluga_messages/msg/detail/dds_fastrtps/beluga_neighbor__type_support.cpp.o\x1b[0m\n'}
+[0.263922] (beluga_messages) StdoutLine: {'line': b'[ 15%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/beluga_messages/msg/detail/beluga_neighbor__type_support.cpp.o\x1b[0m\n'}
+[0.268440] (beluga_messages) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/beluga_messages/msg/beluga_neighbor__type_support.cpp.o\x1b[0m\n'}
+[0.302746] (-) TimerEvent: {}
+[0.403494] (-) TimerEvent: {}
+[0.504342] (-) TimerEvent: {}
+[0.605932] (-) TimerEvent: {}
+[0.710318] (-) TimerEvent: {}
+[0.811712] (-) TimerEvent: {}
+[0.909155] (beluga_messages) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/beluga_messages/msg/beluga_neighbors__type_support.cpp.o\x1b[0m\n'}
+[0.913791] (-) TimerEvent: {}
+[1.014180] (-) TimerEvent: {}
+[1.114580] (-) TimerEvent: {}
+[1.216793] (-) TimerEvent: {}
+[1.227845] (beluga_messages) StdoutLine: {'line': b'running egg_info\n'}
+[1.235249] (beluga_messages) StdoutLine: {'line': b'writing beluga_messages.egg-info/PKG-INFO\n'}
+[1.235528] (beluga_messages) StdoutLine: {'line': b'writing dependency_links to beluga_messages.egg-info/dependency_links.txt\n'}
+[1.236201] (beluga_messages) StdoutLine: {'line': b'writing top-level names to beluga_messages.egg-info/top_level.txt\n'}
+[1.250864] (beluga_messages) StdoutLine: {'line': b"reading manifest file 'beluga_messages.egg-info/SOURCES.txt'\n"}
+[1.251070] (beluga_messages) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/beluga_messages/msg/detail/beluga_neighbors__type_support.cpp.o\x1b[0m\n'}
+[1.253067] (beluga_messages) StdoutLine: {'line': b"writing manifest file 'beluga_messages.egg-info/SOURCES.txt'\n"}
+[1.316893] (-) TimerEvent: {}
+[1.421297] (-) TimerEvent: {}
+[1.440110] (beluga_messages) StdoutLine: {'line': b'[ 19%] Built target ament_cmake_python_build_beluga_messages_egg\n'}
+[1.462296] (beluga_messages) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/beluga_messages/msg/detail/dds_fastrtps/beluga_neighbors__type_support.cpp.o\x1b[0m\n'}
+[1.465389] (beluga_messages) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/beluga_messages/srv/detail/dds_fastrtps/beluga_at_command__type_support.cpp.o\x1b[0m\n'}
+[1.526037] (-) TimerEvent: {}
+[1.626911] (-) TimerEvent: {}
+[1.729796] (-) TimerEvent: {}
+[1.832784] (-) TimerEvent: {}
+[1.889375] (beluga_messages) StdoutLine: {'line': b'[ 23%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/beluga_messages/srv/beluga_at_command__type_support.cpp.o\x1b[0m\n'}
+[1.935806] (-) TimerEvent: {}
+[2.036148] (-) TimerEvent: {}
+[2.136524] (-) TimerEvent: {}
+[2.239800] (-) TimerEvent: {}
+[2.340157] (-) TimerEvent: {}
+[2.431682] (beluga_messages) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/beluga_messages/srv/detail/beluga_at_command__type_support.cpp.o\x1b[0m\n'}
+[2.440274] (-) TimerEvent: {}
+[2.457241] (beluga_messages) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/beluga_messages/msg/detail/beluga_range__type_support.cpp.o\x1b[0m\n'}
+[2.480938] (beluga_messages) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/beluga_messages/msg/detail/dds_fastrtps/beluga_range__type_support.cpp.o\x1b[0m\n'}
+[2.541796] (-) TimerEvent: {}
+[2.630856] (beluga_messages) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/beluga_messages/msg/beluga_range__type_support.cpp.o\x1b[0m\n'}
+[2.641910] (-) TimerEvent: {}
+[2.744794] (-) TimerEvent: {}
+[2.845133] (-) TimerEvent: {}
+[2.945558] (-) TimerEvent: {}
+[3.046039] (-) TimerEvent: {}
+[3.146523] (-) TimerEvent: {}
+[3.163799] (beluga_messages) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/beluga_messages/msg/detail/dds_fastrtps/beluga_ranges__type_support.cpp.o\x1b[0m\n'}
+[3.246642] (-) TimerEvent: {}
+[3.312132] (beluga_messages) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/beluga_messages/msg/detail/beluga_ranges__type_support.cpp.o\x1b[0m\n'}
+[3.344474] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_typesupport_fastrtps_c\x1b[0m\n'}
+[3.346761] (-) TimerEvent: {}
+[3.401031] (beluga_messages) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/beluga_messages/msg/detail/beluga_neighbor__type_support_c.cpp.o\x1b[0m\n'}
+[3.438178] (beluga_messages) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/beluga_messages/msg/beluga_ranges__type_support.cpp.o\x1b[0m\n'}
+[3.446873] (-) TimerEvent: {}
+[3.547322] (-) TimerEvent: {}
+[3.647696] (-) TimerEvent: {}
+[3.748164] (-) TimerEvent: {}
+[3.850119] (-) TimerEvent: {}
+[3.897051] (beluga_messages) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/beluga_messages/msg/detail/dds_fastrtps/beluga_exchange__type_support.cpp.o\x1b[0m\n'}
+[3.950228] (-) TimerEvent: {}
+[3.974883] (beluga_messages) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/beluga_messages/msg/beluga_exchange__type_support.cpp.o\x1b[0m\n'}
+[4.050340] (-) TimerEvent: {}
+[4.150717] (-) TimerEvent: {}
+[4.157460] (beluga_messages) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/beluga_messages/msg/detail/beluga_exchange__type_support.cpp.o\x1b[0m\n'}
+[4.250805] (-) TimerEvent: {}
+[4.303833] (beluga_messages) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/beluga_messages/msg/detail/beluga_neighbors__type_support_c.cpp.o\x1b[0m\n'}
+[4.350917] (-) TimerEvent: {}
+[4.451282] (-) TimerEvent: {}
+[4.551646] (-) TimerEvent: {}
+[4.614486] (beluga_messages) StdoutLine: {'line': b'[ 42%] \x1b[32m\x1b[1mLinking CXX shared library libbeluga_messages__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[4.625310] (beluga_messages) StdoutLine: {'line': b'[ 43%] \x1b[32m\x1b[1mLinking CXX shared library libbeluga_messages__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[4.651780] (-) TimerEvent: {}
+[4.752181] (-) TimerEvent: {}
+[4.767840] (beluga_messages) StdoutLine: {'line': b'[ 45%] Built target beluga_messages__rosidl_typesupport_cpp\n'}
+[4.804317] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_typesupport_introspection_c\x1b[0m\n'}
+[4.826317] (beluga_messages) StdoutLine: {'line': b'[ 46%] \x1b[32m\x1b[1mLinking CXX shared library libbeluga_messages__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[4.841256] (beluga_messages) StdoutLine: {'line': b'[ 57%] Built target beluga_messages__rosidl_typesupport_introspection_c\n'}
+[4.852292] (-) TimerEvent: {}
+[4.855147] (beluga_messages) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/beluga_messages/srv/detail/beluga_at_command__type_support_c.cpp.o\x1b[0m\n'}
+[4.870187] (beluga_messages) StdoutLine: {'line': b'[ 60%] Built target beluga_messages__rosidl_typesupport_introspection_cpp\n'}
+[4.873453] (beluga_messages) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/beluga_messages/msg/detail/beluga_range__type_support_c.cpp.o\x1b[0m\n'}
+[4.900581] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_typesupport_c\x1b[0m\n'}
+[4.931175] (beluga_messages) StdoutLine: {'line': b'[ 73%] Built target beluga_messages__rosidl_typesupport_c\n'}
+[4.953805] (-) TimerEvent: {}
+[4.956440] (beluga_messages) StdoutLine: {'line': b'[ 74%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/beluga_messages/msg/detail/beluga_ranges__type_support_c.cpp.o\x1b[0m\n'}
+[5.019868] (beluga_messages) StdoutLine: {'line': b'[ 76%] Built target beluga_messages__rosidl_typesupport_fastrtps_cpp\n'}
+[5.038797] (beluga_messages) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/beluga_messages/msg/detail/beluga_exchange__type_support_c.cpp.o\x1b[0m\n'}
+[5.053917] (-) TimerEvent: {}
+[5.154343] (-) TimerEvent: {}
+[5.257796] (-) TimerEvent: {}
+[5.358131] (-) TimerEvent: {}
+[5.458511] (-) TimerEvent: {}
+[5.558947] (-) TimerEvent: {}
+[5.659320] (-) TimerEvent: {}
+[5.722191] (beluga_messages) StdoutLine: {'line': b'[ 78%] \x1b[32m\x1b[1mLinking CXX shared library libbeluga_messages__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[5.759428] (-) TimerEvent: {}
+[5.847701] (beluga_messages) StdoutLine: {'line': b'[ 80%] Built target beluga_messages__rosidl_typesupport_fastrtps_c\n'}
+[5.859543] (-) TimerEvent: {}
+[5.888821] (beluga_messages) StdoutLine: {'line': b'[ 80%] Built target beluga_messages\n'}
+[5.940581] (beluga_messages) StdoutLine: {'line': b'[ 81%] Built target beluga_messages__py\n'}
+[5.959648] (-) TimerEvent: {}
+[5.962345] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_generator_py\x1b[0m\n'}
+[5.994918] (beluga_messages) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding C object CMakeFiles/beluga_messages__rosidl_generator_py.dir/rosidl_generator_py/beluga_messages/msg/_beluga_neighbor_s.c.o\x1b[0m\n'}
+[5.996832] (beluga_messages) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/beluga_messages__rosidl_generator_py.dir/rosidl_generator_py/beluga_messages/msg/_beluga_range_s.c.o\x1b[0m\n'}
+[5.999419] (beluga_messages) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/beluga_messages__rosidl_generator_py.dir/rosidl_generator_py/beluga_messages/srv/_beluga_at_command_s.c.o\x1b[0m\n'}
+[5.999651] (beluga_messages) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/beluga_messages__rosidl_generator_py.dir/rosidl_generator_py/beluga_messages/msg/_beluga_neighbors_s.c.o\x1b[0m\n'}
+[6.063800] (-) TimerEvent: {}
+[6.164119] (-) TimerEvent: {}
+[6.264474] (-) TimerEvent: {}
+[6.276926] (beluga_messages) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding C object CMakeFiles/beluga_messages__rosidl_generator_py.dir/rosidl_generator_py/beluga_messages/msg/_beluga_ranges_s.c.o\x1b[0m\n'}
+[6.293760] (beluga_messages) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/beluga_messages__rosidl_generator_py.dir/rosidl_generator_py/beluga_messages/msg/_beluga_exchange_s.c.o\x1b[0m\n'}
+[6.364580] (-) TimerEvent: {}
+[6.448648] (beluga_messages) StdoutLine: {'line': b'[ 91%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/beluga_messages/libbeluga_messages__rosidl_generator_py.so\x1b[0m\n'}
+[6.464689] (-) TimerEvent: {}
+[6.558169] (beluga_messages) StdoutLine: {'line': b'[ 91%] Built target beluga_messages__rosidl_generator_py\n'}
+[6.565682] (-) TimerEvent: {}
+[6.586813] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_typesupport_introspection_c__pyext\x1b[0m\n'}
+[6.587007] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_typesupport_fastrtps_c__pyext\x1b[0m\n'}
+[6.615190] (beluga_messages) StdoutLine: {'line': b'[ 92%] \x1b[32mBuilding C object CMakeFiles/beluga_messages__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/beluga_messages/_beluga_messages_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[6.625881] (beluga_messages) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga_messages__rosidl_typesupport_c__pyext\x1b[0m\n'}
+[6.631242] (beluga_messages) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding C object CMakeFiles/beluga_messages__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/beluga_messages/_beluga_messages_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[6.659856] (beluga_messages) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding C object CMakeFiles/beluga_messages__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/beluga_messages/_beluga_messages_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[6.665819] (-) TimerEvent: {}
+[6.769916] (-) TimerEvent: {}
+[6.848433] (beluga_messages) StdoutLine: {'line': b'[ 97%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/beluga_messages/beluga_messages_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[6.871610] (-) TimerEvent: {}
+[6.965854] (beluga_messages) StdoutLine: {'line': b'[ 97%] Built target beluga_messages__rosidl_typesupport_introspection_c__pyext\n'}
+[6.973784] (-) TimerEvent: {}
+[7.042826] (beluga_messages) StdoutLine: {'line': b'[ 98%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/beluga_messages/beluga_messages_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[7.045004] (beluga_messages) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/beluga_messages/beluga_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[7.074840] (-) TimerEvent: {}
+[7.102309] (beluga_messages) StdoutLine: {'line': b'[100%] Built target beluga_messages__rosidl_typesupport_fastrtps_c__pyext\n'}
+[7.120609] (beluga_messages) StdoutLine: {'line': b'[100%] Built target beluga_messages__rosidl_typesupport_c__pyext\n'}
+[7.147485] (beluga_messages) CommandEnded: {'returncode': 0}
+[7.153886] (beluga_messages) JobProgress: {'identifier': 'beluga_messages', 'progress': 'install'}
+[7.161969] (beluga_messages) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages'], 'cwd': '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'admi3ev'), ('USER_ID', '2'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/admi3ev'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.117.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '901'), ('SYSTEMD_EXEC_PID', '1056'), ('IM_CONFIG_CHECK_ENV', '1'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4871'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/admi3ev/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'admi3ev'), ('JOURNAL_STREAM', '8:10710'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'admi3ev'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/home/admi3ev/.local/bin:/opt/ros/humble/bin:/home/admi3ev/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nuc2:@/tmp/.ICE-unix/1026,unix/nuc2:/tmp/.ICE-unix/1026'), ('INVOCATION_ID', '67b3dff36b82477b8138db9958d9c436'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VV9BO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-97298256b5.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/admi3ev/Beluga-Firmware-Mod/build/beluga_messages'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble')]), 'shell': False}
+[7.177808] (-) TimerEvent: {}
+[7.178426] (beluga_messages) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[7.183665] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/ament_index/resource_index/rosidl_interfaces/beluga_messages\n'}
+[7.183883] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages\n'}
+[7.184006] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg\n'}
+[7.184103] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_ranges.h\n'}
+[7.184191] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_range.h\n'}
+[7.184275] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail\n'}
+[7.184360] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__functions.c\n'}
+[7.184450] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__functions.h\n'}
+[7.184527] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__type_support.h\n'}
+[7.184610] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__struct.h\n'}
+[7.184693] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__type_support.h\n'}
+[7.184791] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__functions.c\n'}
+[7.184869] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__functions.c\n'}
+[7.184945] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__struct.h\n'}
+[7.185024] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__functions.h\n'}
+[7.185101] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__functions.h\n'}
+[7.185178] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__functions.h\n'}
+[7.185255] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__struct.h\n'}
+[7.185330] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__type_support.h\n'}
+[7.185415] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__functions.c\n'}
+[7.185487] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__functions.c\n'}
+[7.185558] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__type_support.h\n'}
+[7.185630] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__functions.h\n'}
+[7.185700] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__struct.h\n'}
+[7.185790] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__struct.h\n'}
+[7.185864] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__type_support.h\n'}
+[7.185945] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/rosidl_generator_c__visibility_control.h\n'}
+[7.186015] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_exchange.h\n'}
+[7.186087] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_neighbors.h\n'}
+[7.186158] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_neighbor.h\n'}
+[7.186229] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv\n'}
+[7.186302] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail\n'}
+[7.186375] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__functions.h\n'}
+[7.186448] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__struct.h\n'}
+[7.186521] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__type_support.h\n'}
+[7.186597] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__functions.c\n'}
+[7.186668] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/beluga_at_command.h\n'}
+[7.195278] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/environment/library_path.sh\n'}
+[7.195476] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/environment/library_path.dsv\n'}
+[7.197089] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_generator_c.so\n'}
+[7.197968] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages\n'}
+[7.198072] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg\n'}
+[7.198157] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail\n'}
+[7.198239] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__rosidl_typesupport_fastrtps_c.h\n'}
+[7.198322] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__rosidl_typesupport_fastrtps_c.h\n'}
+[7.198396] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__rosidl_typesupport_fastrtps_c.h\n'}
+[7.198474] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__rosidl_typesupport_fastrtps_c.h\n'}
+[7.198570] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__rosidl_typesupport_fastrtps_c.h\n'}
+[7.198647] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[7.198733] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv\n'}
+[7.198817] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail\n'}
+[7.198896] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__rosidl_typesupport_fastrtps_c.h\n'}
+[7.198978] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_fastrtps_c.so\n'}
+[7.199054] (beluga_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[7.199131] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages\n'}
+[7.199206] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg\n'}
+[7.199281] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail\n'}
+[7.199360] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__type_support.c\n'}
+[7.199441] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__type_support.c\n'}
+[7.199522] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__rosidl_typesupport_introspection_c.h\n'}
+[7.199608] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__type_support.c\n'}
+[7.199691] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__type_support.c\n'}
+[7.204719] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__rosidl_typesupport_introspection_c.h\n'}
+[7.206657] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__rosidl_typesupport_introspection_c.h\n'}
+[7.211740] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__rosidl_typesupport_introspection_c.h\n'}
+[7.211915] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__type_support.c\n'}
+[7.212016] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__rosidl_typesupport_introspection_c.h\n'}
+[7.212128] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[7.212216] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv\n'}
+[7.212297] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail\n'}
+[7.212373] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__type_support.c\n'}
+[7.212453] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__rosidl_typesupport_introspection_c.h\n'}
+[7.212534] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_introspection_c.so\n'}
+[7.212610] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_c.so\n'}
+[7.212702] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages\n'}
+[7.212806] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg\n'}
+[7.212881] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_neighbors.hpp\n'}
+[7.212952] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_neighbor.hpp\n'}
+[7.213028] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail\n'}
+[7.213106] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__type_support.hpp\n'}
+[7.213185] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__type_support.hpp\n'}
+[7.213261] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__traits.hpp\n'}
+[7.213338] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__builder.hpp\n'}
+[7.213409] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__type_support.hpp\n'}
+[7.213485] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__builder.hpp\n'}
+[7.213560] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__struct.hpp\n'}
+[7.213636] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__builder.hpp\n'}
+[7.213715] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__struct.hpp\n'}
+[7.221060] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__type_support.hpp\n'}
+[7.221342] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__struct.hpp\n'}
+[7.221446] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__struct.hpp\n'}
+[7.221539] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__traits.hpp\n'}
+[7.221631] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__builder.hpp\n'}
+[7.221720] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__traits.hpp\n'}
+[7.221818] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__type_support.hpp\n'}
+[7.221893] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__struct.hpp\n'}
+[7.221970] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__traits.hpp\n'}
+[7.222049] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__builder.hpp\n'}
+[7.222128] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__traits.hpp\n'}
+[7.222204] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_range.hpp\n'}
+[7.222280] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_ranges.hpp\n'}
+[7.222353] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/beluga_exchange.hpp\n'}
+[7.222442] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[7.222520] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv\n'}
+[7.222590] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail\n'}
+[7.222660] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__struct.hpp\n'}
+[7.222738] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__type_support.hpp\n'}
+[7.222826] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__traits.hpp\n'}
+[7.222896] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__builder.hpp\n'}
+[7.222969] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/beluga_at_command.hpp\n'}
+[7.223042] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages\n'}
+[7.223115] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg\n'}
+[7.223189] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail\n'}
+[7.223269] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[7.223355] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[7.223429] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[7.223503] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[7.223577] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/dds_fastrtps\n'}
+[7.223650] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[7.233204] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[7.233440] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv\n'}
+[7.233537] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail\n'}
+[7.233619] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[7.233697] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/dds_fastrtps\n'}
+[7.233808] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_fastrtps_cpp.so\n'}
+[7.233898] (beluga_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[7.233979] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages\n'}
+[7.234060] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg\n'}
+[7.234149] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail\n'}
+[7.234229] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__rosidl_typesupport_introspection_cpp.hpp\n'}
+[7.234319] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__rosidl_typesupport_introspection_cpp.hpp\n'}
+[7.234395] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__rosidl_typesupport_introspection_cpp.hpp\n'}
+[7.234468] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbor__type_support.cpp\n'}
+[7.234541] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_range__type_support.cpp\n'}
+[7.234612] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_ranges__type_support.cpp\n'}
+[7.234689] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__rosidl_typesupport_introspection_cpp.hpp\n'}
+[7.234784] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_exchange__type_support.cpp\n'}
+[7.234862] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__type_support.cpp\n'}
+[7.234935] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/msg/detail/beluga_neighbors__rosidl_typesupport_introspection_cpp.hpp\n'}
+[7.235015] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv\n'}
+[7.239327] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail\n'}
+[7.239455] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__rosidl_typesupport_introspection_cpp.hpp\n'}
+[7.240060] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/include/beluga_messages/beluga_messages/srv/detail/beluga_at_command__type_support.cpp\n'}
+[7.240368] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_introspection_cpp.so\n'}
+[7.240460] (beluga_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[7.241817] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_cpp.so\n'}
+[7.241930] (beluga_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_typesupport_cpp.so" to ""\n'}
+[7.242024] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/environment/pythonpath.sh\n'}
+[7.242099] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/environment/pythonpath.dsv\n'}
+[7.242170] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages-0.0.0-py3.10.egg-info\n'}
+[7.242243] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[7.242315] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[7.242389] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[7.242466] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[7.242539] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages\n'}
+[7.242611] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/_beluga_messages_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[7.242686] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg\n'}
+[7.242789] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_exchange_s.c\n'}
+[7.242872] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_ranges_s.c\n'}
+[7.242945] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_ranges.py\n'}
+[7.243015] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/__init__.py\n'}
+[7.243090] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_neighbor_s.c\n'}
+[7.243166] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_neighbors_s.c\n'}
+[7.243236] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_range.py\n'}
+[7.243308] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_neighbors.py\n'}
+[7.243381] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_neighbor.py\n'}
+[7.243456] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_exchange.py\n'}
+[7.243533] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg/_beluga_range_s.c\n'}
+[7.243605] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/_beluga_messages_s.ep.rosidl_typesupport_c.c\n'}
+[7.243681] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/libbeluga_messages__rosidl_generator_py.so\n'}
+[7.245353] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/__init__.py\n'}
+[7.245471] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/srv\n'}
+[7.245556] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/srv/_beluga_at_command.py\n'}
+[7.245631] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/srv/__init__.py\n'}
+[7.245703] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/srv/_beluga_at_command_s.c\n'}
+[7.245793] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/beluga_messages_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[7.245870] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/beluga_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[7.245942] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/_beluga_messages_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[7.246014] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/beluga_messages_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[7.278703] (-) TimerEvent: {}
+[7.309923] (beluga_messages) StdoutLine: {'line': b"Listing '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages'...\n"}
+[7.310250] (beluga_messages) StdoutLine: {'line': b"Listing '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/msg'...\n"}
+[7.310457] (beluga_messages) StdoutLine: {'line': b"Listing '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/srv'...\n"}
+[7.322846] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/beluga_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[7.327161] (beluga_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/beluga_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[7.327350] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/beluga_messages_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[7.327441] (beluga_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/beluga_messages_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[7.327528] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/beluga_messages_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[7.327668] (beluga_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages/beluga_messages/beluga_messages_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[7.328707] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_generator_py.so\n'}
+[7.329848] (beluga_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib/libbeluga_messages__rosidl_generator_py.so" to ""\n'}
+[7.330811] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaNeighbor.idl\n'}
+[7.331097] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaNeighbors.idl\n'}
+[7.331406] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/srv/BelugaATCommand.idl\n'}
+[7.332594] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaRange.idl\n'}
+[7.332764] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaRanges.idl\n'}
+[7.332862] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaExchange.idl\n'}
+[7.332946] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaNeighbor.msg\n'}
+[7.333021] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaNeighbors.msg\n'}
+[7.333095] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/srv/BelugaATCommand.srv\n'}
+[7.333167] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/srv/BelugaATCommand_Request.msg\n'}
+[7.333240] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/srv/BelugaATCommand_Response.msg\n'}
+[7.333312] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaRange.msg\n'}
+[7.333383] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaRanges.msg\n'}
+[7.334795] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/msg/BelugaExchange.msg\n'}
+[7.335016] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/ament_index/resource_index/package_run_dependencies/beluga_messages\n'}
+[7.335120] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/ament_index/resource_index/parent_prefix_path/beluga_messages\n'}
+[7.335210] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/environment/ament_prefix_path.sh\n'}
+[7.335302] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/environment/ament_prefix_path.dsv\n'}
+[7.335382] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/environment/path.sh\n'}
+[7.335461] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/environment/path.dsv\n'}
+[7.335537] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/local_setup.bash\n'}
+[7.335610] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/local_setup.sh\n'}
+[7.335683] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/local_setup.zsh\n'}
+[7.335778] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/local_setup.dsv\n'}
+[7.335868] (beluga_messages) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.dsv\n'}
+[7.335942] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/ament_index/resource_index/packages/beluga_messages\n'}
+[7.339992] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/export_beluga_messages__rosidl_generator_cExport.cmake\n'}
+[7.340251] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/export_beluga_messages__rosidl_generator_cExport-noconfig.cmake\n'}
+[7.340363] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/export_beluga_messages__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[7.340464] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/export_beluga_messages__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[7.340548] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messages__rosidl_typesupport_introspection_cExport.cmake\n'}
+[7.340629] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messages__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[7.340714] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messages__rosidl_typesupport_cExport.cmake\n'}
+[7.341067] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messages__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[7.341155] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/export_beluga_messages__rosidl_generator_cppExport.cmake\n'}
+[7.350654] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/export_beluga_messages__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[7.354747] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/export_beluga_messages__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[7.354933] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messages__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[7.355031] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messages__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[7.355109] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messages__rosidl_typesupport_cppExport.cmake\n'}
+[7.355181] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messages__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[7.355249] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/export_beluga_messages__rosidl_generator_pyExport.cmake\n'}
+[7.355316] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/export_beluga_messages__rosidl_generator_pyExport-noconfig.cmake\n'}
+[7.355384] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/rosidl_cmake-extras.cmake\n'}
+[7.355465] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[7.355551] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[7.355634] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[7.355708] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[7.355798] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[7.355880] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[7.355972] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messagesConfig.cmake\n'}
+[7.356052] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake/beluga_messagesConfig-version.cmake\n'}
+[7.356128] (beluga_messages) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/package.xml\n'}
+[7.356206] (beluga_messages) CommandEnded: {'returncode': 0}
+[7.380435] (-) TimerEvent: {}
+[7.407062] (beluga_messages) JobEnded: {'identifier': 'beluga_messages', 'rc': 0}
+[7.407807] (beluga) JobStarted: {'identifier': 'beluga'}
+[7.425066] (example_beluga_client) JobStarted: {'identifier': 'example_beluga_client'}
+[7.437446] (beluga) JobProgress: {'identifier': 'beluga', 'progress': 'cmake'}
+[7.438599] (beluga) JobProgress: {'identifier': 'beluga', 'progress': 'build'}
+[7.440431] (beluga) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/admi3ev/Beluga-Firmware-Mod/build/beluga', '--', '-j4', '-l4'], 'cwd': '/home/admi3ev/Beluga-Firmware-Mod/build/beluga', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'admi3ev'), ('USER_ID', '2'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/admi3ev'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.117.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '901'), ('SYSTEMD_EXEC_PID', '1056'), ('IM_CONFIG_CHECK_ENV', '1'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4871'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/admi3ev/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'admi3ev'), ('JOURNAL_STREAM', '8:10710'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'admi3ev'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/home/admi3ev/.local/bin:/opt/ros/humble/bin:/home/admi3ev/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nuc2:@/tmp/.ICE-unix/1026,unix/nuc2:/tmp/.ICE-unix/1026'), ('INVOCATION_ID', '67b3dff36b82477b8138db9958d9c436'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VV9BO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-97298256b5.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/admi3ev/Beluga-Firmware-Mod/build/beluga'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble')]), 'shell': False}
+[7.450322] (example_beluga_client) JobProgress: {'identifier': 'example_beluga_client', 'progress': 'cmake'}
+[7.458426] (example_beluga_client) JobProgress: {'identifier': 'example_beluga_client', 'progress': 'build'}
+[7.458511] (example_beluga_client) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client', '--', '-j4', '-l4'], 'cwd': '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'admi3ev'), ('USER_ID', '2'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/admi3ev'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.117.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '901'), ('SYSTEMD_EXEC_PID', '1056'), ('IM_CONFIG_CHECK_ENV', '1'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4871'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/admi3ev/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'admi3ev'), ('JOURNAL_STREAM', '8:10710'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'admi3ev'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/home/admi3ev/.local/bin:/opt/ros/humble/bin:/home/admi3ev/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nuc2:@/tmp/.ICE-unix/1026,unix/nuc2:/tmp/.ICE-unix/1026'), ('INVOCATION_ID', '67b3dff36b82477b8138db9958d9c436'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VV9BO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-97298256b5.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble')]), 'shell': False}
+[7.480853] (-) TimerEvent: {}
+[7.521170] (example_beluga_client) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[7.521446] (beluga) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[7.581193] (-) TimerEvent: {}
+[7.681763] (-) TimerEvent: {}
+[7.783918] (-) TimerEvent: {}
+[7.840813] (beluga) StdoutLine: {'line': b'-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[7.842631] (example_beluga_client) StdoutLine: {'line': b'-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[7.884028] (-) TimerEvent: {}
+[7.926824] (example_beluga_client) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[7.927778] (beluga) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[7.937448] (beluga) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[7.941211] (example_beluga_client) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[7.960805] (beluga) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[7.963992] (example_beluga_client) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[7.984148] (-) TimerEvent: {}
+[7.995087] (beluga) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[7.995393] (example_beluga_client) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[8.026548] (beluga) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[8.034800] (example_beluga_client) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[8.088452] (-) TimerEvent: {}
+[8.142440] (beluga) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[8.142785] (example_beluga_client) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[8.147279] (example_beluga_client) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[8.147519] (beluga) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[8.188551] (-) TimerEvent: {}
+[8.288886] (-) TimerEvent: {}
+[8.380158] (example_beluga_client) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[8.380437] (beluga) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[8.389145] (-) TimerEvent: {}
+[8.494792] (-) TimerEvent: {}
+[8.541849] (example_beluga_client) StdoutLine: {'line': b'-- Found beluga_messages: 0.0.0 (/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake)\n'}
+[8.544203] (beluga) StdoutLine: {'line': b'-- Found beluga_messages: 0.0.0 (/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/share/beluga_messages/cmake)\n'}
+[8.595912] (-) TimerEvent: {}
+[8.694466] (example_beluga_client) StdoutLine: {'line': b'-- Configuring done\n'}
+[8.696187] (-) TimerEvent: {}
+[8.725678] (example_beluga_client) StdoutLine: {'line': b'-- Generating done\n'}
+[8.734612] (example_beluga_client) StdoutLine: {'line': b'-- Build files have been written to: /home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client\n'}
+[8.787870] (example_beluga_client) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target client\x1b[0m\n'}
+[8.796287] (-) TimerEvent: {}
+[8.830225] (example_beluga_client) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/client.dir/src/example_client.cpp.o\x1b[0m\n'}
+[8.896389] (-) TimerEvent: {}
+[9.001780] (-) TimerEvent: {}
+[9.102076] (-) TimerEvent: {}
+[9.202418] (-) TimerEvent: {}
+[9.302859] (-) TimerEvent: {}
+[9.403285] (-) TimerEvent: {}
+[9.503656] (-) TimerEvent: {}
+[9.605329] (-) TimerEvent: {}
+[9.706084] (-) TimerEvent: {}
+[9.807527] (-) TimerEvent: {}
+[9.910814] (-) TimerEvent: {}
+[10.011173] (-) TimerEvent: {}
+[10.113797] (-) TimerEvent: {}
+[10.214217] (-) TimerEvent: {}
+[10.314983] (-) TimerEvent: {}
+[10.415788] (-) TimerEvent: {}
+[10.516266] (-) TimerEvent: {}
+[10.568579] (beluga) StdoutLine: {'line': b'-- DAW_USE_EXCEPTIONS=ON: Errors throw json_exception\n'}
+[10.568813] (beluga) StdoutLine: {'line': b'-- DAW_NO_FLATTEN=ON: Disabling function flattening and forced inline optimization\n'}
+[10.575231] (beluga) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[10.617115] (-) TimerEvent: {}
+[10.686063] (beluga) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[10.686319] (beluga) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/admi3ev/Beluga-Firmware-Mod/ROS/src/beluga/include\n'}
+[10.686423] (beluga) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[10.687376] (beluga) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[10.689707] (beluga) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[10.689927] (beluga) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[10.690019] (beluga) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[10.691433] (beluga) StdoutLine: {'line': b'-- Configuring done\n'}
+[10.717628] (-) TimerEvent: {}
+[10.719978] (beluga) StdoutLine: {'line': b'-- Generating done\n'}
+[10.728369] (beluga) StdoutLine: {'line': b'-- Build files have been written to: /home/admi3ev/Beluga-Firmware-Mod/build/beluga\n'}
+[10.767602] (beluga) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target serial\x1b[0m\n'}
+[10.791556] (beluga) StdoutLine: {'line': b'[  6%] \x1b[32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/core/serial_base.cpp.o\x1b[0m\n'}
+[10.793612] (beluga) StdoutLine: {'line': b'[ 13%] \x1b[32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/tools/core/sys_fs_common.cpp.o\x1b[0m\n'}
+[10.794695] (beluga) StdoutLine: {'line': b'[ 20%] \x1b[32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/core/serial_posix.cpp.o\x1b[0m\n'}
+[10.797180] (beluga) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding C object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/core/C-API/serial_posix.c.o\x1b[0m\n'}
+[10.817754] (-) TimerEvent: {}
+[10.920820] (-) TimerEvent: {}
+[10.947918] (beluga) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/tools/core/sys_fs_linux.cpp.o\x1b[0m\n'}
+[11.021837] (-) TimerEvent: {}
+[11.122246] (-) TimerEvent: {}
+[11.222994] (-) TimerEvent: {}
+[11.323823] (-) TimerEvent: {}
+[11.424203] (-) TimerEvent: {}
+[11.526903] (-) TimerEvent: {}
+[11.627271] (-) TimerEvent: {}
+[11.727653] (-) TimerEvent: {}
+[11.828079] (-) TimerEvent: {}
+[11.930804] (-) TimerEvent: {}
+[12.031183] (-) TimerEvent: {}
+[12.131548] (-) TimerEvent: {}
+[12.140423] (beluga) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object beluga-serial-lib/serial/CMakeFiles/serial.dir/src/tools/list_ports.cpp.o\x1b[0m\n'}
+[12.231670] (-) TimerEvent: {}
+[12.333802] (-) TimerEvent: {}
+[12.434196] (-) TimerEvent: {}
+[12.534879] (-) TimerEvent: {}
+[12.637997] (-) TimerEvent: {}
+[12.738405] (-) TimerEvent: {}
+[12.838789] (-) TimerEvent: {}
+[12.939136] (-) TimerEvent: {}
+[12.997807] (beluga) StdoutLine: {'line': b'[ 46%] \x1b[32m\x1b[1mLinking CXX static library libserial.a\x1b[0m\n'}
+[13.039279] (-) TimerEvent: {}
+[13.042176] (beluga) StdoutLine: {'line': b'[ 46%] Built target serial\n'}
+[13.055451] (beluga) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga-serial\x1b[0m\n'}
+[13.079511] (beluga) StdoutLine: {'line': b'[ 53%] \x1b[32mBuilding CXX object beluga-serial-lib/CMakeFiles/beluga-serial.dir/src/beluga_neighbor_list.cpp.o\x1b[0m\n'}
+[13.079763] (beluga) StdoutLine: {'line': b'[ 60%] \x1b[32mBuilding CXX object beluga-serial-lib/CMakeFiles/beluga-serial.dir/src/beluga_frame.cpp.o\x1b[0m\n'}
+[13.079880] (beluga) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object beluga-serial-lib/CMakeFiles/beluga-serial.dir/src/beluga_event.cpp.o\x1b[0m\n'}
+[13.085422] (beluga) StdoutLine: {'line': b'[ 73%] \x1b[32mBuilding CXX object beluga-serial-lib/CMakeFiles/beluga-serial.dir/src/beluga_serial.cpp.o\x1b[0m\n'}
+[13.140901] (-) TimerEvent: {}
+[13.241255] (-) TimerEvent: {}
+[13.341600] (-) TimerEvent: {}
+[13.443807] (-) TimerEvent: {}
+[13.544175] (-) TimerEvent: {}
+[13.646805] (-) TimerEvent: {}
+[13.747180] (-) TimerEvent: {}
+[13.847546] (-) TimerEvent: {}
+[13.948776] (-) TimerEvent: {}
+[14.049552] (-) TimerEvent: {}
+[14.151107] (-) TimerEvent: {}
+[14.251478] (-) TimerEvent: {}
+[14.320278] (example_beluga_client) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable client\x1b[0m\n'}
+[14.351613] (-) TimerEvent: {}
+[14.453800] (-) TimerEvent: {}
+[14.554272] (-) TimerEvent: {}
+[14.654710] (-) TimerEvent: {}
+[14.695116] (example_beluga_client) StdoutLine: {'line': b'[100%] Built target client\n'}
+[14.710817] (example_beluga_client) CommandEnded: {'returncode': 0}
+[14.715879] (example_beluga_client) JobProgress: {'identifier': 'example_beluga_client', 'progress': 'install'}
+[14.715972] (example_beluga_client) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client'], 'cwd': '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'admi3ev'), ('USER_ID', '2'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/admi3ev'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.117.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '901'), ('SYSTEMD_EXEC_PID', '1056'), ('IM_CONFIG_CHECK_ENV', '1'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4871'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/admi3ev/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'admi3ev'), ('JOURNAL_STREAM', '8:10710'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'admi3ev'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/home/admi3ev/.local/bin:/opt/ros/humble/bin:/home/admi3ev/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nuc2:@/tmp/.ICE-unix/1026,unix/nuc2:/tmp/.ICE-unix/1026'), ('INVOCATION_ID', '67b3dff36b82477b8138db9958d9c436'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VV9BO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-97298256b5.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/admi3ev/Beluga-Firmware-Mod/build/example_beluga_client'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble')]), 'shell': False}
+[14.724526] (example_beluga_client) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[14.725646] (example_beluga_client) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/lib/example_beluga_client/client\n'}
+[14.727544] (example_beluga_client) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/lib/example_beluga_client/client" to ""\n'}
+[14.728118] (example_beluga_client) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/ament_index/resource_index/package_run_dependencies/example_beluga_client\n'}
+[14.728543] (example_beluga_client) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/ament_index/resource_index/parent_prefix_path/example_beluga_client\n'}
+[14.729407] (example_beluga_client) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/environment/ament_prefix_path.sh\n'}
+[14.730265] (example_beluga_client) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/environment/ament_prefix_path.dsv\n'}
+[14.731171] (example_beluga_client) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/environment/path.sh\n'}
+[14.731990] (example_beluga_client) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/environment/path.dsv\n'}
+[14.732699] (example_beluga_client) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/local_setup.bash\n'}
+[14.732949] (example_beluga_client) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/local_setup.sh\n'}
+[14.733811] (example_beluga_client) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/local_setup.zsh\n'}
+[14.733984] (example_beluga_client) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/local_setup.dsv\n'}
+[14.734410] (example_beluga_client) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.dsv\n'}
+[14.734999] (example_beluga_client) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/ament_index/resource_index/packages/example_beluga_client\n'}
+[14.735498] (example_beluga_client) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/cmake/example_beluga_clientConfig.cmake\n'}
+[14.735854] (example_beluga_client) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/cmake/example_beluga_clientConfig-version.cmake\n'}
+[14.736218] (example_beluga_client) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/example_beluga_client/share/example_beluga_client/package.xml\n'}
+[14.741150] (example_beluga_client) CommandEnded: {'returncode': 0}
+[14.754852] (-) TimerEvent: {}
+[14.765590] (example_beluga_client) JobEnded: {'identifier': 'example_beluga_client', 'rc': 0}
+[14.855837] (-) TimerEvent: {}
+[14.956634] (-) TimerEvent: {}
+[15.057004] (-) TimerEvent: {}
+[15.157380] (-) TimerEvent: {}
+[15.257746] (-) TimerEvent: {}
+[15.358063] (-) TimerEvent: {}
+[15.458385] (-) TimerEvent: {}
+[15.558730] (-) TimerEvent: {}
+[15.659074] (-) TimerEvent: {}
+[15.759374] (-) TimerEvent: {}
+[15.859681] (-) TimerEvent: {}
+[15.959993] (-) TimerEvent: {}
+[16.060302] (-) TimerEvent: {}
+[16.160678] (-) TimerEvent: {}
+[16.261012] (-) TimerEvent: {}
+[16.361323] (-) TimerEvent: {}
+[16.461610] (-) TimerEvent: {}
+[16.527824] (beluga) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking CXX static library libbeluga-serial.a\x1b[0m\n'}
+[16.561752] (-) TimerEvent: {}
+[16.587514] (beluga) StdoutLine: {'line': b'[ 80%] Built target beluga-serial\n'}
+[16.600046] (beluga) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target beluga\x1b[0m\n'}
+[16.624510] (beluga) StdoutLine: {'line': b'[ 86%] \x1b[32mBuilding CXX object CMakeFiles/beluga.dir/src/beluga_main.cpp.o\x1b[0m\n'}
+[16.624894] (beluga) StdoutLine: {'line': b'[ 93%] \x1b[32mBuilding CXX object CMakeFiles/beluga.dir/src/beluga.cpp.o\x1b[0m\n'}
+[16.661889] (-) TimerEvent: {}
+[16.762219] (-) TimerEvent: {}
+[16.862554] (-) TimerEvent: {}
+[16.962910] (-) TimerEvent: {}
+[17.063258] (-) TimerEvent: {}
+[17.163620] (-) TimerEvent: {}
+[17.264001] (-) TimerEvent: {}
+[17.364489] (-) TimerEvent: {}
+[17.464849] (-) TimerEvent: {}
+[17.565184] (-) TimerEvent: {}
+[17.665514] (-) TimerEvent: {}
+[17.766248] (-) TimerEvent: {}
+[17.866606] (-) TimerEvent: {}
+[17.966961] (-) TimerEvent: {}
+[18.067287] (-) TimerEvent: {}
+[18.167652] (-) TimerEvent: {}
+[18.268860] (-) TimerEvent: {}
+[18.369189] (-) TimerEvent: {}
+[18.470677] (-) TimerEvent: {}
+[18.572856] (-) TimerEvent: {}
+[18.673238] (-) TimerEvent: {}
+[18.773566] (-) TimerEvent: {}
+[18.874022] (-) TimerEvent: {}
+[18.974355] (-) TimerEvent: {}
+[19.074718] (-) TimerEvent: {}
+[19.175050] (-) TimerEvent: {}
+[19.275401] (-) TimerEvent: {}
+[19.376048] (-) TimerEvent: {}
+[19.476705] (-) TimerEvent: {}
+[19.577049] (-) TimerEvent: {}
+[19.677403] (-) TimerEvent: {}
+[19.777778] (-) TimerEvent: {}
+[19.878580] (-) TimerEvent: {}
+[19.979195] (-) TimerEvent: {}
+[20.079859] (-) TimerEvent: {}
+[20.180517] (-) TimerEvent: {}
+[20.281184] (-) TimerEvent: {}
+[20.381849] (-) TimerEvent: {}
+[20.482533] (-) TimerEvent: {}
+[20.583192] (-) TimerEvent: {}
+[20.683531] (-) TimerEvent: {}
+[20.783868] (-) TimerEvent: {}
+[20.884208] (-) TimerEvent: {}
+[20.984559] (-) TimerEvent: {}
+[21.085009] (-) TimerEvent: {}
+[21.185453] (-) TimerEvent: {}
+[21.285817] (-) TimerEvent: {}
+[21.386248] (-) TimerEvent: {}
+[21.486592] (-) TimerEvent: {}
+[21.587010] (-) TimerEvent: {}
+[21.687320] (-) TimerEvent: {}
+[21.787825] (-) TimerEvent: {}
+[21.888162] (-) TimerEvent: {}
+[21.988498] (-) TimerEvent: {}
+[22.088900] (-) TimerEvent: {}
+[22.189233] (-) TimerEvent: {}
+[22.289634] (-) TimerEvent: {}
+[22.390036] (-) TimerEvent: {}
+[22.490336] (-) TimerEvent: {}
+[22.590750] (-) TimerEvent: {}
+[22.693794] (-) TimerEvent: {}
+[22.794170] (-) TimerEvent: {}
+[22.894533] (-) TimerEvent: {}
+[22.994934] (-) TimerEvent: {}
+[23.095374] (-) TimerEvent: {}
+[23.195715] (-) TimerEvent: {}
+[23.296078] (-) TimerEvent: {}
+[23.396405] (-) TimerEvent: {}
+[23.500018] (-) TimerEvent: {}
+[23.600325] (-) TimerEvent: {}
+[23.679444] (beluga) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable beluga\x1b[0m\n'}
+[23.700431] (-) TimerEvent: {}
+[23.800797] (-) TimerEvent: {}
+[23.901126] (-) TimerEvent: {}
+[24.001461] (-) TimerEvent: {}
+[24.092579] (beluga) StdoutLine: {'line': b'[100%] Built target beluga\n'}
+[24.101595] (-) TimerEvent: {}
+[24.102386] (beluga) CommandEnded: {'returncode': 0}
+[24.103365] (beluga) JobProgress: {'identifier': 'beluga', 'progress': 'install'}
+[24.103612] (beluga) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/admi3ev/Beluga-Firmware-Mod/build/beluga'], 'cwd': '/home/admi3ev/Beluga-Firmware-Mod/build/beluga', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'admi3ev'), ('USER_ID', '2'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/admi3ev'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.117.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '901'), ('SYSTEMD_EXEC_PID', '1056'), ('IM_CONFIG_CHECK_ENV', '1'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4871'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/admi3ev/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'admi3ev'), ('JOURNAL_STREAM', '8:10710'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'admi3ev'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/admi3ev/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/home/admi3ev/.local/bin:/opt/ros/humble/bin:/home/admi3ev/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nuc2:@/tmp/.ICE-unix/1026,unix/nuc2:/tmp/.ICE-unix/1026'), ('INVOCATION_ID', '67b3dff36b82477b8138db9958d9c436'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.VV9BO3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-97298256b5.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/admi3ev/Beluga-Firmware-Mod/build/beluga'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/admi3ev/Beluga-Firmware-Mod/install/beluga_messages:/home/admi3ev/ros2_ws/install/motion_capture_tracking:/opt/ros/humble')]), 'shell': False}
+[24.112347] (beluga) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[24.113407] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-header-libraries/daw-header-librariesTargets.cmake\n'}
+[24.114058] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-header-libraries/daw-header-librariesConfig.cmake\n'}
+[24.114230] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-header-libraries/daw-header-librariesConfigVersion.cmake\n'}
+[24.114674] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw\n'}
+[24.115169] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_stream.h\n'}
+[24.115281] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_print_ostream.h\n'}
+[24.115691] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_constant.h\n'}
+[24.116103] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unique_array.h\n'}
+[24.116235] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_expected.h\n'}
+[24.116319] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_sip_hash.h\n'}
+[24.116392] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/cpp_17_iterator.h\n'}
+[24.116462] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ring_adaptor.h\n'}
+[24.116532] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator\n'}
+[24.116602] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_find_iterator.h\n'}
+[24.116671] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_repeat_n_char_iterator.h\n'}
+[24.116747] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_integer_iterator.h\n'}
+[24.116831] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_arrow_proxy.h\n'}
+[24.116901] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_checked_iterator_proxy.h\n'}
+[24.116969] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_inserter.h\n'}
+[24.117038] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_chunk_iterator.h\n'}
+[24.117119] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_function_iterator.h\n'}
+[24.117190] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_iterator.h\n'}
+[24.117304] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_split_iterator.h\n'}
+[24.117436] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_find_one_iterator.h\n'}
+[24.117516] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_zipiter.h\n'}
+[24.117596] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_output_stream_iterator.h\n'}
+[24.117675] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_circular_iterator.h\n'}
+[24.118102] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_back_inserter.h\n'}
+[24.118309] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_indexed_iterator.h\n'}
+[24.118395] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_counting_iterators.h\n'}
+[24.118472] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_bit_iterator.h\n'}
+[24.118544] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_sorted_insert_iterator.h\n'}
+[24.118615] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_argument_iterator.h\n'}
+[24.118688] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_random_iterator.h\n'}
+[24.118771] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_end_inserter.h\n'}
+[24.118847] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/InputIterator.h\n'}
+[24.118918] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_iota_iterator.h\n'}
+[24.118986] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_reverse_iterator.h\n'}
+[24.119054] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/impl\n'}
+[24.119122] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/impl/daw_find_iterator_impl.h\n'}
+[24.119192] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/iterator/daw_pointer_iterator.h\n'}
+[24.119263] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_safe_pointer.h\n'}
+[24.119336] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/ciso646.h\n'}
+[24.119476] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_read_file.h\n'}
+[24.119944] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bounded_vector.h\n'}
+[24.120031] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple_traits.h\n'}
+[24.120217] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated\n'}
+[24.120296] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_clumpy_sparsy.h\n'}
+[24.120369] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_bounded_hash_map.h\n'}
+[24.120442] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_collection.h\n'}
+[24.120519] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_poly_vector.h\n'}
+[24.120747] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_checked_expected.h\n'}
+[24.120836] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_cstring.h\n'}
+[24.120907] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_heap_value.h\n'}
+[24.120975] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range.h\n'}
+[24.121042] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string_view1_fwd.h\n'}
+[24.121109] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_reference.h\n'}
+[24.121178] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string_view1.h\n'}
+[24.121252] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_vector.h\n'}
+[24.121321] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_type.h\n'}
+[24.121398] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_ordered_map.h\n'}
+[24.121600] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_common_mixins.h\n'}
+[24.121703] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_algorithm.h\n'}
+[24.121801] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_operators.h\n'}
+[24.121880] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_newhelper.h\n'}
+[24.121953] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_optional_poly.h\n'}
+[24.122025] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_parallel_operators.h\n'}
+[24.122104] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_bounded_hash_set.h\n'}
+[24.122289] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string_fmt.h\n'}
+[24.122405] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_hash_table.h\n'}
+[24.123109] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_bounded_string.h\n'}
+[24.123194] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_cfile.h\n'}
+[24.123268] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_range_common.h\n'}
+[24.123340] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_carray.h\n'}
+[24.123409] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string.h\n'}
+[24.123478] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_stack_quick_sort.h\n'}
+[24.123546] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_fixed_lookup.h\n'}
+[24.123613] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_copiable_unique_ptr.h\n'}
+[24.123680] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_safe_string.h\n'}
+[24.123759] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_fixed_array.h\n'}
+[24.123834] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_bounded_graph.h\n'}
+[24.123905] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/not_null.h\n'}
+[24.123973] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_heap_array.h\n'}
+[24.124043] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/deprecated/daw_string_split_range.h\n'}
+[24.124114] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_arith_traits.h\n'}
+[24.124455] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cpp20_concept.h\n'}
+[24.124540] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_swap.h\n'}
+[24.124617] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_construct_a.h\n'}
+[24.124690] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_keep_n.h\n'}
+[24.124779] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_is_detected.h\n'}
+[24.124856] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_concepts.h\n'}
+[24.124931] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_piecewise_factory.h\n'}
+[24.125002] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_format_range.h\n'}
+[24.125071] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_mutable_capture.h\n'}
+[24.125149] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tracked_allocator.h\n'}
+[24.125220] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_value_ptr.h\n'}
+[24.125288] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_shared_function.h\n'}
+[24.125359] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_enable_if.h\n'}
+[24.125427] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_count.h\n'}
+[24.125495] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_construct_at.h\n'}
+[24.125562] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_restrict.h\n'}
+[24.125629] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/vector.h\n'}
+[24.125699] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_alias_cast.h\n'}
+[24.125810] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_sbo.h\n'}
+[24.125885] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_concat.h\n'}
+[24.125955] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ignored.h\n'}
+[24.126022] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple2.h\n'}
+[24.126089] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_dependent_false.h\n'}
+[24.126157] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_view_fwd.h\n'}
+[24.126224] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_pipelines.h\n'}
+[24.126292] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function_traits.h\n'}
+[24.126360] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_sort_n.h\n'}
+[24.126428] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_overload.h\n'}
+[24.126496] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_is_any_of.h\n'}
+[24.126564] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_optional.h\n'}
+[24.126631] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_do_n.h\n'}
+[24.126699] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function_table.h\n'}
+[24.126782] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_virtual_base.h\n'}
+[24.126851] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_undefined.h\n'}
+[24.126919] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_enable_requires.h\n'}
+[24.126987] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_heap_value.h\n'}
+[24.127054] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple.h\n'}
+[24.127122] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_observer_ptr.h\n'}
+[24.127190] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_forward_lvalue.h\n'}
+[24.127258] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_not_null.h\n'}
+[24.127326] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_rw_ref.h\n'}
+[24.127394] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unused.h\n'}
+[24.127467] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/format.h\n'}
+[24.127536] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_identity_function.h\n'}
+[24.127612] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cpp_feature_check.h\n'}
+[24.127681] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_exception.h\n'}
+[24.127759] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_named_params.h\n'}
+[24.127831] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_cast.h\n'}
+[24.127899] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cx_offset_of.h\n'}
+[24.127970] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_formatters.h\n'}
+[24.128038] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_container_traits.h\n'}
+[24.128105] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_contract.h\n'}
+[24.128172] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_lift.h\n'}
+[24.128239] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_reference.h\n'}
+[24.128306] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms\n'}
+[24.128375] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_accumulate.h\n'}
+[24.128443] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_adjacent_find.h\n'}
+[24.128511] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_partial_sum.h\n'}
+[24.128579] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_enumerate_tuple.h\n'}
+[24.128647] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_find_transform.h\n'}
+[24.128714] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_find.h\n'}
+[24.128792] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_array_compare.h\n'}
+[24.128862] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_copy_n.h\n'}
+[24.128930] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/algorithms/daw_algorithm_copy.h\n'}
+[24.128998] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_uint_buffer.h\n'}
+[24.129065] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bind_args_at.h\n'}
+[24.129132] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_move.h\n'}
+[24.129200] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_maybe_unique_ptr.h\n'}
+[24.129271] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_atomic_wait.h\n'}
+[24.129344] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_remove_cvref.h\n'}
+[24.129412] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_constinit.h\n'}
+[24.129480] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_fnv1a_hash.h\n'}
+[24.129555] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unique_ptr.h\n'}
+[24.129681] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_iter_view.h\n'}
+[24.129762] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_typeof.h\n'}
+[24.129834] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_view2.h\n'}
+[24.129931] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unreachable.h\n'}
+[24.130001] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/split_buffer.h\n'}
+[24.130073] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parser_addons.h\n'}
+[24.130146] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_use_default.h\n'}
+[24.130221] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function_ref.h\n'}
+[24.130298] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bounded_array.h\n'}
+[24.130365] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_from_string.h\n'}
+[24.130469] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_endian.h\n'}
+[24.130549] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_nth_pack_element.h\n'}
+[24.130626] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_fwd_pack_apply.h\n'}
+[24.130765] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_span_writer.h\n'}
+[24.130863] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_traits.h\n'}
+[24.130933] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/cpp_20.h\n'}
+[24.131001] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_hash_set.h\n'}
+[24.131087] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_hide.h\n'}
+[24.131159] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_view_version.h\n'}
+[24.131234] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_take.h\n'}
+[24.131341] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_apply.h\n'}
+[24.131414] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_any_if.h\n'}
+[24.131483] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_uint_types.h\n'}
+[24.131552] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_unique_resource.h\n'}
+[24.131621] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_move_only_base.h\n'}
+[24.131695] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_generic_hash.h\n'}
+[24.131777] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_validated.h\n'}
+[24.131849] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_math.h\n'}
+[24.131919] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_poly_value.h\n'}
+[24.131987] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_cast_util.h\n'}
+[24.132055] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_compiler_fixups.h\n'}
+[24.132125] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parser_helper_sv.h\n'}
+[24.132193] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_do_not_optimize.h\n'}
+[24.132262] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_character_traits.h\n'}
+[24.132331] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_exchange.h\n'}
+[24.132401] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_natural.h\n'}
+[24.132469] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_int_cmp.h\n'}
+[24.132537] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parser_helper.h\n'}
+[24.132637] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_utility.h\n'}
+[24.132712] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_logic.h\n'}
+[24.133053] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_graph_algorithm.h\n'}
+[24.133469] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_visit.h\n'}
+[24.134079] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_container_help.h\n'}
+[24.134234] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_integer_reverse.h\n'}
+[24.134336] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_scope_guard.h\n'}
+[24.134418] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_operators.h\n'}
+[24.134502] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit_queues.h\n'}
+[24.134599] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cx_atomic.h\n'}
+[24.134699] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_metro_hash.h\n'}
+[24.134978] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_graph.h\n'}
+[24.135095] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_uint_buffer_ios.h\n'}
+[24.135176] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_format_tuple.h\n'}
+[24.135306] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_data_end.h\n'}
+[24.135498] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_likely.h\n'}
+[24.135618] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_move_only.h\n'}
+[24.135712] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_empty.h\n'}
+[24.135840] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parse_args.h\n'}
+[24.136006] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ordering_to_integer.h\n'}
+[24.136469] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_forward_like.h\n'}
+[24.136550] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_visit_as.h\n'}
+[24.136785] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_variant_cast.h\n'}
+[24.137156] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function.h\n'}
+[24.137233] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/vector_algorithm.h\n'}
+[24.137342] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ref_counted_pointer.h\n'}
+[24.137437] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_poly_var.h\n'}
+[24.137705] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits\n'}
+[24.137821] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_a_type.h\n'}
+[24.138074] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_ostream_like.h\n'}
+[24.138171] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_remove_cvref.h\n'}
+[24.138254] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_rvalue_reference.h\n'}
+[24.138337] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_conditional.h\n'}
+[24.138411] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_remove_array_ref.h\n'}
+[24.138564] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_first_type.h\n'}
+[24.138664] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_copy_cvref_t.h\n'}
+[24.138846] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_integer_type.h\n'}
+[24.139036] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_pack_list.h\n'}
+[24.139342] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_one_of.h\n'}
+[24.139455] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_nth_element.h\n'}
+[24.139562] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_identity.h\n'}
+[24.139841] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_formatter.h\n'}
+[24.139938] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_same.h\n'}
+[24.140132] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_is_const.h\n'}
+[24.140230] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/traits/daw_traits_concepts.h\n'}
+[24.140439] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/cpp_17.h\n'}
+[24.140533] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_aligned_storage.h\n'}
+[24.141605] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_span.h\n'}
+[24.141761] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_allow_once.h\n'}
+[24.142232] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_prop_const_ptr.h\n'}
+[24.142335] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/wrap_iter.h\n'}
+[24.142423] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_view.h\n'}
+[24.142529] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_array.h\n'}
+[24.142677] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc\n'}
+[24.142829] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/iterator_traits.h\n'}
+[24.143113] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/compare_fn.h\n'}
+[24.143222] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/reverse_iterator.h\n'}
+[24.143297] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/hash.h\n'}
+[24.143398] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/integer_sequence.h\n'}
+[24.143478] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/declval.h\n'}
+[24.143690] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/move_fwd_exch.h\n'}
+[24.143797] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/readme.md\n'}
+[24.144083] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/reference_wrapper.h\n'}
+[24.144165] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/integral_constant.h\n'}
+[24.144258] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/is_convertible.h\n'}
+[24.144474] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/enable_if.h\n'}
+[24.144551] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/in_place.h\n'}
+[24.144648] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/min_and_max.h\n'}
+[24.144910] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/data_access.h\n'}
+[24.145017] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/tuple_traits.h\n'}
+[24.145161] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/range_access.h\n'}
+[24.145234] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/void_t.h\n'}
+[24.145373] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/stdinc/remove_cvref.h\n'}
+[24.145468] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_algorithm.h\n'}
+[24.145664] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_benchmark.h\n'}
+[24.145805] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_print.h\n'}
+[24.145987] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_parse_to.h\n'}
+[24.146091] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_memory_mapped_file.h\n'}
+[24.146193] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_uninitialized_storage.h\n'}
+[24.146274] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_pack_element.h\n'}
+[24.146406] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_read_only.h\n'}
+[24.146506] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_random.h\n'}
+[24.146616] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_cxmath.h\n'}
+[24.146699] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_min_perfect_hash.h\n'}
+[24.146859] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_size_literals.h\n'}
+[24.147279] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_container_algorithm.h\n'}
+[24.147813] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_stack_function.h\n'}
+[24.147912] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_string_view.h\n'}
+[24.148000] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_deduced_type.h\n'}
+[24.148094] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_attributes.h\n'}
+[24.148174] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bitset.h\n'}
+[24.148439] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_to_underlying_type.h\n'}
+[24.148540] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_static_bitset.h\n'}
+[24.148687] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_consteval.h\n'}
+[24.148817] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ensure.h\n'}
+[24.148918] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_can_constant_evaluate.h\n'}
+[24.149018] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_simple_array.h\n'}
+[24.149139] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_contiguous_view.h\n'}
+[24.149513] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_describe.h\n'}
+[24.149589] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_is_constant_evaluated.h\n'}
+[24.149688] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_always_false.h\n'}
+[24.149981] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_zipcontainer.h\n'}
+[24.150083] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/static_hash_table.h\n'}
+[24.150304] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_countable_resource.h\n'}
+[24.150406] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_iterator_traits.h\n'}
+[24.150635] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bind_front.h\n'}
+[24.150708] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_monadic_pointer_ops.h\n'}
+[24.150823] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple_helper.h\n'}
+[24.151028] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_tuple_forward.h\n'}
+[24.151109] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_callable.h\n'}
+[24.151380] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_ascii.h\n'}
+[24.151457] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bit.h\n'}
+[24.151568] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines\n'}
+[24.151671] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/slide.h\n'}
+[24.151884] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/pipeline.h\n'}
+[24.151984] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/range_base.h\n'}
+[24.152139] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/flatten.h\n'}
+[24.152243] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/iota.h\n'}
+[24.152333] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/find.h\n'}
+[24.152460] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/zip.h\n'}
+[24.152603] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/every.h\n'}
+[24.153620] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/sized_iterator.h\n'}
+[24.153774] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/generate.h\n'}
+[24.154289] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/print.h\n'}
+[24.154401] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/algorithm.h\n'}
+[24.154475] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/concat.h\n'}
+[24.154578] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/sample.h\n'}
+[24.154812] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/take.h\n'}
+[24.155234] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/unique.h\n'}
+[24.155330] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/reverse.h\n'}
+[24.155436] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/drop.h\n'}
+[24.155515] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/pipeline_traits.h\n'}
+[24.155620] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/chunk.h\n'}
+[24.155715] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/first.h\n'}
+[24.155936] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/maybe.h\n'}
+[24.156023] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/split.h\n'}
+[24.156116] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/enumerate.h\n'}
+[24.156191] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/numeric.h\n'}
+[24.156516] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/copy.h\n'}
+[24.156655] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/elements.h\n'}
+[24.156837] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/filter.h\n'}
+[24.157013] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/swizzle.h\n'}
+[24.157304] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/range.h\n'}
+[24.157412] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/skip.h\n'}
+[24.157494] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/map.h\n'}
+[24.157590] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/cache_last_view.h\n'}
+[24.157834] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/foreach.h\n'}
+[24.157950] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/predicates.h\n'}
+[24.158438] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/pipelines/to.h\n'}
+[24.158585] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_check_exceptions.h\n'}
+[24.158733] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_union_pair.h\n'}
+[24.158992] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_algorithm_cx.h\n'}
+[24.159103] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl\n'}
+[24.159216] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_container_help_vector.h\n'}
+[24.159482] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_msvc_int128.h\n'}
+[24.159605] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_container_help_string.h\n'}
+[24.159683] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_view_tags.h\n'}
+[24.159840] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/formatter_common.h\n'}
+[24.160155] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_math_impl.h\n'}
+[24.160239] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_numeric_limits.h\n'}
+[24.160327] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_container_help_ins_ext.h\n'}
+[24.160400] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_container_help_impl.h\n'}
+[24.160470] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_traits_impl.h\n'}
+[24.160539] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_make_trait.h\n'}
+[24.160606] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_is_string_view_like.h\n'}
+[24.160673] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_gcc_clang_int128.h\n'}
+[24.160749] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_int_to_iterator.h\n'}
+[24.160820] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_int128_check.h\n'}
+[24.160888] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/impl/daw_string_impl.h\n'}
+[24.160961] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/compressed_pair.h\n'}
+[24.161028] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_function_view.h\n'}
+[24.161095] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_assume.h\n'}
+[24.161161] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_bitset_helper.h\n'}
+[24.161228] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/daw_format_string_view.h\n'}
+[24.161294] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-utf-range/daw-utf-rangeTargets.cmake\n'}
+[24.161361] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-utf-range/daw-utf-rangeConfig.cmake\n'}
+[24.161428] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/cmake/daw-utf-range/daw-utf-rangeConfigVersion.cmake\n'}
+[24.161496] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw\n'}
+[24.161562] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8.h\n'}
+[24.161628] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf_range\n'}
+[24.161694] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf_range/daw_utf_range.h\n'}
+[24.161768] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf_range/daw_utf_string.h\n'}
+[24.161837] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8\n'}
+[24.161904] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8/unchecked.h\n'}
+[24.161970] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8/core.h\n'}
+[24.162036] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/daw/utf8/checked.h\n'}
+[24.162107] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/daw-json-link/cmake/daw-json-linkTargets.cmake\n'}
+[24.162173] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/daw-json-link/cmake/daw-json-linkConfig.cmake\n'}
+[24.162247] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/daw-json-link/cmake/daw-json-linkConfigVersion.cmake\n'}
+[24.162314] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include/\n'}
+[24.162380] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw\n'}
+[24.162446] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party\n'}
+[24.162512] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party/dragonbox\n'}
+[24.162577] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party/dragonbox/dragonbox_to_chars.h\n'}
+[24.162643] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party/dragonbox/dragonbox.h\n'}
+[24.162709] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/third_party/dragonbox/dragonbox_to_decimal.h\n'}
+[24.162785] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json\n'}
+[24.162852] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_apply.h\n'}
+[24.162918] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_iostream.h\n'}
+[24.162984] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_link_describe.h\n'}
+[24.163050] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_lines_iterator.h\n'}
+[24.163116] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_boost_pfr_mapping.h\n'}
+[24.163182] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_event_parser.h\n'}
+[24.163247] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_to_json.h\n'}
+[24.163313] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_exception.h\n'}
+[24.163379] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_parse_options.h\n'}
+[24.163449] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_switches.h\n'}
+[24.163516] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts\n'}
+[24.163581] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_container_traits_fwd.h\n'}
+[24.163647] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_container_traits.h\n'}
+[24.163714] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/readme.md\n'}
+[24.163793] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_nullable_value.h\n'}
+[24.163861] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output_fwd.h\n'}
+[24.163931] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_nullable_value_fwd.h\n'}
+[24.163997] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output_ostream.h\n'}
+[24.164062] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output.h\n'}
+[24.164129] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output_cstdio.h\n'}
+[24.164194] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/impl\n'}
+[24.164261] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/impl/daw_writable_output_details.h\n'}
+[24.164327] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/concepts/daw_writable_output_basics.h\n'}
+[24.164394] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_link.h\n'}
+[24.164461] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_schema.h\n'}
+[24.164527] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_serialize_options.h\n'}
+[24.164593] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_from_json_fwd.h\n'}
+[24.164659] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_find_path.h\n'}
+[24.164730] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_default_constuctor_fwd.h\n'}
+[24.164808] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_value_state.h\n'}
+[24.164876] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_from_json.h\n'}
+[24.164942] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_iterator.h\n'}
+[24.165009] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_data_contract.h\n'}
+[24.165075] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl\n'}
+[24.165141] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_allocator_wrapper.h\n'}
+[24.165207] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/version.h\n'}
+[24.165273] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_link_types_fwd.h\n'}
+[24.165339] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy.h\n'}
+[24.165406] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_digit.h\n'}
+[24.165472] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_enums.h\n'}
+[24.165538] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_option_bits.h\n'}
+[24.165604] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_traits.h\n'}
+[24.165674] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_murmur3.h\n'}
+[24.165769] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_assert.h\n'}
+[24.165844] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_link_types_aggregate.h\n'}
+[24.165911] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_std_string.h\n'}
+[24.165977] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_types_base.h\n'}
+[24.166043] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_array_sse42_iterator.h\n'}
+[24.166108] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_string_quote.h\n'}
+[24.166174] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy_policy_details.h\n'}
+[24.166240] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_reflection.h\n'}
+[24.166307] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_value.h\n'}
+[24.166373] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_find_result.h\n'}
+[24.166439] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy_no_comments.h\n'}
+[24.166505] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_default_constuctor.h\n'}
+[24.166571] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_serialize_options_impl.h\n'}
+[24.166637] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_type_options.h\n'}
+[24.166703] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_common.h\n'}
+[24.166778] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_alternate_mapping.h\n'}
+[24.166846] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_options_impl.h\n'}
+[24.166913] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_arrow_proxy.h\n'}
+[24.166978] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_fp_fallback.h\n'}
+[24.167043] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_serialize_policy_details.h\n'}
+[24.167109] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_req_helper.h\n'}
+[24.167175] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_value_fwd.h\n'}
+[24.167240] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_location_info.h\n'}
+[24.167312] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_real_power10.h\n'}
+[24.167379] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_kv_array_iterator.h\n'}
+[24.167448] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_exec_modes.h\n'}
+[24.167515] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_string_util.h\n'}
+[24.167581] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_string_need_slow.h\n'}
+[24.167646] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_value.h\n'}
+[24.167712] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_serialize_policy.h\n'}
+[24.167788] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_serialize_impl.h\n'}
+[24.167856] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_real.h\n'}
+[24.167923] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_count_digits.h\n'}
+[24.167990] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_class.h\n'}
+[24.168060] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/to_daw_json_string.h\n'}
+[24.168127] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_reflection_helpers.h\n'}
+[24.168193] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_not_const_ex_functions.h\n'}
+[24.168260] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy_hash_comments.h\n'}
+[24.168326] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_iso8601_utils.h\n'}
+[24.168392] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_value_fwd.h\n'}
+[24.168458] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/power_of_five_128_table.h\n'}
+[24.168524] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_policy_cpp_comments.h\n'}
+[24.168590] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_container_appender.h\n'}
+[24.168656] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_name.h\n'}
+[24.168721] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_skip.h\n'}
+[24.168796] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_kv_class_iterator.h\n'}
+[24.168863] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_construct_value.h\n'}
+[24.168929] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_array_iterator.h\n'}
+[24.168995] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_name.h\n'}
+[24.169061] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_reflection_impl.h\n'}
+[24.169132] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_parse_unsigned_int.h\n'}
+[24.169198] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/impl/daw_json_link_types_iso8601.h\n'}
+[24.169264] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_json_link_types.h\n'}
+[24.169330] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/json/daw_to_json_fwd.h\n'}
+[24.169395] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/daw_allocator_construct.h\n'}
+[24.169461] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/include//daw/daw_tuple_forward.h\n'}
+[24.169527] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/beluga/beluga\n'}
+[24.169593] (beluga) StdoutLine: {'line': b'-- Set runtime path of "/home/admi3ev/Beluga-Firmware-Mod/install/beluga/lib/beluga/beluga" to ""\n'}
+[24.169660] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/ament_index/resource_index/package_run_dependencies/beluga\n'}
+[24.169730] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/ament_index/resource_index/parent_prefix_path/beluga\n'}
+[24.169808] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/environment/ament_prefix_path.sh\n'}
+[24.169875] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/environment/ament_prefix_path.dsv\n'}
+[24.169941] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/environment/path.sh\n'}
+[24.170008] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/environment/path.dsv\n'}
+[24.170074] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/local_setup.bash\n'}
+[24.170141] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/local_setup.sh\n'}
+[24.170207] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/local_setup.zsh\n'}
+[24.170273] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/local_setup.dsv\n'}
+[24.170339] (beluga) StdoutLine: {'line': b'-- Installing: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.dsv\n'}
+[24.170408] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/ament_index/resource_index/packages/beluga\n'}
+[24.170475] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/cmake/belugaConfig.cmake\n'}
+[24.170542] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/cmake/belugaConfig-version.cmake\n'}
+[24.170608] (beluga) StdoutLine: {'line': b'-- Up-to-date: /home/admi3ev/Beluga-Firmware-Mod/install/beluga/share/beluga/package.xml\n'}
+[24.170675] (beluga) CommandEnded: {'returncode': 0}
+[24.170977] (beluga) JobEnded: {'identifier': 'beluga', 'rc': 0}
+[24.171310] (-) EventReactorShutdown: {}
