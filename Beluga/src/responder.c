@@ -23,6 +23,7 @@
 #include <responder.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include <ble_app.h>
 
 /**
  * Logger for the responder
@@ -229,10 +230,21 @@ static int ds_respond(uint64_t *poll_rx_ts) {
  * @return -EBADMSG if there was a reception error
  * @return -EINVAL if calculation came out to be invalid
  */
-static int wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
-    uint32 status_reg, frame_len, poll_rx_ts_32, resp_tx_ts_32, final_rx_ts_32;
-    uint32_t resp_rx_ts, poll_tx_ts, final_tx_ts;
-    uint64_t final_rx_ts, resp_tx_ts;
+static int wait_final(uint64 *tof_dtu, 
+     uint32_t * poll_tx_ts,
+     uint64_t * poll_rx_ts,
+     uint64_t * resp_tx_ts,
+     uint32_t * resp_rx_ts,
+     uint32_t * final_tx_ts,
+     uint64_t * final_rx_ts
+) {
+
+
+    uint32 status_reg, frame_len;
+
+    uint32 poll_rx_ts_32, resp_tx_ts_32, final_rx_ts_32;
+
+
     double roundA, replyA, roundB, replyB;
 
     UWB_WAIT(
@@ -266,20 +278,20 @@ static int wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
         return -EBADMSG;
     }
 
-    final_rx_ts = get_rx_timestamp_u64();
-    resp_tx_ts = get_tx_timestamp_u64();
+    *final_rx_ts = get_rx_timestamp_u64();
+    *resp_tx_ts = get_tx_timestamp_u64();
 
-    msg_get_ts(&rx_buffer[RESP_MSG_POLL_RX_TS_IDX], &poll_tx_ts);
-    msg_get_ts(&rx_buffer[RESP_MSG_RESP_TX_TS_IDX], &resp_rx_ts);
-    msg_get_ts(&rx_buffer[FINAL_MSG_FINAL_TX_TS_IDX], &final_tx_ts);
+    msg_get_ts(&rx_buffer[RESP_MSG_POLL_RX_TS_IDX], poll_tx_ts);
+    msg_get_ts(&rx_buffer[RESP_MSG_RESP_TX_TS_IDX], resp_rx_ts);
+    msg_get_ts(&rx_buffer[FINAL_MSG_FINAL_TX_TS_IDX], final_tx_ts);
 
     poll_rx_ts_32 = (uint32)(*poll_rx_ts);
-    resp_tx_ts_32 = (uint32)resp_tx_ts;
-    final_rx_ts_32 = (uint32)final_rx_ts;
+    resp_tx_ts_32 = (uint32)(*resp_tx_ts);
+    final_rx_ts_32 = (uint32)(*final_rx_ts);
     roundB = (double)(final_rx_ts_32 - resp_tx_ts_32);
     replyB = (double)(resp_tx_ts_32 - poll_rx_ts_32);
-    roundA = (double)(resp_rx_ts - poll_tx_ts);
-    replyA = (double)(final_tx_ts - resp_rx_ts);
+    roundA = (double)(*resp_rx_ts - *poll_tx_ts);
+    replyA = (double)(*final_tx_ts - *resp_rx_ts);
 
     if ((roundA * roundB - replyA * replyB) <= 0) {
         LOG_INF("Bad TOF response");
@@ -355,9 +367,24 @@ int ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     set_src_id(src_id, rx_final_msg);
     SET_EXCHANGE_ID(rx_final_msg + LOGIC_CLK_OFFSET, _logic_clk);
 
-    if ((err = wait_final(&tof_dtu, &poll_rx_ts)) < 0) {
+    uint32_t poll_tx_ts, resp_rx_ts, final_tx_ts;
+    uint64_t resp_tx_ts, final_rx_ts;
+    if ((err = wait_final(&tof_dtu, 
+            &poll_tx_ts,
+            &poll_rx_ts,
+            &resp_tx_ts,
+            &resp_rx_ts,
+            &final_tx_ts,
+            &final_rx_ts)) < 0) {
         return err;
     }
+    
+    seen_list[src_id].poll_tx_ts  = poll_tx_ts;
+    seen_list[src_id].poll_rx_ts  = poll_rx_ts;
+    seen_list[src_id].resp_tx_ts  = resp_tx_ts;
+    seen_list[src_id].resp_rx_ts  = resp_rx_ts;
+    seen_list[src_id].final_tx_ts = final_tx_ts;
+    seen_list[src_id].final_rx_ts = final_rx_ts;
 
     set_dest_id(src_id, tx_report_msg);
     SET_EXCHANGE_ID(tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);

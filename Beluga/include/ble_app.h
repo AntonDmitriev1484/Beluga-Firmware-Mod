@@ -37,10 +37,8 @@ struct node {
     int8_t RSSI;        /** node RSSI value */
     int64_t time_stamp; /** Last timestamp updated ranging value */
     float range;        /** Last updated ranging value */
-    bool update_flag;  /** Flag to indicate the ranging value is updated or not,
-                         1  if the node get updated */
-    bool polling_flag; /** Flag to indicate the node is passive or not, 1 if the
-                         node will init uwb signal*/
+    bool update_flag;   /** Flag to indicate the ranging value is updated or not */
+    bool polling_flag;  /** Flag to indicate the node is passive or not */
     int64_t ble_time_stamp; /** Last timestamp get the BLE package from this node */
 
     uint16_t maxNoise; /** Added diagnostic information */
@@ -51,6 +49,14 @@ struct node {
     uint16_t maxGrowthCIR;
     uint16_t rxPreamCount;
     uint16_t firstPath;
+
+    // UWB DS-TWR timestamps (store values, NOT pointers)
+    uint32_t poll_tx_ts;
+    uint64_t poll_rx_ts;
+    uint64_t resp_tx_ts;
+    uint32_t resp_rx_ts;
+    uint32_t final_tx_ts;
+    uint64_t final_rx_ts;
 
 #if IS_ENABLED(CONFIG_UWB_LOGIC_CLK)
     uint32_t exchange_id; /** Ranging exchange ID (Logic clock) */

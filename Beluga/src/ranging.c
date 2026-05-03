@@ -739,12 +739,17 @@ static void initiate_ranging(void) {
 
     dwt_rxdiag_t diag;
 
+
     if (!search_broken) {
         int err;
 
         if (twr_mode) {
-            err = ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,
-                              &exchange);
+            // NOTE NEED TO MODIFY FINAL RESPONSE NOT THIS
+            err = ds_init_run(seen_list[current_neighbor].UUID, 
+                            &range,
+                            &diag,
+                            &exchange
+                            );
             LOG_INF("Double sided ranging returned %d", err);
         } else {
             err = ss_init_run(seen_list[current_neighbor].UUID, &range,
