@@ -155,7 +155,7 @@ struct node_json_struct {
         (json_node).rxPreamCount   = (int32_t)(node).rxPreamCount;          \
         (json_node).firstPath      = (int32_t)(node).firstPath;             \
                                                                             \
-        /* ✅ DS-TWR timestamps */                                           \
+        /* DS-TWR timestamps */                                           \
         (json_node).poll_tx_ts  = (uint32_t)(node).poll_tx_ts;              \
         (json_node).poll_rx_ts  = (uint64_t)(node).poll_rx_ts;              \
         (json_node).resp_tx_ts  = (uint64_t)(node).resp_tx_ts;              \

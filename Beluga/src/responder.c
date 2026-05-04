@@ -381,6 +381,7 @@ int ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     
     // Segfault not coming from here. Commenting doesnt change outcome.
     // Map id to the actual Beluga index. In seen list.
+
     int beluga_idx = 0;
     for (int j = 0; j < MAX_ANCHOR_COUNT; j++) {
         if (seen_list[j].UUID == src_id) {
