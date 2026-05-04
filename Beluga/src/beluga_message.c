@@ -159,8 +159,6 @@ struct node_json_struct {
         (json_node).maxGrowthCIR   = (int32_t)(node).maxGrowthCIR;             \
         (json_node).rxPreamCount   = (int32_t)(node).rxPreamCount;             \
         (json_node).firstPath      = (int32_t)(node).firstPath;                \
-                                                                                \
-        /* --- DS-TWR timestamps --- */                                        \
         (json_node).poll_tx_ts   = (node).poll_tx_ts;                          \
         (json_node).poll_rx_ts   = (node).poll_rx_ts;                          \
         (json_node).resp_tx_ts   = (node).resp_tx_ts;                          \
@@ -209,8 +207,6 @@ static const struct json_obj_descr neighbor_json[] = {
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, maxGrowthCIR, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, rxPreamCount, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPath, JSON_TOK_NUMBER),
-
-    /* --- DS-TWR timestamps --- */
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, poll_tx_ts, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, poll_rx_ts, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, resp_tx_ts, JSON_TOK_NUMBER),

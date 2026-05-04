@@ -703,7 +703,7 @@ static int s_write_neighbors(const struct comms *comms,
 
     for (size_t i = 0; i < MAX_ANCHOR_COUNT; i++) {
         if (list[i].UUID != 0 && (!stream || list[i].update_flag)) {
-            char s[256];
+            char s[512]; //Here????
             size_t len;
             if (comms->ctx->format == FORMAT_ASCII) {
                 if (!header_printed) {

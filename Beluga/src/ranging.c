@@ -742,7 +742,8 @@ static void initiate_ranging(void) {
         int err;
 
         dwt_rxdiag_t diag;
-        ds_twr_timestamps_t ts;
+        ds_twr_timestamps_t ts = {0};
+        
 
         if (twr_mode) {
             err = ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,

@@ -50,11 +50,7 @@ struct node {
     uint16_t rxPreamCount;
     uint16_t firstPath;
 
-#if IS_ENABLED(CONFIG_UWB_LOGIC_CLK)
-    uint32_t exchange_id;
-#endif
-
-    // --- DS-TWR timestamps ---
+        // --- DS-TWR timestamps ---
     uint32_t poll_tx_ts;
     uint32_t poll_rx_ts;
     uint32_t resp_tx_ts;
@@ -63,6 +59,10 @@ struct node {
     uint32_t final_rx_ts;
     uint32_t report_tx_ts;
     uint32_t report_rx_ts;
+
+#if IS_ENABLED(CONFIG_UWB_LOGIC_CLK)
+    uint32_t exchange_id;
+#endif
 };
 
 /**
