@@ -742,9 +742,11 @@ static void initiate_ranging(void) {
     if (!search_broken) {
         int err;
 
+        ds_twr_timestamps_t ts;
+
         if (twr_mode) {
             err = ds_init_run(seen_list[current_neighbor].UUID, &range, &diag,
-                              &exchange);
+                              &exchange, &ts);
             LOG_INF("Double sided ranging returned %d", err);
         } else {
             err = ss_init_run(seen_list[current_neighbor].UUID, &range,
@@ -770,6 +772,17 @@ static void initiate_ranging(void) {
             seen_list[current_neighbor].maxGrowthCIR = diag.maxGrowthCIR;
             seen_list[current_neighbor].rxPreamCount = diag.rxPreamCount;
             seen_list[current_neighbor].firstPath = diag.firstPath;
+
+            seen_list[current_neighbor].poll_tx_ts  = ts.poll_tx_ts;
+            seen_list[current_neighbor].poll_rx_ts  = ts.poll_rx_ts;
+            seen_list[current_neighbor].resp_tx_ts  = ts.resp_tx_ts;
+            seen_list[current_neighbor].resp_rx_ts  = ts.resp_rx_ts;
+            seen_list[current_neighbor].final_tx_ts = ts.final_tx_ts;
+            seen_list[current_neighbor].final_rx_ts = ts.final_rx_ts;
+            seen_list[current_neighbor].report_tx_ts = ts.report_tx_ts;
+            seen_list[current_neighbor].report_rx_ts = ts.report_rx_ts;
+
+
 
             
 #if defined(CONFIG_UWB_LOGIC_CLK)

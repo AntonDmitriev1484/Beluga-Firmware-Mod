@@ -87,7 +87,23 @@ void set_hertz_to_ppm_multiplier(uint8_t channel);
  * initiated.
  */
 // int ds_init_run(uint16_t id, double *distance, uint32_t *logic_clock);
-int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock);
+// int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock);
+
+typedef struct {
+    uint32_t poll_tx_ts;
+    uint32_t poll_rx_ts;
+    uint32_t resp_tx_ts;
+    uint32_t resp_rx_ts;
+    uint32_t final_tx_ts;
+    uint32_t final_rx_ts;
+    uint32_t report_tx_ts;
+    uint32_t report_rx_ts;
+} ds_twr_timestamps_t;
+
+int ds_init_run(uint16_t id, double *distance, 
+    dwt_rxdiag_t* diag, 
+    uint32_t *logic_clock,
+    ds_twr_timestamps_t* ts);
 
 /**
  * @brief Initiates a single-sided ranging measurement to a certain node.

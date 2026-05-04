@@ -45,6 +45,7 @@ enum pgdelay_ch {
     ch7 = TC_PGDELAY_CH7, ///< Channel 7 delay
 };
 
+
 /**
  * @brief Represents the PHR (Physical Header) modes in UWB communication.
  *

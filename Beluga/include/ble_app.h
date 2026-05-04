@@ -33,17 +33,15 @@ enum node_eviction_policy {
  * BLE neighbor node structure
  */
 struct node {
-    uint16_t UUID;      /** node ID */
-    int8_t RSSI;        /** node RSSI value */
-    int64_t time_stamp; /** Last timestamp updated ranging value */
-    float range;        /** Last updated ranging value */
-    bool update_flag;  /** Flag to indicate the ranging value is updated or not,
-                         1  if the node get updated */
-    bool polling_flag; /** Flag to indicate the node is passive or not, 1 if the
-                         node will init uwb signal*/
-    int64_t ble_time_stamp; /** Last timestamp get the BLE package from this node */
+    uint16_t UUID;
+    int8_t RSSI;
+    int64_t time_stamp;
+    float range;
+    bool update_flag;
+    bool polling_flag;
+    int64_t ble_time_stamp;
 
-    uint16_t maxNoise; /** Added diagnostic information */
+    uint16_t maxNoise;
     uint16_t firstPathAmp1;
     uint16_t firstPathAmp2;
     uint16_t firstPathAmp3;
@@ -53,8 +51,18 @@ struct node {
     uint16_t firstPath;
 
 #if IS_ENABLED(CONFIG_UWB_LOGIC_CLK)
-    uint32_t exchange_id; /** Ranging exchange ID (Logic clock) */
+    uint32_t exchange_id;
 #endif
+
+    // --- DS-TWR timestamps ---
+    uint32_t poll_tx_ts;
+    uint32_t poll_rx_ts;
+    uint32_t resp_tx_ts;
+    uint32_t resp_rx_ts;
+    uint32_t final_tx_ts;
+    uint32_t final_rx_ts;
+    uint32_t report_tx_ts;
+    uint32_t report_rx_ts;
 };
 
 /**

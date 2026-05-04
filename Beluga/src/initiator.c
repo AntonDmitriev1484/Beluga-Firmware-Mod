@@ -313,7 +313,7 @@ static int ds_rx_response(void) {
  * @return 0 upon success
  * @return -ETIMEDOUT if transmission failed
  */
-static int send_final(void) {
+static int send_final(ds_twr_timestamps_t* ts) {
     uint64 poll_tx_ts, resp_rx_ts;
     uint64 ts_replyA_end;
     uint32 resp_tx_time;
@@ -321,6 +321,9 @@ static int send_final(void) {
 
     poll_tx_ts = get_tx_timestamp_u64();
     resp_rx_ts = get_rx_timestamp_u64();
+
+    ts->poll_tx_ts = (uint32_t)poll_tx_ts;
+    ts->resp_rx_ts = (uint32_t)resp_rx_ts;
 
     resp_tx_time =
         (resp_rx_ts + (POLL_RX_TO_RESP_TX_DLY_UUS * UUS_TO_DWT_TIME)) >> 8;
@@ -345,6 +348,8 @@ static int send_final(void) {
     UWB_WAIT(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS);
     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 
+    ts->final_tx_ts = (uint32_t)get_tx_timestamp_u64();
+
     return 0;
 }
 
@@ -359,7 +364,9 @@ static int send_final(void) {
  * @return -EBADMSG if there was an rx error, rx timeout, or the message
  * received did not match the expected message
  */
-static int rx_report(double *distance, dwt_rxdiag_t* diag) {
+static int rx_report(double *distance, 
+    dwt_rxdiag_t* diag,
+    ds_twr_timestamps_t* ts) {
     uint32 status_reg, frame_len;
     uint32_t msg_tof_dtu;
     double tof;
@@ -392,6 +399,10 @@ static int rx_report(double *distance, dwt_rxdiag_t* diag) {
     *distance = tof * SPEED_OF_LIGHT;
     dwt_readdiagnostics(diag);
 
+    //TODO: Read the other 3 responder side timestamps out of this message
+
+    ts->report_rx_ts = (uint32_t)get_rx_timestamp_u64();
+
     return 0;
 }
 
@@ -413,7 +424,11 @@ static int rx_report(double *distance, dwt_rxdiag_t* diag) {
  * assumed that the logic_clock output is not desired and the run will still be
  * initiated.
  */
-int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *logic_clock) {
+int ds_init_run(uint16_t id, double *distance, 
+    dwt_rxdiag_t* diag, 
+    uint32_t *logic_clock,
+    ds_twr_timestamps_t* ts) {
+
     int err;
 
     if (distance == NULL) {
@@ -431,13 +446,15 @@ int ds_init_run(uint16_t id, double *distance, dwt_rxdiag_t* diag, uint32_t *log
         return err;
     }
 
-    if ((err = send_final()) < 0) {
+    if ((err = send_final(ts)) < 0) {
         return err;
     }
 
-    if ((err = rx_report(distance, diag)) < 0) {
+    if ((err = rx_report(distance, diag, ts)) < 0) {
         return err;
     }
+
+    // After send final and report, ts will be up-to-date with all timestamps
 
     update_exchange(logic_clock);
 

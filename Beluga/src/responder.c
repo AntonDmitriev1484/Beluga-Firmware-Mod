@@ -301,6 +301,7 @@ static int wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
  */
 static int send_report(uint64 tof_dtu) {
     int ret;
+    // TODO: Modify this to send all responder side timestamps!!!
 
     msg_set_ts(&tx_report_msg[RESP_MSG_POLL_RX_TS_IDX], tof_dtu);
 
