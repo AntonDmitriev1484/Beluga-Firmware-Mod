@@ -88,28 +88,37 @@ LOG_MODULE_REGISTER(beluga_message_logger, CONFIG_BELUGA_MESSAGE_LOG_LEVEL);
  * use integers that are less than 32 bits.
  */
 struct node_json_struct {
-    // TODO: This gets initialized by COPY_NODE. 
-    // All data from a neighbor node datastructure (that you've already modified to store diag info)
-    // should get moved to here, where it will then get sent as a frame.
-
     int32_t UUID; ///< Neighbor node ID
     int32_t RSSI; ///< RSSI of the node
+
 #if defined(CONFIG_UWB_LOGIC_CLK)
     int32_t EXCHANGE;   ///< The exchange ID
-#endif                  // defined(CONFIG_UWB_LOGIC_CLK)
+#endif
+
     int64_t TIMESTAMP;  ///< Timestamp of last successful range measurement
-    char str_RANGE[32]; ///< String representation of the range
-    struct json_obj_token RANGE; ///< The JSON object token for the range
-    // Why is range represented as a string? Maybe because it can't send floats?
-    
-    int32_t maxNoise; /** Added diagnostic information */
+
+    char str_RANGE[32];              ///< String representation of the range
+    struct json_obj_token RANGE;     ///< JSON token for the range
+
+    // --- Diagnostic info ---
+    int32_t maxNoise;
     int32_t firstPathAmp1;
     int32_t firstPathAmp2;
     int32_t firstPathAmp3;
     int32_t stdNoise;
     int32_t maxGrowthCIR;
     int32_t rxPreamCount;
-    int32_t firstPath; // TODO: Worried this will make the frame too large
+    int32_t firstPath;
+
+    // --- DS-TWR timestamps (flattened) ---
+    uint32_t poll_tx_ts;
+    uint32_t poll_rx_ts;
+    uint32_t resp_tx_ts;
+    uint32_t resp_rx_ts;
+    uint32_t final_tx_ts;
+    uint32_t final_rx_ts;
+    uint32_t report_tx_ts;
+    uint32_t report_rx_ts;
 };
 
 /**
@@ -141,17 +150,26 @@ struct node_json_struct {
         (json_node).RSSI = (int32_t)(node).RSSI;                               \
         (json_node).TIMESTAMP = (node).time_stamp;                             \
         COPY_FLOAT(json_node, RANGE, (node).range);                            \
-        (json_node).EXCHANGE = (int32_t)(node).exchange_id;                   \
-        (json_node).maxNoise       = (int32_t)(node).maxNoise;       \
-        (json_node).firstPathAmp1  = (int32_t)(node).firstPathAmp1;   \
-        (json_node).firstPathAmp2  = (int32_t)(node).firstPathAmp2;   \
-        (json_node).firstPathAmp3  = (int32_t)(node).firstPathAmp3;   \
-        (json_node).stdNoise       = (int32_t)(node).stdNoise;        \
-        (json_node).maxGrowthCIR   = (int32_t)(node).maxGrowthCIR;    \
-        (json_node).rxPreamCount   = (int32_t)(node).rxPreamCount;    \
-        (json_node).firstPath      = (int32_t)(node).firstPath;       \
+        (json_node).EXCHANGE = (int32_t)(node).exchange_id;                    \
+        (json_node).maxNoise       = (int32_t)(node).maxNoise;                 \
+        (json_node).firstPathAmp1  = (int32_t)(node).firstPathAmp1;            \
+        (json_node).firstPathAmp2  = (int32_t)(node).firstPathAmp2;            \
+        (json_node).firstPathAmp3  = (int32_t)(node).firstPathAmp3;            \
+        (json_node).stdNoise       = (int32_t)(node).stdNoise;                 \
+        (json_node).maxGrowthCIR   = (int32_t)(node).maxGrowthCIR;             \
+        (json_node).rxPreamCount   = (int32_t)(node).rxPreamCount;             \
+        (json_node).firstPath      = (int32_t)(node).firstPath;                \
+                                                                                \
+        /* --- DS-TWR timestamps --- */                                        \
+        (json_node).poll_tx_ts   = (node).poll_tx_ts;                          \
+        (json_node).poll_rx_ts   = (node).poll_rx_ts;                          \
+        (json_node).resp_tx_ts   = (node).resp_tx_ts;                          \
+        (json_node).resp_rx_ts   = (node).resp_rx_ts;                          \
+        (json_node).final_tx_ts  = (node).final_tx_ts;                         \
+        (json_node).final_rx_ts  = (node).final_rx_ts;                         \
+        (json_node).report_tx_ts = (node).report_tx_ts;                        \
+        (json_node).report_rx_ts = (node).report_rx_ts;                        \
     } while (0)
-
 /**
  * JSON struct for the neighbor list. Supports up to the maximum
  * amount of neighbors.
@@ -176,14 +194,13 @@ struct neighbor_list_json_struct {
 // };
 
 static const struct json_obj_descr neighbor_json[] = {
-    JSON_OBJ_DESCR_PRIM_NAMED(struct node_json_struct, "ID", UUID,
-                              JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM_NAMED(struct node_json_struct, "ID", UUID, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, RSSI, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, TIMESTAMP, JSON_TOK_INT64),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, RANGE, JSON_TOK_FLOAT),
 #if defined(CONFIG_UWB_LOGIC_CLK)
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, EXCHANGE, JSON_TOK_NUMBER),
-#endif // defined(CONFIG_UWB_LOGIC_CLK)
+#endif
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, maxNoise, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPathAmp1, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPathAmp2, JSON_TOK_NUMBER),
@@ -192,6 +209,16 @@ static const struct json_obj_descr neighbor_json[] = {
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, maxGrowthCIR, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, rxPreamCount, JSON_TOK_NUMBER),
     JSON_OBJ_DESCR_PRIM(struct node_json_struct, firstPath, JSON_TOK_NUMBER),
+
+    /* --- DS-TWR timestamps --- */
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, poll_tx_ts, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, poll_rx_ts, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, resp_tx_ts, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, resp_rx_ts, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, final_tx_ts, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, final_rx_ts, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, report_tx_ts, JSON_TOK_NUMBER),
+    JSON_OBJ_DESCR_PRIM(struct node_json_struct, report_rx_ts, JSON_TOK_NUMBER),
 };
 
 
