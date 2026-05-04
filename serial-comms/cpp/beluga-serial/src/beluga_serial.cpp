@@ -246,8 +246,10 @@ void BelugaSerial::_process_rx_buffer(std::vector<uint8_t> &buf) {
         }
 
         BelugaFrame frame;
+        _log("Parsing frame of size %d at index %d", frame_size, frame_start);
         frame.parse_frame(buf, frame_start);
         BelugaFrame::DecodedFrame frame_ = frame.get_parsed_data();
+        _log("Decoded frame");
         _batch_queue.put(frame_, false);
         buf.erase(buf.begin() + frame_start,
                   buf.begin() + frame_start + frame_size);
@@ -289,10 +291,10 @@ void BelugaSerial::__read_serial() {
             // // ---- ASCII VIEW (safe print) ----
             // _log("[__read_serial] raw ascii chunk:");
 
-            for (size_t i = 0; i < buf.size(); i++) {
-                char c = (buf[i] >= 32 && buf[i] <= 126) ? buf[i] : '.';
-                _log("%c", c);
-            }
+            // for (size_t i = 0; i < buf.size(); i++) {
+            //     char c = (buf[i] >= 32 && buf[i] <= 126) ? buf[i] : '.';
+            //     _log("%c", c);
+            // }
 
             // append to rx buffer
             rx.insert(rx.end(), buf.begin(), buf.end());
@@ -301,9 +303,7 @@ void BelugaSerial::__read_serial() {
 
         lock.unlock();
 
-_log("beforeproc");
         _process_rx_buffer(rx);
-        _log("afterproc");
     }
 }
 

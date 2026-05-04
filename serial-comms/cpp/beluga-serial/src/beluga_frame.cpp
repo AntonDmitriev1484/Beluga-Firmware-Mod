@@ -38,8 +38,10 @@ namespace daw::json {
 template <>
 struct json_data_contract<BelugaSerial::BelugaFrame::NeighborUpdate> {
     using type = json_member_list<
-        json_number<"ID", uint16_t>, json_number<"RSSI", int8_t>,
-        json_number<"RANGE", double>, json_number<"TIMESTAMP", int64_t>,
+        json_number<"ID", uint16_t>,
+        json_number<"RSSI", int8_t>, 
+        json_number<"RANGE", double>, 
+        json_number<"TIMESTAMP", int64_t>,
         json_number<"EXCHANGE", uint32_t>, 
         json_number<"maxNoise", uint16_t>,
         json_number<"firstPathAmp1", uint16_t>,
@@ -108,6 +110,7 @@ void BelugaSerial::BelugaFrame::parse_frame(
         serial_data.begin() + start_index + MSG_PAYLOAD_OFFSET + payload_len);
     size_t last_index;
 
+
     try {
         switch (type) {
         case COMMAND_RESPONSE:
@@ -116,13 +119,19 @@ void BelugaSerial::BelugaFrame::parse_frame(
             break;
         case NEIGHBOR_UPDATE:
             // _log("prase_frame, NEIGHBOR_UPDATE");
+            std::cout << "NEIGHBOR_UPDATE payload: " << std::endl;
+            std::cout << _payload << std::endl;
             this->parsed_data.payload =
                 daw::json::from_json_array<NeighborUpdate>(_payload);
+            std::cout << "daw parsed" << std::endl;
             break;
         case RANGING_EVENT:
             // _log("prase_frame, RANGING_EVENT");
+            std::cout << "RANGING_EVENT payload: " << std::endl;
+            std::cout << _payload << std::endl;
             this->parsed_data.payload =
                 daw::json::from_json<BelugaSerial::RangeEvent>(_payload);
+            std::cout << "daw parsed" << std::endl;
             break;
         case NEIGHBOR_DROP:
             this->parsed_data.payload = (uint32_t)stoull(_payload, &last_index);

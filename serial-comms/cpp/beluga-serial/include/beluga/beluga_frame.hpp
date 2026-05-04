@@ -90,9 +90,9 @@ class BelugaFrame {
     struct NeighborUpdate {
         uint16_t ID;  ///< ID of the neighbor node
         int8_t RSSI;  ///< Received Signal Strength Indicator for the BLE
+        int64_t TIMESTAMP; ///< Timestamp of the neighbor ranging update
         double RANGE; ///< The calculated distance between the connected node
                       ///< and the neighbor node
-        int64_t TIMESTAMP; ///< Timestamp of the neighbor ranging update
         uint32_t EXCHANGE; ///< The exchange ID of the last ranging exchange
                            ///< with the neighbor
 
@@ -103,7 +103,8 @@ class BelugaFrame {
         uint16_t stdNoise;
         uint16_t maxGrowthCIR;
         uint16_t rxPreamCount;
-        uint16_t firstPath;           
+        uint16_t firstPath;    
+
         uint32_t poll_tx_ts;
       uint32_t poll_rx_ts;
       uint32_t resp_tx_ts;
