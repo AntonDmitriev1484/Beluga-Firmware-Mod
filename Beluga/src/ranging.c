@@ -774,14 +774,23 @@ static void initiate_ranging(void) {
             seen_list[current_neighbor].rxPreamCount = diag.rxPreamCount;
             seen_list[current_neighbor].firstPath = diag.firstPath;
 
-            seen_list[current_neighbor].poll_tx_ts  = ts.poll_tx_ts;
-            seen_list[current_neighbor].poll_rx_ts  = ts.poll_rx_ts;
-            seen_list[current_neighbor].resp_tx_ts  = ts.resp_tx_ts;
-            seen_list[current_neighbor].resp_rx_ts  = ts.resp_rx_ts;
-            seen_list[current_neighbor].final_tx_ts = ts.final_tx_ts;
-            seen_list[current_neighbor].final_rx_ts = ts.final_rx_ts;
-            seen_list[current_neighbor].report_tx_ts = ts.report_tx_ts;
-            seen_list[current_neighbor].report_rx_ts = ts.report_rx_ts;
+            // seen_list[current_neighbor].poll_tx_ts  = ts.poll_tx_ts;
+            // seen_list[current_neighbor].poll_rx_ts  = ts.poll_rx_ts;
+            // seen_list[current_neighbor].resp_tx_ts  = ts.resp_tx_ts;
+            // seen_list[current_neighbor].resp_rx_ts  = ts.resp_rx_ts;
+            // seen_list[current_neighbor].final_tx_ts = ts.final_tx_ts;
+            // seen_list[current_neighbor].final_rx_ts = ts.final_rx_ts;
+            // seen_list[current_neighbor].report_tx_ts = ts.report_tx_ts;
+            // seen_list[current_neighbor].report_rx_ts = ts.report_rx_ts;
+
+            seen_list[current_neighbor].poll_tx_ts  = -5;
+            seen_list[current_neighbor].poll_rx_ts  = -5;
+            seen_list[current_neighbor].resp_tx_ts  = -5;
+            seen_list[current_neighbor].resp_rx_ts  = -5;
+            seen_list[current_neighbor].final_tx_ts = -5;
+            seen_list[current_neighbor].final_rx_ts = -5;
+            seen_list[current_neighbor].report_tx_ts = -5;
+            seen_list[current_neighbor].report_rx_ts = -5;
 
 
 

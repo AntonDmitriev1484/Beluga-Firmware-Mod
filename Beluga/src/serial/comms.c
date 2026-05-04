@@ -621,8 +621,7 @@ int set_format(const struct comms *comms, enum comms_out_format_mode mode) {
     ",\"poll_tx_ts\":%" PRIu32 ",\"poll_rx_ts\":%" PRIu32                           \
     ",\"resp_tx_ts\":%" PRIu32 ",\"resp_rx_ts\":%" PRIu32                           \
     ",\"final_tx_ts\":%" PRIu32 ",\"final_rx_ts\":%" PRIu32                         \
-    ",\"report_tx_ts\":%" PRIu32 ",\"report_rx_ts\":%" PRIu32                       \
-    "}\r\n"
+    ",\"report_tx_ts\":%" PRIu32 ",\"report_rx_ts\":%" PRIu32 "}\r\n"               
 
 #define FMT_PARAMS_DIAG(_i)                                                         \
     list[(_i)].UUID,                                                               \

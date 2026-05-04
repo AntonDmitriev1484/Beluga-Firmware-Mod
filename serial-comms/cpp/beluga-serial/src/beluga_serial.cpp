@@ -254,19 +254,56 @@ void BelugaSerial::_process_rx_buffer(std::vector<uint8_t> &buf) {
     }
 }
 
+// void BelugaSerial::__read_serial() {
+//     std::vector<uint8_t> rx;
+//     std::unique_lock<std::recursive_mutex> lock(_serial_lock, std::defer_lock);
+
+//     while (_tasks_running) {
+//         lock.lock();
+//         if (_serial.in_waiting() > 0) {
+//             std::vector<uint8_t> buf;
+//             _serial.read_all(buf);
+            
+//             rx.insert(rx.end(), buf.begin(), buf.end());
+//         }
+//         lock.unlock();
+//         _process_rx_buffer(rx);
+//     }
+// }
+
 void BelugaSerial::__read_serial() {
     std::vector<uint8_t> rx;
     std::unique_lock<std::recursive_mutex> lock(_serial_lock, std::defer_lock);
 
     while (_tasks_running) {
         lock.lock();
+
         if (_serial.in_waiting() > 0) {
             std::vector<uint8_t> buf;
+    
             _serial.read_all(buf);
+
+            // ---- RAW SIZE ----
+            // _log("[__read_serial] raw bytes size = %d", (int)buf.size());
+
+            // // ---- ASCII VIEW (safe print) ----
+            // _log("[__read_serial] raw ascii chunk:");
+
+            for (size_t i = 0; i < buf.size(); i++) {
+                char c = (buf[i] >= 32 && buf[i] <= 126) ? buf[i] : '.';
+                _log("%c", c);
+            }
+
+            // append to rx buffer
             rx.insert(rx.end(), buf.begin(), buf.end());
+
         }
+
         lock.unlock();
+
+_log("beforeproc");
         _process_rx_buffer(rx);
+        _log("afterproc");
     }
 }
 
