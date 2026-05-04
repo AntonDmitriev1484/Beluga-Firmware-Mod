@@ -10,3 +10,11 @@ uint16 stdnoise
 uint16 maxgrowthcir
 uint16 rxpreamcount
 uint16 firstpath
+uint32 poll_tx_ts
+uint32 poll_rx_ts
+uint32 resp_tx_ts
+uint32 resp_rx_ts
+uint32 final_tx_ts
+uint32 final_rx_ts
+uint32 report_tx_ts
+uint32 report_rx_ts

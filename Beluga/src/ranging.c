@@ -737,11 +737,11 @@ static void initiate_ranging(void) {
         }
     }
 
-    dwt_rxdiag_t diag;
 
     if (!search_broken) {
         int err;
 
+        dwt_rxdiag_t diag;
         ds_twr_timestamps_t ts;
 
         if (twr_mode) {

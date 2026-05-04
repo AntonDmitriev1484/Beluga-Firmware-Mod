@@ -587,30 +587,66 @@ int set_format(const struct comms *comms, enum comms_out_format_mode mode) {
 //     ",maxNoise:%" PRIu16 ",firstPathAmp1:%" PRIu16 ",firstPathAmp2:%" PRIu16 ",firstPathAmp3:%" PRIu16              \
 //     ",stdNoise:%" PRIu16 ",maxGrowthCIR:%" PRIu16 ",rxPreamCount:%" PRIu16 ",firstPath:%" PRIu16 ",EXCHANGE:%" PRIu32 "}\r\n"
 
-#define JSON_FMT_STR_DIAG                                                           \
-    "{\"ID\":%" PRIu16 ",\"RSSI\":%" PRId8 ",\"RANGE\":%f,\"TIMESTAMP\":%" PRId64    \
-    ",\"ble_time_stamp\":%" PRId64 \
-    ",\"maxNoise\":%" PRIu16 ",\"firstPathAmp1\":%" PRIu16 ",\"firstPathAmp2\":%" PRIu16 ",\"firstPathAmp3\":%" PRIu16 \
-    ",\"stdNoise\":%" PRIu16 ",\"maxGrowthCIR\":%" PRIu16 ",\"rxPreamCount\":%" PRIu16 ",\"firstPath\":%" PRIu16 ",\"EXCHANGE\":%" PRIu32 "}\r\n"
+// #define JSON_FMT_STR_DIAG                                                           \
+//     "{\"ID\":%" PRIu16 ",\"RSSI\":%" PRId8 ",\"RANGE\":%f,\"TIMESTAMP\":%" PRId64    \
+//     ",\"ble_time_stamp\":%" PRId64 \
+//     ",\"maxNoise\":%" PRIu16 ",\"firstPathAmp1\":%" PRIu16 ",\"firstPathAmp2\":%" PRIu16 ",\"firstPathAmp3\":%" PRIu16 \
+//     ",\"stdNoise\":%" PRIu16 ",\"maxGrowthCIR\":%" PRIu16 ",\"rxPreamCount\":%" PRIu16 ",\"firstPath\":%" PRIu16 ",\"EXCHANGE\":%" PRIu32 "}\r\n"
 
+
+// #define FMT_PARAMS_DIAG(_i)                                                         \
+//     list[(_i)].UUID,                                                 \
+//     list[(_i)].RSSI,                                                           \
+//     (double)list[(_i)].range,                                                 \
+//     list[(_i)].time_stamp,                                                    \
+//     list[(_i)].update_flag,                                                   \
+//     list[(_i)].polling_flag,                                                  \
+//     list[(_i)].ble_time_stamp,                                                \
+//     list[(_i)].maxNoise,                                                      \
+//     list[(_i)].firstPathAmp1,                                                 \
+//     list[(_i)].firstPathAmp2,                                                 \
+//     list[(_i)].firstPathAmp3,                                                 \
+//     list[(_i)].stdNoise,                                                      \
+//     list[(_i)].maxGrowthCIR,                                                  \
+//     list[(_i)].rxPreamCount,                                                  \
+//     list[(_i)].firstPath,                                                     \
+//     list[(_i)].exchange_id \
+
+#define JSON_FMT_STR_DIAG                                                           \
+    "{\"ID\":%" PRIu16 ",\"RSSI\":%" PRId8 ",\"RANGE\":%f,\"TIMESTAMP\":%" PRId64   \
+    ",\"ble_time_stamp\":%" PRId64                                                  \
+    ",\"maxNoise\":%" PRIu16 ",\"firstPathAmp1\":%" PRIu16 ",\"firstPathAmp2\":%" PRIu16 ",\"firstPathAmp3\":%" PRIu16 \
+    ",\"stdNoise\":%" PRIu16 ",\"maxGrowthCIR\":%" PRIu16 ",\"rxPreamCount\":%" PRIu16 ",\"firstPath\":%" PRIu16 \
+    ",\"EXCHANGE\":%" PRIu32                                                        \
+    ",\"poll_tx_ts\":%" PRIu32 ",\"poll_rx_ts\":%" PRIu32                           \
+    ",\"resp_tx_ts\":%" PRIu32 ",\"resp_rx_ts\":%" PRIu32                           \
+    ",\"final_tx_ts\":%" PRIu32 ",\"final_rx_ts\":%" PRIu32                         \
+    ",\"report_tx_ts\":%" PRIu32 ",\"report_rx_ts\":%" PRIu32                       \
+    "}\r\n"
 
 #define FMT_PARAMS_DIAG(_i)                                                         \
-    list[(_i)].UUID,                                                 \
-    list[(_i)].RSSI,                                                           \
-    (double)list[(_i)].range,                                                 \
-    list[(_i)].time_stamp,                                                    \
-    list[(_i)].update_flag,                                                   \
-    list[(_i)].polling_flag,                                                  \
-    list[(_i)].ble_time_stamp,                                                \
-    list[(_i)].maxNoise,                                                      \
-    list[(_i)].firstPathAmp1,                                                 \
-    list[(_i)].firstPathAmp2,                                                 \
-    list[(_i)].firstPathAmp3,                                                 \
-    list[(_i)].stdNoise,                                                      \
-    list[(_i)].maxGrowthCIR,                                                  \
-    list[(_i)].rxPreamCount,                                                  \
-    list[(_i)].firstPath,                                                     \
-    list[(_i)].exchange_id \
+    list[(_i)].UUID,                                                               \
+    list[(_i)].RSSI,                                                               \
+    (double)list[(_i)].range,                                                      \
+    list[(_i)].time_stamp,                                                         \
+    list[(_i)].ble_time_stamp,                                                     \
+    list[(_i)].maxNoise,                                                           \
+    list[(_i)].firstPathAmp1,                                                      \
+    list[(_i)].firstPathAmp2,                                                      \
+    list[(_i)].firstPathAmp3,                                                      \
+    list[(_i)].stdNoise,                                                           \
+    list[(_i)].maxGrowthCIR,                                                       \
+    list[(_i)].rxPreamCount,                                                       \
+    list[(_i)].firstPath,                                                          \
+    list[(_i)].exchange_id,                                                        \
+    list[(_i)].poll_tx_ts,                                                         \
+    list[(_i)].poll_rx_ts,                                                         \
+    list[(_i)].resp_tx_ts,                                                         \
+    list[(_i)].resp_rx_ts,                                                         \
+    list[(_i)].final_tx_ts,                                                        \
+    list[(_i)].final_rx_ts,                                                        \
+    list[(_i)].report_tx_ts,                                                       \
+    list[(_i)].report_rx_ts
 
 /**
  * The format parameters

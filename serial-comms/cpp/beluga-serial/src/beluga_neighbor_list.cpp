@@ -12,13 +12,15 @@
 #include <beluga/beluga_neighbor_list.hpp>
 
 namespace BelugaSerial {
+
 BelugaNeighbor::BelugaNeighbor(const BelugaFrame::NeighborUpdate &neighbor) {
     _id = neighbor.ID;
     update(neighbor);
 }
 
 
-// Modified to include diagnostic info.
+// -------------------- Basic getters --------------------
+
 uint16_t BelugaNeighbor::id() const noexcept { return _id; }
 
 double BelugaNeighbor::range() const noexcept { return _range; }
@@ -30,6 +32,9 @@ int64_t BelugaNeighbor::time() const noexcept { return _time; }
 uint32_t BelugaNeighbor::exchange() const noexcept { return _exchange; }
 
 bool BelugaNeighbor::updated() const noexcept { return _updated; }
+
+
+// -------------------- Diagnostic getters --------------------
 
 uint16_t BelugaNeighbor::maxNoise() const noexcept { return _maxNoise; }
 
@@ -47,13 +52,34 @@ uint16_t BelugaNeighbor::rxPreamCount() const noexcept { return _rxPreamCount; }
 
 uint16_t BelugaNeighbor::firstPath() const noexcept { return _firstPath; }
 
-void BelugaNeighbor::updated(bool update) { _updated = update; }
+
+// -------------------- DS-TWR timestamp getters --------------------
+
+uint32_t BelugaNeighbor::poll_tx_ts() const noexcept { return _poll_tx_ts; }
+uint32_t BelugaNeighbor::poll_rx_ts() const noexcept { return _poll_rx_ts; }
+uint32_t BelugaNeighbor::resp_tx_ts() const noexcept { return _resp_tx_ts; }
+uint32_t BelugaNeighbor::resp_rx_ts() const noexcept { return _resp_rx_ts; }
+uint32_t BelugaNeighbor::final_tx_ts() const noexcept { return _final_tx_ts; }
+uint32_t BelugaNeighbor::final_rx_ts() const noexcept { return _final_rx_ts; }
+uint32_t BelugaNeighbor::report_tx_ts() const noexcept { return _report_tx_ts; }
+uint32_t BelugaNeighbor::report_rx_ts() const noexcept { return _report_rx_ts; }
+
+
+// -------------------- Mutators --------------------
+
+void BelugaNeighbor::updated(bool update) {
+    _updated = update;
+}
+
+
+// -------------------- Core update logic --------------------
 
 void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
     _range = neighbor.RANGE;
     _rssi = neighbor.RSSI;
     _time = neighbor.TIMESTAMP;
     _exchange = neighbor.EXCHANGE;
+
     _maxNoise = neighbor.maxNoise;
     _firstPathAmp1 = neighbor.firstPathAmp1;
     _firstPathAmp2 = neighbor.firstPathAmp2;
@@ -62,12 +88,26 @@ void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
     _maxGrowthCIR = neighbor.maxGrowthCIR;
     _rxPreamCount = neighbor.rxPreamCount;
     _firstPath = neighbor.firstPath;
+
+    // ---------------- DS-TWR timestamps ----------------
+    _poll_tx_ts   = neighbor.poll_tx_ts;
+    _poll_rx_ts   = neighbor.poll_rx_ts;
+    _resp_tx_ts   = neighbor.resp_tx_ts;
+    _resp_rx_ts   = neighbor.resp_rx_ts;
+    _final_tx_ts  = neighbor.final_tx_ts;
+    _final_rx_ts  = neighbor.final_rx_ts;
+    _report_tx_ts = neighbor.report_tx_ts;
+    _report_rx_ts = neighbor.report_rx_ts;
+
     _updated = true;
 }
 
 
+// -------------------- Neighbor list management --------------------
+
 void BelugaNeighborList::update(
     const std::vector<BelugaFrame::NeighborUpdate> &updates) {
+
     for (auto neighbor : updates) {
         if (_list.find(neighbor.ID) == _list.end()) {
             _list[neighbor.ID] = BelugaNeighbor(neighbor);
@@ -89,12 +129,14 @@ void BelugaNeighborList::remove(uint32_t node_id) {
 
 void BelugaNeighborList::get_updates(std::vector<BelugaNeighbor> &updates) {
     updates.clear();
+
     for (auto &[_, value] : _list) {
         if (value.updated()) {
             updates.emplace_back(value);
             value.updated(false);
         }
     }
+
     _range_update = false;
 }
 
@@ -102,6 +144,7 @@ void BelugaNeighborList::get_neighbors(std::vector<BelugaNeighbor> &neighbors) {
     for (auto &[_, value] : _list) {
         neighbors.emplace_back(value);
     }
+
     _neighbors_update = false;
 }
 
@@ -120,4 +163,5 @@ bool BelugaNeighborList::neighbor_updates() const noexcept {
 bool BelugaNeighborList::range_updates() const noexcept {
     return _range_update;
 }
+
 } // namespace BelugaSerial
