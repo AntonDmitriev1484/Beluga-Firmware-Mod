@@ -168,7 +168,7 @@
 /**
  * The report message length
  */
-#define REPORT_MSG_LEN (DW_FRAME_OVERHEAD + (6 * TIMESTAMP_OVERHEAD))
+#define REPORT_MSG_LEN (DW_FRAME_OVERHEAD + (5 * TIMESTAMP_OVERHEAD))
 
 /**
  * Index of the polling message receive timestamp

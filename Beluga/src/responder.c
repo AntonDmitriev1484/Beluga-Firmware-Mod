@@ -324,11 +324,12 @@ static int send_report(uint64 tof_dtu, uint64_t * poll_rx_ts_) {
     final_rx_ts = (uint32_t)get_rx_timestamp_u64();
     // final_tx_ts = TBD;
 
+    // Why is this messing up? tof_dtu?
     msg_set_ts(&tx_report_msg[REPORT_MSG_TOF_DTU_IDX], tof_dtu);
     msg_set_ts(&tx_report_msg[REPORT_MSG_POLL_RX_TS_IDX], poll_rx_ts);
     msg_set_ts(&tx_report_msg[REPORT_MSG_RESP_TX_TS_IDX], resp_tx_ts);
     msg_set_ts(&tx_report_msg[REPORT_MSG_FINAL_RX_TS_IDX], final_rx_ts);
-    msg_set_ts(&tx_report_msg[REPORT_MSG_REPORT_TX_TS_IDX], 0); // TODO Tricky
+    msg_set_ts(&tx_report_msg[REPORT_MSG_REPORT_TX_TS_IDX], 0);
 
     dwt_writetxdata(sizeof(tx_report_msg), tx_report_msg, 0);
     dwt_writetxfctrl(sizeof(tx_report_msg), 0, 1);
@@ -387,7 +388,6 @@ int ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
 
     set_dest_id(src_id, tx_report_msg);
     SET_EXCHANGE_ID(tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);
-
 
     if ((err = send_report(tof_dtu, &poll_rx_ts)) < 0) {
         return err;

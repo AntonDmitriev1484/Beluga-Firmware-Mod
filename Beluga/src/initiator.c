@@ -423,8 +423,6 @@ static int rx_report(double *distance,
     *distance = tof * SPEED_OF_LIGHT;
     dwt_readdiagnostics(diag);
 
-    //TODO: Read the other 3 responder side timestamps out of this message
-
     ts->report_rx_ts = (uint32_t)get_rx_timestamp_u64();
 
     return 0;
