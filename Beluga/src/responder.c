@@ -63,7 +63,21 @@ static uint8 rx_final_msg[FINAL_MSG_LEN] = {
     0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x69, 0, 0,
     0,    0,    0, 0,    0,    0,   0,   0,   0,   0,    0, 0};
 static uint8 tx_report_msg[REPORT_MSG_LEN] = {
-    0x41, 0x88, 0, 0xCA, 0xDE, 'V', 'E', 'W', 'A', 0xE3, 0, 0, 0, 0, 0, 0};
+    0x41, 0x88, 
+    0, 0xCA, 0xDE,
+     'V', 'E', 'W', 'A', 
+     0xE3, 
+     0, 0, 0, 0, //tof_dtu 
+     0, 0, 0, 0, //poll_rx_ts
+     0, 0, 0, 0, //resp_tx_ts
+     0, 0, 0, 0, //final_rx_ts
+     0, 0, 0, 0, //report_tx_ts
+     0, 0}; //crc
+#define REPORT_MSG_TOF_DTU_IDX 10
+#define REPORT_MSG_POLL_RX_TS_IDX 14
+#define REPORT_MSG_RESP_TX_TS_IDX 18
+#define REPORT_MSG_FINAL_RX_TS_IDX 22
+#define REPORT_MSG_REPORT_TX_TS_IDX 26
 
 /**
  * @}
@@ -299,11 +313,22 @@ static int wait_final(uint64 *tof_dtu, const uint64_t *poll_rx_ts) {
  * @return 0 upon success
  * @return -EBADMSG if unable to send
  */
-static int send_report(uint64 tof_dtu) {
+static int send_report(uint64 tof_dtu, uint64_t * poll_rx_ts_) {
     int ret;
     // TODO: Modify this to send all responder side timestamps!!!
 
-    msg_set_ts(&tx_report_msg[RESP_MSG_POLL_RX_TS_IDX], tof_dtu);
+    uint32_t final_rx_ts, resp_tx_ts, poll_rx_ts;
+
+    resp_tx_ts = (uint32_t)get_tx_timestamp_u64();
+    poll_rx_ts = (uint32_t)*poll_rx_ts_;
+    final_rx_ts = (uint32_t)get_rx_timestamp_u64();
+    // final_tx_ts = TBD;
+
+    msg_set_ts(&tx_report_msg[REPORT_MSG_TOF_DTU_IDX], tof_dtu);
+    msg_set_ts(&tx_report_msg[REPORT_MSG_POLL_RX_TS_IDX], poll_rx_ts);
+    msg_set_ts(&tx_report_msg[REPORT_MSG_RESP_TX_TS_IDX], resp_tx_ts);
+    msg_set_ts(&tx_report_msg[REPORT_MSG_FINAL_RX_TS_IDX], final_rx_ts);
+    msg_set_ts(&tx_report_msg[REPORT_MSG_REPORT_TX_TS_IDX], 0); // TODO Tricky
 
     dwt_writetxdata(sizeof(tx_report_msg), tx_report_msg, 0);
     dwt_writetxfctrl(sizeof(tx_report_msg), 0, 1);
@@ -363,7 +388,8 @@ int ds_resp_run(uint16_t *id, uint32_t *logic_clk) {
     set_dest_id(src_id, tx_report_msg);
     SET_EXCHANGE_ID(tx_report_msg + LOGIC_CLK_OFFSET, _logic_clk);
 
-    if ((err = send_report(tof_dtu)) < 0) {
+
+    if ((err = send_report(tof_dtu, &poll_rx_ts)) < 0) {
         return err;
     }
 

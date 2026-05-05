@@ -69,8 +69,26 @@ static uint8 rx_resp_msg[RESP_MSG_LEN] = {
 static uint8 tx_final_msg[FINAL_MSG_LEN] = {
     0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x69, 0, 0,
     0,    0,    0, 0,    0,    0,   0,   0,   0,   0,    0, 0};
+// static uint8 rx_report_msg[REPORT_MSG_LEN] = {
+//     0x41, 0x88, 0, 0xCA, 0xDE, 'V', 'E', 'W', 'A', 0xE3, 0, 0, 0, 0, 0, 0};
+
 static uint8 rx_report_msg[REPORT_MSG_LEN] = {
-    0x41, 0x88, 0, 0xCA, 0xDE, 'V', 'E', 'W', 'A', 0xE3, 0, 0, 0, 0, 0, 0};
+    0x41, 0x88, 
+    0, 0xCA, 0xDE,
+     'V', 'E', 'W', 'A', 
+     0xE3, 
+     0, 0, 0, 0, //tof_dtu
+     0, 0, 0, 0, //poll_rx_ts
+     0, 0, 0, 0, //resp_tx_ts
+     0, 0, 0, 0, //final_rx_ts
+     0, 0, 0, 0, //report_tx_ts
+     0, 0}; //crc
+#define REPORT_MSG_TOF_DTU_IDX 10
+#define REPORT_MSG_POLL_RX_TS_IDX 14
+#define REPORT_MSG_RESP_TX_TS_IDX 18
+#define REPORT_MSG_FINAL_RX_TS_IDX 22
+#define REPORT_MSG_REPORT_TX_TS_IDX 26
+
 
 /**
  * @}
@@ -390,11 +408,17 @@ static int rx_report(double *distance,
 
     rx_buffer[SEQ_CNT_OFFSET] = 0;
 
-    if (!(memcmp(rx_buffer, rx_report_msg, DW_BASE_LEN) == 0)) {
+    // This can cause problems
+    if (!(memcmp(rx_buffer, rx_report_msg, DW_BASE_LEN-4) == 0)) {
         return -EBADMSG;
     }
 
-    msg_get_ts(&rx_buffer[RESP_MSG_POLL_RX_TS_IDX], &msg_tof_dtu);
+    msg_get_ts(&rx_buffer[REPORT_MSG_TOF_DTU_IDX], &msg_tof_dtu);
+    msg_get_ts(&rx_buffer[REPORT_MSG_POLL_RX_TS_IDX], &(ts->poll_rx_ts));
+    msg_get_ts(&rx_buffer[REPORT_MSG_RESP_TX_TS_IDX], &(ts->resp_tx_ts));
+    msg_get_ts(&rx_buffer[REPORT_MSG_FINAL_RX_TS_IDX], &(ts->final_rx_ts));
+    msg_get_ts(&rx_buffer[REPORT_MSG_REPORT_TX_TS_IDX], &(ts->report_tx_ts));
+
     tof = msg_tof_dtu * DWT_TIME_UNITS;
     *distance = tof * SPEED_OF_LIGHT;
     dwt_readdiagnostics(diag);
@@ -473,8 +497,7 @@ int ds_init_run(uint16_t id, double *distance,
  * received did not match the expected message
  */
 static int ss_rx_response(double *distance) {
-    uint32_t status_reg, frame_len, poll_tx_ts, resp_rx_ts, poll_rx_ts,
-        resp_tx_ts;
+    uint32_t status_reg, frame_len, poll_tx_ts, resp_rx_ts, poll_rx_ts, resp_tx_ts;
     int32_t rtd_init, rtd_resp;
     float clockOffsetRatio;
     double tof;
