@@ -90,14 +90,14 @@ void BelugaNeighbor::update(const BelugaFrame::NeighborUpdate &neighbor) {
     _firstPath = neighbor.firstPath;
 
     // ---------------- DS-TWR timestamps ----------------
-    _poll_tx_ts   = neighbor.poll_tx_ts;
-    _poll_rx_ts   = neighbor.poll_rx_ts;
-    _resp_tx_ts   = neighbor.resp_tx_ts;
-    _resp_rx_ts   = neighbor.resp_rx_ts;
-    _final_tx_ts  = neighbor.final_tx_ts;
-    _final_rx_ts  = neighbor.final_rx_ts;
-    _report_tx_ts = neighbor.report_tx_ts;
-    _report_rx_ts = neighbor.report_rx_ts;
+    _poll_tx_ts   = (uint32_t)neighbor.poll_tx_ts;
+    _poll_rx_ts   = (uint32_t)neighbor.poll_rx_ts;
+    _resp_tx_ts   = (uint32_t)neighbor.resp_tx_ts;
+    _resp_rx_ts   = (uint32_t)neighbor.resp_rx_ts;
+    _final_tx_ts  = (uint32_t)neighbor.final_tx_ts;
+    _final_rx_ts  = (uint32_t)neighbor.final_rx_ts;
+    _report_tx_ts = (uint32_t)neighbor.report_tx_ts;
+    _report_rx_ts = (uint32_t)neighbor.report_rx_ts;
 
     _updated = true;
 }

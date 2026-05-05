@@ -105,14 +105,14 @@ class BelugaFrame {
         uint16_t rxPreamCount;
         uint16_t firstPath;    
 
-        uint32_t poll_tx_ts;
-      uint32_t poll_rx_ts;
-      uint32_t resp_tx_ts;
-      uint32_t resp_rx_ts;
-      uint32_t final_tx_ts;
-      uint32_t final_rx_ts;
-      uint32_t report_tx_ts;
-      uint32_t report_rx_ts;        
+        int32_t poll_tx_ts;
+      int32_t poll_rx_ts;
+      int32_t resp_tx_ts;
+      int32_t resp_rx_ts;
+      int32_t final_tx_ts;
+      int32_t final_rx_ts;
+      int32_t report_tx_ts;
+      int32_t report_rx_ts;        
     };
 
     /// Structure for decoded frame data

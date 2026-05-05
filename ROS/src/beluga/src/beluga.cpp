@@ -212,6 +212,17 @@ void Beluga::publish_ranges(
         range.rxpreamcount = it.rxPreamCount();
         range.firstpath = it.firstPath();
 
+
+        range.poll_tx_ts   = it.poll_tx_ts();
+        range.poll_rx_ts   = it.poll_rx_ts();
+        range.resp_tx_ts   = it.resp_tx_ts();
+        range.resp_rx_ts   = it.resp_rx_ts();
+        range.final_tx_ts  = it.final_tx_ts();
+        range.final_rx_ts  = it.final_rx_ts();
+        range.report_tx_ts = it.report_tx_ts();
+        range.report_rx_ts = it.report_rx_ts();
+
+
         message.ranges.push_back(range);
     }
     range_updates_publisher->publish(message);

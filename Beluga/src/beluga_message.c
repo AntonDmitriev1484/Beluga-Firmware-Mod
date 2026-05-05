@@ -111,14 +111,14 @@ struct node_json_struct {
     int32_t firstPath;
 
     // --- DS-TWR timestamps (flattened) ---
-    uint32_t poll_tx_ts;
-    uint32_t poll_rx_ts;
-    uint32_t resp_tx_ts;
-    uint32_t resp_rx_ts;
-    uint32_t final_tx_ts;
-    uint32_t final_rx_ts;
-    uint32_t report_tx_ts;
-    uint32_t report_rx_ts;
+    int32_t poll_tx_ts;
+    int32_t poll_rx_ts;
+    int32_t resp_tx_ts;
+    int32_t resp_rx_ts;
+    int32_t final_tx_ts;
+    int32_t final_rx_ts;
+    int32_t report_tx_ts;
+    int32_t report_rx_ts;
 };
 
 /**
@@ -159,14 +159,14 @@ struct node_json_struct {
         (json_node).maxGrowthCIR   = (int32_t)(node).maxGrowthCIR;             \
         (json_node).rxPreamCount   = (int32_t)(node).rxPreamCount;             \
         (json_node).firstPath      = (int32_t)(node).firstPath;                \
-        (json_node).poll_tx_ts   = (node).poll_tx_ts;                          \
-        (json_node).poll_rx_ts   = (node).poll_rx_ts;                          \
-        (json_node).resp_tx_ts   = (node).resp_tx_ts;                          \
-        (json_node).resp_rx_ts   = (node).resp_rx_ts;                          \
-        (json_node).final_tx_ts  = (node).final_tx_ts;                         \
-        (json_node).final_rx_ts  = (node).final_rx_ts;                         \
-        (json_node).report_tx_ts = (node).report_tx_ts;                        \
-        (json_node).report_rx_ts = (node).report_rx_ts;                        \
+        (json_node).poll_tx_ts   = (int32_t)(node).poll_tx_ts;                          \
+        (json_node).poll_rx_ts   = (int32_t)(node).poll_rx_ts;                          \
+        (json_node).resp_tx_ts   = (int32_t)(node).resp_tx_ts;                          \
+        (json_node).resp_rx_ts   = (int32_t)(node).resp_rx_ts;                          \
+        (json_node).final_tx_ts  = (int32_t)(node).final_tx_ts;                         \
+        (json_node).final_rx_ts  = (int32_t)(node).final_rx_ts;                         \
+        (json_node).report_tx_ts = (int32_t)(node).report_tx_ts;                        \
+        (json_node).report_rx_ts = (int32_t)(node).report_rx_ts;                        \
     } while (0)
 /**
  * JSON struct for the neighbor list. Supports up to the maximum

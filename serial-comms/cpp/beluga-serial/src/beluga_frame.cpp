@@ -51,14 +51,14 @@ struct json_data_contract<BelugaSerial::BelugaFrame::NeighborUpdate> {
         json_number<"maxGrowthCIR", uint16_t>,
         json_number<"rxPreamCount", uint16_t>,
         json_number<"firstPath", uint16_t>,        
-        json_number<"poll_tx_ts", uint32_t>,
-        json_number<"poll_rx_ts", uint32_t>,
-        json_number<"resp_tx_ts", uint32_t>,
-        json_number<"resp_rx_ts", uint32_t>,
-        json_number<"final_tx_ts", uint32_t>,
-        json_number<"final_rx_ts", uint32_t>,
-        json_number<"report_tx_ts", uint32_t>,
-        json_number<"report_rx_ts", uint32_t>>;
+        json_number<"poll_tx_ts", int32_t>,
+        json_number<"poll_rx_ts", int32_t>,
+        json_number<"resp_tx_ts", int32_t>,
+        json_number<"resp_rx_ts", int32_t>,
+        json_number<"final_tx_ts", int32_t>,
+        json_number<"final_rx_ts", int32_t>,
+        json_number<"report_tx_ts", int32_t>,
+        json_number<"report_rx_ts", int32_t>>;
 };
 
 template <> struct json_data_contract<BelugaSerial::RangeEvent> {
